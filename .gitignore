@@ -2,7 +2,6 @@
 debian/driveutility
 debian/.debhelper
 debian/debhelper-build-stamp
-debian/driveutility.1
 debian/driveutility.debhelper.log
 debian/driveutility.substvars
 debian/files

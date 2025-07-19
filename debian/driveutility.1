@@ -1,0 +1,31 @@
+.TH DRIVEUTILITY "1" "July 2025" "driveutility" "User Commands"
+
+.SH NAME
+driveutility \- a graphical tool to write disk images to storage devices, format or securely wipe them.
+
+.SH SYNOPSIS
+.B driveutility {[--debug] | [--help] | -m [write|format|wipe]}
+
+.SH DESCRIPTION
+.B driveutility
+is a graphical application to write disk image files to storage devices. It can also be used to format storage devices or securely wipe them.
+
+.SH OPTIONS
+.B --debug
+        Show status and debug messages.
+
+.B --help
+        Print a message with basic usage information.
+
+.B -m write [-d|--disk {disk_device}] [-i|--image {image_path}]
+        Launch the Disk Image Writer. Optionally, a device and an image file can be pre-selected by providing their paths.
+
+.B -m format [-d|--disk {disk_device}] [-f|--filesystem {filesystem}]
+        Launch the Disk Formatter. Optionally, a device and filesystem can be pre-selected.
+
+.B -m wipe [-d|--disk {disk_device}]
+        Launch the Disk Wiper. Optionally, a device can be pre-selected.
+
+.SH LICENSING
+.B driveutility
+is licensed under the GPLv2. See the COPYING file for details of GPL licensing.
