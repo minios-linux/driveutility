@@ -2,7 +2,8 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Source: https://github.com/linuxmint/mintstick
 
 Files: *
-Copyright: 2012-2014 Clement Lefebvre <root@linuxmint.com>
+Copyright: 2025 crims0n <crims0n@minios.dev>
+           2012-2014 Clement Lefebvre <root@linuxmint.com>
            2007-2009 Canonical Ltd. (Oliver Grawert <ogra@canonical.com>)
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify

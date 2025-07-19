@@ -1,0 +1,25 @@
+[Desktop Entry]
+Type=Application
+Exec=driveutility -m format
+Icon=driveutility
+Terminal=false
+Categories=Utility;
+OnlyShowIn=KDE;
+Name=Disk formatter
+Name[de]=Festplattenformatierer
+Name[es]=Formateador de discos
+Name[fr]=Formateur de disque
+Name[id]=Pemformat Disk
+Name[it]=Formattatore di dischi
+Name[pt]=Formatador de discos
+Name[pt_BR]=Formatador de discos
+Name[ru]=Форматировщик дисков
+Comment=Format a disk
+Comment[de]=Festplatte formatieren
+Comment[es]=Formatear un disco
+Comment[fr]=Formater un disque
+Comment[id]=Format sebuah disk
+Comment[it]=Formatta un disco
+Comment[pt]=Formatar um disco
+Comment[pt_BR]=Formatar um disco
+Comment[ru]=Форматировать диск

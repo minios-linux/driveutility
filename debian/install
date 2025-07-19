@@ -1,10 +1,10 @@
-lib/* usr/lib/mintstick
-share/mintstick/* usr/share/mintstick
+lib/* usr/lib/driveutility
+share/driveutility/* usr/share/driveutility
 share/applications/* usr/share/applications
 share/polkit/* usr/share/polkit-1/actions
-mintstick usr/bin
-mint-iso-verify usr/bin
+driveutility usr/bin
 share/nemo/actions/* usr/share/nemo/actions
 share/kde4/* /usr/share/kde4/apps/solid/actions
 share/icons/* usr/share/icons
 bin/* /usr/bin
+mo/* usr/share/locale

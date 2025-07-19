@@ -1,22 +1,17 @@
-# Mintstick
-Mintstick is a graphical tool that allows you to **format USB sticks** and **create bootable USB sticks**.  
+# Drive Utility
 
-![Image Writer](https://user-images.githubusercontent.com/19881231/122563505-f5829600-d04c-11eb-9ff8-55f8630fa1d1.png)
-![Stick Formatter](https://user-images.githubusercontent.com/19881231/122561389-77bd8b00-d04a-11eb-9b91-5754f01dfc7d.png)
+## Overview
 
+Drive Utility is a GTK3-based graphical utility designed for comprehensive management of disk devices on Linux systems. It provides a user-friendly interface for common disk operations, including writing disk images to drives, formatting disks with various filesystems, and securely wiping data.
 
-## Build
-To avoid the following error: `dpkg-source: error: unrepresentable changes to source` Build this package like this:
+Built with Python 3, Drive Utility leverages `UDisks2` for robust device detection and integrates with `pkexec` to securely handle operations requiring elevated privileges, ensuring a smooth and safe user experience.
 
-```
-dpkg-buildpackage -i.git
-```
+## Features
 
-## Translations
-Please use Launchpad to translate Mintstick: https://translations.launchpad.net/linuxmint/latest/.
-
-The PO files in this project are imported from there.
-
-## License
-- Code: GPLv2
-
+*   **Image Writing:** Easily burn `.iso`, `.img`, or `.bin` files to USB drives, SD cards, or other removable media.
+*   **Disk Formatting:** Format entire disk devices with popular filesystems such as FAT32, exFAT, NTFS, and EXT4. Users can specify a custom volume label for the new partition.
+*   **Secure Disk Wiping:** Erase sensitive data from disks using various wiping methods, including:
+    *   Zero fill (overwriting with zeros)
+    *   Random data (overwriting with random patterns)
+    *   Multiple passes (for enhanced data security)
+    *   Option for a final zero-fill pass.

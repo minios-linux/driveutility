@@ -1,0 +1,63 @@
+.TH DRIVEUTILITY-FORMAT "8" "July 2025" "driveutility" "System Administration Commands"
+
+.SH NAME
+driveutility-format \- format a storage device
+
+.SH SYNOPSIS
+.B driveutility-format
+.BI -d " device_path"
+.BI -f " filesystem"
+.BI -u " uid"
+.BI -g " gid"
+.RI [ label ]
+
+.SH DESCRIPTION
+.B driveutility-format
+is a command-line utility designed to format a specified storage device with a desired file system. It handles the complete formatting process, including unmounting the device, erasing existing partition tables, creating a new primary partition, and then formatting it. For `ext4` filesystems, it also sets the initial root owner based on the provided UID and GID.
+
+.SH OPTIONS
+.B -d, --device
+        Specify the path to the block device to be formatted (e.g.,
+        .I /dev/sdb).
+        This option is required.
+
+.B -f, --filesystem
+        Specify the type of file system to apply. Valid choices are
+        .B fat32, exfat, ntfs,
+        or
+        .B ext4.
+        This option is required.
+
+.B -u, --uid
+        Specify the User ID (UID) to be set as the owner for the root directory of the new filesystem (primarily for
+        .B ext4
+        filesystems). This option is required.
+
+.B -g, --gid
+        Specify the Group ID (GID) to be set as the group owner for the root directory of the new filesystem (primarily for
+        .B ext4
+        filesystems). This option is required.
+
+.B label
+        Specify an optional volume label for the new filesystem. If the label contains spaces, it must be enclosed in quotes.
+
+.SH EXIT STATUS
+.TP
+.B 0
+Success. The device was formatted successfully.
+.TP
+.B 2
+Argument parsing error. Invalid or missing command-line arguments.
+
+.SH EXAMPLES
+.TP
+.B To format /dev/sdj with FAT32 and the label "USB_DRIVE" for user 1000 and group 1000:
+.B driveutility-format -d /dev/sdj -f fat32 -u 1000 -g 1000 "USB_DRIVE"
+
+.TP
+.B To format /dev/sdc with EXT4 for user 1000 and group 1000:
+.B driveutility-format -d /dev/sdc -f ext4 -u 1000 -g 1000
+
+.SH LICENSING
+.B driveutility-format
+is licensed under the GPLv2. See the COPYING file for details of GPL licensing.

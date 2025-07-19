@@ -1,0 +1,10 @@
+[Nemo Action]
+Active=true
+Name[C]=Write image...
+Comment[C]=Write this image file to a device
+Exec=driveutility -m write -i %F
+Icon-Name=driveutility
+Selection=S
+Extensions=iso;img;bin;raw;dd;
+Name=Write image...
+Comment=Write this image file to a device

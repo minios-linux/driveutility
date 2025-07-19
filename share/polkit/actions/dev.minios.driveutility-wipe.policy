@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>MiniOS</vendor>
+  <vendor_url>https://minios.dev</vendor_url>
+  <action id="dev.minios.driveutility-wipe">
+    <icon_name>driveutility</icon_name>
+<description>Wipe a disk</description>
+<description xml:lang="de">Eine Festplatte löschen</description>
+<description xml:lang="es">Borrar un disco</description>
+<description xml:lang="fr">Effacer un disque</description>
+<description xml:lang="id">Hapus disk</description>
+<description xml:lang="it">Elimina un disco</description>
+<description xml:lang="pt">Apagar um disco</description>
+<description xml:lang="pt_BR">Apagar um disco</description>
+<description xml:lang="ru">Очистить диск</description>
+<message>Authentication is required to wipe a device.</message>
+<message xml:lang="de">Authentifizierung ist erforderlich, um ein Gerät zu löschen.</message>
+<message xml:lang="es">Se requiere autenticación para borrar un dispositivo.</message>
+<message xml:lang="fr">L'authentification est requise pour effacer un périphérique.</message>
+<message xml:lang="id">Autentikasi diperlukan untuk menghapus perangkat.</message>
+<message xml:lang="it">È necessaria l'autenticazione per eliminare un dispositivo.</message>
+<message xml:lang="pt">Autenticação é necessária para apagar um dispositivo.</message>
+<message xml:lang="pt_BR">Autenticação é necessária para apagar um dispositivo.</message>
+<message xml:lang="ru">Требуется аутентификация для очистки устройства.</message>
+
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/driveutility-wipe</annotate>
+
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>
+

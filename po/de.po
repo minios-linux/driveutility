@@ -1,0 +1,302 @@
+# German translations for driveutility package.
+# Copyright (C) 2025 MiniOS Linux
+# This file is distributed under the same license as the driveutility package.
+# crims0n <crims0n@minios.dev>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: driveutility 1.6.4\n"
+"Report-Msgid-Bugs-To: support@minios.dev\n"
+"POT-Creation-Date: 2025-07-19 19:30+0300\n"
+"PO-Revision-Date: 2025-07-19 00:43+0300\n"
+"Last-Translator: crims0n <crims0n@minios.dev>\n"
+"Language-Team: none\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: share/driveutility/driveutility.ui:661
+msgid "Add a final pass with zeros"
+msgstr "Einen abschließenden Nulldurchgang hinzufügen"
+
+#: lib/driveutility.py:212
+msgid "All files"
+msgstr "Alle Dateien"
+
+#: lib/driveutility.py:513
+#, python-format
+msgid "An error occured while creating a partition on %s."
+msgstr "Beim Erstellen einer Partition auf %s ist ein Fehler aufgetreten."
+
+#: lib/driveutility.py:661
+msgid "An error occured while writing the image."
+msgstr "Beim Schreiben des Abbilds ist ein Fehler aufgetreten."
+
+#: lib/driveutility.py:571
+#, python-format
+msgid "An error occurred while wiping %s."
+msgstr "Beim Löschen von %s ist ein Fehler aufgetreten."
+
+#: lib/driveutility.py:520 lib/driveutility.py:667
+msgid "An error occurred."
+msgstr "Ein Fehler ist aufgetreten."
+
+#: lib/driveutility.py:516 lib/driveutility.py:567 lib/driveutility.py:663
+msgid "Authentication Error."
+msgstr "Authentifizierungsfehler."
+
+#: share/polkit/actions/dev.minios.driveutility-format.policy:11
+msgid "Authentication is required to format a device."
+msgstr "Authentifizierung ist erforderlich, um ein Gerät zu formatieren."
+
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy:11
+msgid "Authentication is required to wipe a device."
+msgstr "Authentifizierung ist erforderlich, um ein Gerät zu löschen."
+
+#: share/polkit/actions/dev.minios.driveutility-write.policy:11
+msgid "Authentication is required to write an image to a device."
+msgstr ""
+"Authentifizierung ist erforderlich, um ein Abbild auf ein Gerät zu schreiben."
+
+#: share/driveutility/driveutility.ui:303
+msgid "Choose a name for the disk"
+msgstr "Wählen Sie einen Namen für die Festplatte"
+
+#: lib/driveutility.py:206
+msgid "Disk Images"
+msgstr "Festplattenabbilder"
+
+#: share/applications/driveutility-formatter-kde.desktop:9
+#: share/applications/driveutility-formatter.desktop:9
+msgid "Disk formatter"
+msgstr "Festplattenformatierer"
+
+#: share/driveutility/driveutility.ui:582
+msgid "Disk to wipe:"
+msgstr "Zu löschende Festplatte:"
+
+#: share/applications/driveutility-wiper.desktop:9
+#: share/applications/driveutility-wiper-kde.desktop:9
+msgid "Disk wiper"
+msgstr "Festplattenlöschprogramm"
+
+#: share/driveutility/driveutility.ui:205
+msgid "Disk:"
+msgstr "Festplatte:"
+
+#: share/applications/driveutility.desktop:11
+#: share/applications/driveutility-kde.desktop:11
+msgid "Drive Management"
+msgstr "Laufwerksverwaltung"
+
+#: share/driveutility/driveutility.ui:960
+#: share/applications/driveutility.desktop:9
+#: share/applications/driveutility-kde.desktop:9
+msgid "Drive Utility"
+msgstr "Laufwerksprogramm"
+
+#: share/driveutility/driveutility.ui:258
+msgid ""
+"FAT32 \n"
+"  + Compatible everywhere.\n"
+"  -  Cannot handle files larger than 4GB.\n"
+"\n"
+"exFAT\n"
+"  + Compatible almost everywhere.\n"
+"  + Can handle files larger than 4GB.\n"
+"  -  Not as compatible as FAT32.\n"
+"\n"
+"NTFS \n"
+"  + Compatible with Windows.\n"
+"  -  Not compatible with Mac and most hardware devices.\n"
+"  -  Occasional compatibility problems with Linux.\n"
+"\n"
+"EXT4 \n"
+"  + Modern, stable, fast, journalized.\n"
+"  + Supports Linux file permissions.\n"
+"  -  Not compatible with Windows, Mac and most devices.\n"
+msgstr ""
+"FAT32 \n"
+"  + Überall kompatibel.\n"
+"  -  Kann keine Dateien größer als 4 GB verarbeiten.\n"
+"\n"
+"exFAT\n"
+"  + Fast überall kompatibel.\n"
+"  + Kann Dateien größer als 4 GB verarbeiten.\n"
+"  -  Nicht so kompatibel wie FAT32.\n"
+"\n"
+"NTFS \n"
+"  + Kompatibel mit Windows.\n"
+"  -  Nicht kompatibel mit Mac und den meisten Hardwaregeräten.\n"
+"  -  Gelegentliche Kompatibilitätsprobleme mit Linux.\n"
+"\n"
+"EXT4 \n"
+"  + Modern, stabil, schnell, journalisiert.\n"
+"  + Unterstützt Linux-Dateiberechtigungen.\n"
+"  -  Nicht kompatibel mit Windows, Mac und den meisten Geräten.\n"
+
+#: share/driveutility/driveutility.ui:233
+msgid "Filesystem:"
+msgstr "Dateisystem:"
+
+#: share/driveutility/driveutility.ui:396
+msgid "Format"
+msgstr "Formatieren"
+
+#: share/kde4/driveutility-format_action.desktop:9
+msgid "Format USB stick"
+msgstr "USB-Stick formatieren"
+
+#: share/applications/driveutility-formatter-kde.desktop:10
+#: share/applications/driveutility-formatter.desktop:10
+#: share/polkit/actions/dev.minios.driveutility-format.policy:10
+msgid "Format a disk"
+msgstr "Festplatte formatieren"
+
+#: share/driveutility/driveutility.ui:72
+msgid "Image file:"
+msgstr "Abbilddatei:"
+
+#: share/applications/driveutility-writer-kde.desktop:9
+#: share/applications/driveutility-writer.desktop:9
+msgid "Image writer"
+msgstr "Abbildschreibprogramm"
+
+#: share/driveutility/driveutility.ui:898
+msgid "More information"
+msgstr "Weitere Informationen"
+
+#: lib/driveutility.py:659
+msgid "Not enough space on the destination disk."
+msgstr "Nicht genügend Speicherplatz auf der Zielfestplatte."
+
+#: share/driveutility/driveutility.ui:638
+msgid "Passes:"
+msgstr "Durchgänge:"
+
+#: share/driveutility/driveutility.ui:624
+msgid "Quick (fill with zeros)"
+msgstr "Schnell (mit Nullen füllen)"
+
+#: share/driveutility/driveutility.ui:307
+msgid "STORAGE"
+msgstr "SPEICHER"
+
+#: share/driveutility/driveutility.ui:625
+msgid "Secure (fill with random data)"
+msgstr "Sicher (mit Zufallsdaten füllen)"
+
+#: share/driveutility/driveutility.ui:87
+msgid "Select Image File"
+msgstr "Abbilddatei auswählen"
+
+#: share/driveutility/driveutility.ui:59
+msgid "Select a destination disk"
+msgstr "Eine Zielfestplatte auswählen"
+
+#: share/driveutility/driveutility.ui:219
+msgid "Select a disk"
+msgstr "Eine Festplatte auswählen"
+
+#: share/driveutility/driveutility.ui:596
+msgid "Select a disk to securely wipe"
+msgstr "Eine Festplatte zum sicheren Löschen auswählen"
+
+#: share/driveutility/driveutility.ui:85
+msgid "Select an image file"
+msgstr "Eine Abbilddatei auswählen"
+
+#: share/driveutility/driveutility.ui:131
+#: share/driveutility/driveutility.ui:345
+#: share/driveutility/driveutility.ui:706
+msgid "Show all disks (DANGEROUS)"
+msgstr "Alle Festplatten anzeigen (GEFÄHRLICH)"
+
+#: lib/driveutility.py:511
+msgid "The disk was formatted successfully."
+msgstr "Die Festplatte wurde erfolgreich formatiert."
+
+#: lib/driveutility.py:565
+msgid "The disk was wiped successfully."
+msgstr "Die Festplatte wurde erfolgreich gelöscht."
+
+#: lib/driveutility.py:657
+msgid "The image was successfully written to the disk."
+msgstr "Das Abbild wurde erfolgreich auf die Festplatte geschrieben."
+
+#: share/driveutility/driveutility.ui:874
+msgid "This file looks like a Windows image."
+msgstr "Diese Datei sieht wie ein Windows-Abbild aus."
+
+#: share/driveutility/driveutility.ui:45
+msgid "To disk:"
+msgstr "Auf Festplatte:"
+
+#: share/driveutility/driveutility.ui:289
+msgid "Volume label:"
+msgstr "Volumebezeichnung:"
+
+#: share/driveutility/driveutility.ui:887
+msgid "Windows images require special processing."
+msgstr "Windows-Abbilder erfordern eine spezielle Verarbeitung."
+
+#: share/driveutility/driveutility.ui:757
+msgid "Wipe"
+msgstr "Löschen"
+
+#: share/applications/driveutility-wiper.desktop:10
+#: share/applications/driveutility-wiper-kde.desktop:10
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy:10
+msgid "Wipe a disk"
+msgstr "Eine Festplatte löschen"
+
+#: share/driveutility/driveutility.ui:609
+msgid "Wipe type:"
+msgstr "Löschtyp:"
+
+#: share/driveutility/driveutility.ui:182
+msgid "Write Image"
+msgstr "Abbild schreiben"
+
+#: share/polkit/actions/dev.minios.driveutility-write.policy:10
+msgid "Write a disk image"
+msgstr "Ein Abbild schreiben"
+
+#: share/applications/driveutility-writer-kde.desktop:10
+#: share/applications/driveutility-writer.desktop:10
+msgid "Write a disk image to a device"
+msgstr "Ein Abbild auf ein Gerät schreiben"
+
+#: share/applications/driveutility.desktop:10
+#: share/applications/driveutility-kde.desktop:10
+msgid "Write disk images, format, or wipe drives"
+msgstr "Festplattenabbilder schreiben, formatieren oder Laufwerke löschen"
+
+#: share/driveutility/driveutility.ui:458
+#: share/driveutility/driveutility.ui:539
+#: share/driveutility/driveutility.ui:819
+#: share/driveutility/driveutility.ui:923
+msgid "_Back"
+msgstr "_Zurück"
+
+#: share/driveutility/driveutility.ui:371
+msgid "_Format"
+msgstr "_Formatieren"
+
+#: share/driveutility/driveutility.ui:732
+msgid "_Wipe"
+msgstr "_Löschen"
+
+#: share/driveutility/driveutility.ui:157
+msgid "_Write"
+msgstr "_Schreiben"
+
+#: share/applications/driveutility.desktop:12
+#: share/applications/driveutility-kde.desktop:12
+msgid ""
+"usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
+msgstr ""
+"usb;iso;image;schreiben;flash;bootfähig;formatieren;fat32;ntfs;ext4;löschen;"
+"festplatte;"

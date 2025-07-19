@@ -1,0 +1,55 @@
+.TH DRIVEUTILITY-WRITE "8" "July 2025" "driveutility" "System Administration Commands"
+
+.SH NAME
+driveutility-write \- write a disk image to a storage device
+
+.SH SYNOPSIS
+.B driveutility-write
+.BI -s " source_image_path"
+.BI -t " target_device_path"
+
+.SH DESCRIPTION
+.B driveutility-write
+is a command-line utility to write the content of a disk image file or another block device (the source) directly to a target storage device. It performs a raw, byte-for-byte copy, making it suitable for creating bootable USB drives or restoring device images. Before writing, the utility unmounts the target device and verifies that the source image will fit. Progress is displayed as a floating-point number from 0.0 to 1.0, indicating the percentage of completion.
+
+.SH OPTIONS
+.TP
+.B -s, --source
+        Specify the path to the source disk image file (e.g.,
+        .I /path/to/image.iso)
+        or source block device (e.g.,
+        .I /dev/sdc)
+        to be written. This option is required.
+
+.TP
+.B -t, --target
+        Specify the path to the target block device (e.g.,
+        .I /dev/sdj)
+        where the image will be written. All data on this device will be overwritten. This option is required.
+
+.SH EXIT STATUS
+.TP
+.B 0
+Success. The disk image was written to the target device successfully.
+.TP
+.B 2
+Argument parsing error. Invalid or missing command-line arguments.
+.TP
+.B 3
+Not enough space. The target device is too small to contain the source image.
+.TP
+.B 4
+Write error. A general error occurred during the writing process, such as the source being inaccessible or a failure during the write operation.
+
+.SH EXAMPLES
+.TP
+.B To write an ISO image to a USB drive:
+.B driveutility-write -s /home/user/my_image.iso -t /dev/sdj
+
+.TP
+.B To clone one block device to another:
+.B driveutility-write -s /dev/sdd -t /dev/sde
+
+.SH LICENSING
+.B driveutility-write
+is licensed under the GPLv2. See the COPYING file for details of GPL licensing.

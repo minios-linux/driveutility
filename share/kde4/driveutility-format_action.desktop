@@ -1,0 +1,9 @@
+[Desktop Entry]
+X-KDE-Solid-Predicate=[ StorageDrive.removable == 'true' AND StorageDrive.bus == 'Usb' ]
+Type=Service
+Actions=open;
+
+[Desktop Action open]
+Exec=/usr/lib/driveutility/driveutility.py -m format -u %d
+Icon=drive-removable-media-usb-pendrive
+Name=Format USB stick

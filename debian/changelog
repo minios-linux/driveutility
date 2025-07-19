@@ -1,3 +1,21 @@
+driveutility (1.7.0) unstable; urgency=medium
+
+  * Fork mintstick for use in MiniOS
+  * Remove support for checking ISO images
+  * Add a disk erase utility
+  * Implement a more modern and user-friendly interface
+  * Add a list of all disks
+  * Add the ability to burn any images, not just ISO images
+  * Add the ability to write other block devices
+  * Fix display of disks with the same serial number (relevant for virtual
+    machines)
+  * Fix display of size of disks with the same serial number (relevant for
+    virtual machines)
+  * Add translation to German, Spanish, French, Indonesian, Italian,
+    Portuguese, Russian.
+
+ -- crims0n <crims0n@minios.dev>  Fri, 18 Jul 2025 19:01:57 +0300
+
 mintstick (1.6.3) xia; urgency=medium
 
   * verify: Add a fallback keyserver
@@ -114,7 +132,7 @@ mintstick (1.5.1) vera; urgency=medium
 
   [ Clement Lefebvre ]
   * Add a tool to verify ISO images
-  * mint-iso-verify: Add file filters
+  * mint-image-verify: Add file filters
   * Update dependencies
   * l10n: Update POT
   * l10n: Update files

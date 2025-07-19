@@ -1,4 +1,38 @@
 #!/usr/bin/make -f
 
+# Get the list of all .po files and extract language codes
+PO_FILES := $(basename $(notdir $(wildcard po/*.po)))
+# Generate the list of .mo files with folder structure: mo/<lang>/LC_MESSAGES/driveutility.mo
+MO_FILES := $(foreach lang,$(PO_FILES),mo/$(lang)/LC_MESSAGES/driveutility.mo)
+
 %:
-	dh ${@}
+	dh $@
+
+override_dh_auto_build:
+	# First, perform the standard build
+	dh_auto_build
+	# Then explicitly call our target for building translations
+	$(MAKE) -f debian/rules mo_build
+
+override_dh_auto_clean:
+	dh_auto_clean
+	# Explicitly call our target for cleaning
+	$(MAKE) -f debian/rules mo_clean
+
+
+# "Fake" target that depends on all .mo files with correct structure
+mo_build: $(MO_FILES)
+
+# Pattern rule for compiling a single .po file into mo/<lang>/LC_MESSAGES/driveutility.mo
+mo/%/LC_MESSAGES/driveutility.mo: po/%.po
+	@echo "Compiling translation: $< -> $@"
+	@mkdir -p $(dir $@)
+	@msgfmt --output-file=$@ $<
+
+# Target for cleaning
+mo_clean:
+	@echo "Cleaning compiled translations..."
+	@rm -rf mo
+
+# Declare our targets as "phony" so make doesn't look for files named mo_build or mo_clean.
+.PHONY: mo_build mo_clean

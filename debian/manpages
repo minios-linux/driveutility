@@ -1,1 +1,4 @@
-debian/mintstick.1
+debian/driveutility.1
+debian/driveutility-format.8
+debian/driveutility-wipe.8
+debian/driveutility-write.8

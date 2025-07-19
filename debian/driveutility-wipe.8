@@ -1,0 +1,85 @@
+.TH DRIVEUTILITY-WIPE "8" "July 2025" "driveutility" "System Administration Commands"
+
+.SH NAME
+driveutility-wipe \- securely wipe a storage device
+
+.SH SYNOPSIS
+.B driveutility-wipe
+.BI -d " device_path"
+.RI [ -p " passes" ]
+.RI [ -t " type" ]
+.RI [ -z ]
+.RI [ -s " size_mb" ]
+.RI [ -b " block_size" ]
+
+.SH DESCRIPTION
+.B driveutility-wipe
+is a command-line utility used to securely overwrite a storage device or a specified portion of it with either zeros or random data. This process effectively makes previously stored data unrecoverable. It supports multiple overwrite passes and an optional final zero-fill pass for random wipes. The target device is unmounted before any wiping operation begins.
+
+.SH OPTIONS
+.TP
+.B -d, --device
+        Specify the path to the block device to be wiped (e.g.,
+        .I /dev/sdb).
+        This option is required.
+
+.TP
+.B -p, --passes
+        Specify the number of overwrite passes to perform. Each pass will overwrite the device with the chosen
+        .B --type
+        of data. The default is 1 pass.
+
+.TP
+.B -t, --type
+        Specify the data pattern to use for wiping.
+        .B zero
+        fills the device with zeros.
+        .B random
+        fills the device with cryptographically random data. The default is
+        .B zero.
+
+.TP
+.B -z, --final-zero
+        When performing a random wipe (i.e., when
+        .B --type random
+        is used), this option adds an additional final pass that fills the device with zeros. This makes it less obvious that the device was securely wiped with random data.
+
+.TP
+.B -s, --size
+        Specify the size in megabytes (MB) of the device to wipe, starting from the beginning. If not specified, the entire device will be wiped.
+
+.TP
+.B -b, --block-size
+        Specify the block size to be used by the underlying
+        .B dd
+        command. This affects the performance of the wipe operation. Default is
+        .B 1M
+        (1 megabyte).
+
+.SH EXIT STATUS
+.TP
+.B 0
+Success. The device was wiped successfully.
+.TP
+.B 1
+General error. This can include the specified path not being a block device, the device not being found, or a failure during the wiping process itself (e.g., `dd` reporting an unexpected error).
+.TP
+.B 2
+Argument parsing error. Invalid or missing command-line arguments.
+
+.SH EXAMPLES
+.TP
+.B To wipe /dev/sdc with a single pass of zeros:
+.B driveutility-wipe -d /dev/sdc -t zero
+
+.TP
+.B To perform 3 passes of random data on /dev/sdb, followed by a final zero pass:
+.B driveutility-wipe -d /dev/sdb -p 3 -t random -z
+
+.TP
+.B To wipe the first 100 MB of /dev/sde with zeros, using a 4M block size:
+.B driveutility-wipe -d /dev/sde -s 100 -b 4M
+
+.SH LICENSING
+.B driveutility-wipe
+is licensed under the GPLv2. See the COPYING file for details of GPL licensing.

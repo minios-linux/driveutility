@@ -1,0 +1,25 @@
+[Desktop Entry]
+Type=Application
+Exec=driveutility -m write
+Icon=driveutility
+Terminal=false
+Categories=GTK;Utility;
+NotShowIn=KDE;
+Name=Image writer
+Name[de]=Abbildschreibprogramm
+Name[es]=Grabador de imágenes
+Name[fr]=Graveur d'images
+Name[id]=Penulis Citra
+Name[it]=Scrittore di immagini
+Name[pt]=Gravador de imagens
+Name[pt_BR]=Gravador de imagens
+Name[ru]=Записыватель образов
+Comment=Write a disk image to a device
+Comment[de]=Ein Abbild auf ein Gerät schreiben
+Comment[es]=Escribir una imagen de disco en un dispositivo
+Comment[fr]=Écrire une image disque sur un périphérique
+Comment[id]=Tulis citra disk ke perangkat
+Comment[it]=Scrivi un'immagine disco su un dispositivo
+Comment[pt]=Gravar uma imagem de disco num dispositivo
+Comment[pt_BR]=Gravar uma imagem de disco em um dispositivo
+Comment[ru]=Записать образ диска на устройство

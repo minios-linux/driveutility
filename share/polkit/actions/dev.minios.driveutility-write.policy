@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>MiniOS</vendor>
+  <vendor_url>https://minios.dev</vendor_url>
+  <action id="dev.minios.driveutility-write">
+    <icon_name>driveutility</icon_name>
+<description>Write a disk image</description>
+<description xml:lang="de">Ein Abbild schreiben</description>
+<description xml:lang="es">Escribir una imagen de disco</description>
+<description xml:lang="fr">Écrire une image disque</description>
+<description xml:lang="id">Tulis citra disk</description>
+<description xml:lang="it">Scrivi un'immagine disco</description>
+<description xml:lang="pt">Gravar uma imagem de disco</description>
+<description xml:lang="pt_BR">Gravar uma imagem de disco</description>
+<description xml:lang="ru">Записать образ диска</description>
+<message>Authentication is required to write an image to a device.</message>
+<message xml:lang="de">Authentifizierung ist erforderlich, um ein Abbild auf ein Gerät zu schreiben.</message>
+<message xml:lang="es">Se requiere autenticación para escribir una imagen en un dispositivo.</message>
+<message xml:lang="fr">L'authentification est requise pour écrire une image sur un périphérique.</message>
+<message xml:lang="id">Autentikasi diperlukan untuk menulis citra ke perangkat.</message>
+<message xml:lang="it">È necessaria l'autenticazione per scrivere un'immagine su un dispositivo.</message>
+<message xml:lang="pt">Autenticação é necessária para gravar uma imagem em um dispositivo.</message>
+<message xml:lang="pt_BR">Autenticação é necessária para gravar uma imagem em um dispositivo.</message>
+<message xml:lang="ru">Требуется аутентификация для записи образа на устройство.</message>
+
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/driveutility-write</annotate>
+
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>
+

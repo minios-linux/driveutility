@@ -3,7 +3,7 @@
 from subprocess import call
 import sys
 import argparse
-sys.path.append('/usr/lib/mintstick')
+sys.path.append('/usr/lib/driveutility')
 from mountutils import do_umount
 import syslog
 
@@ -55,9 +55,9 @@ def raw_format(device_path, fstype, volume_label, uid, gid):
 def main():
     # parse command line options
     try:
-        parser = argparse.ArgumentParser(description="Format USB",
-                                         prog="mint-stick-format",
-                                         epilog="Example : mint-stick-format -d /dev/sdj -f fat32 -l \"USB Stick\" -u 1000 -g 1000")
+        parser = argparse.ArgumentParser(description="Format a storage device",
+                                         prog="driveutility-format",
+                                         epilog="Example : driveutility-format -d /dev/sdj -f fat32 -l \"STORAGE\" -u 1000 -g 1000")
         parser.add_argument("-d", "--device", help="Device path", type=str, required=True)
         parser.add_argument("-f", "--filesystem", help="File system type", action="store",
                             type=str, choices=("fat32", "exfat", "ntfs", "ext4"), required=True)

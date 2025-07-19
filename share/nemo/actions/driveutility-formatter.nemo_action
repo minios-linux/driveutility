@@ -1,0 +1,12 @@
+[Nemo Action]
+Active=true
+Name[C]=Format...
+Comment[C]=Format this device
+Exec=driveutility -m format -d %F
+Icon-Name=driveutility
+Selection=S
+Extensions=dir;
+Mimetypes=inode/directory;
+Dependencies=udisks2;
+Name=Format...
+Comment=Format this device

@@ -1,23 +1,24 @@
-Source: mintstick
+Source: driveutility
 Section: misc
 Priority: optional
-Maintainer: Clement Lefebvre <root@linuxmint.com>
-Build-Depends: debhelper (>= 9), python3
+Maintainer: crims0n <crims0n@minios.dev>
+Build-Depends: debhelper (>= 10), python3
 Build-Depends-Indep: gettext
 Standards-Version: 3.9.5
 
-Package: mintstick
+Package: driveutility
 Architecture: all
 Depends:
  ${misc:Depends},
- coreutils,
+ coreutils (>= 8.30),
  genisoimage,
  gir1.2-glib-2.0,
  gir1.2-gtk-3.0,
  gir1.2-polkit-1.0,
  ntfs-3g,
  parted,
- policykit-1,
+ polkitd | policykit-1,
+ pkexec | policykit-1,
  procps,
  python3,
  python3-gi,
@@ -26,9 +27,10 @@ Depends:
  python3-unidecode,
  gir1.2-udisks-2.0,
  gir1.2-xapp-1.0,
- util-linux,
+ util-linux (>= 2.32),
  exfatprogs | exfat-utils
-Conflicts: usb-imagewriter
-Replaces: usb-imagewriter
-Description: write .img and .iso files to USB sticks
- A GUI to write .img or .iso files to a USB Key. It can also format them.
+Conflicts: usb-imagewriter, mintstick
+Replaces: usb-imagewriter, mintstick
+Description: Graphical utility for writing, formatting, and wiping storage devices
+ A simple and convenient tool to write disk images,
+ format, and securely wipe storage devices.
