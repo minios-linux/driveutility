@@ -304,7 +304,7 @@ EXT4
                         <property name="hexpand">True</property>
                         <property name="max-length">32</property>
                         <property name="width-chars">20</property>
-                        <property name="text" translatable="yes">STORAGE</property>
+                        <property name="text">STORAGE</property>
                       </object>
                       <packing>
                         <property name="left-attach">1</property>
