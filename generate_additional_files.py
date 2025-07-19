@@ -122,13 +122,7 @@ Categories=GTK;System;
 NotShowIn=KDE;
 """
 keywords = "usb,iso,image,write,flash,bootable,format,fat32,ntfs,ext4,erase,wipe,disk"
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility.desktop",
-         main_prefix,
-         _("Drive Utility"),
-         _("Write disk images, format, or wipe drives"),
-         "",
-         genericName=_("Drive Management"),
-         keywords=_(keywords))
+generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility.desktop", main_prefix, _("Drive Utility"), _("Write disk images, format, or wipe drives"), "", genericName=_("Drive Management"), keywords=_(keywords))
 
 # Optional .desktop file for KDE.
 kde_prefix = """[Desktop Entry]
@@ -139,13 +133,7 @@ Terminal=false
 Categories=System;
 OnlyShowIn=KDE;
 """
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-kde.desktop",
-         kde_prefix,
-         _("Drive Utility"),
-         _("Write disk images, format, or wipe drives"),
-         "",
-         genericName=_("Drive Management"),
-         keywords=_(keywords))
+generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-kde.desktop", kde_prefix, _("Drive Utility"), _("Write disk images, format, or wipe drives"), "", genericName=_("Drive Management"), keywords=_(keywords))
 
 
 # --- 2. Create .desktop files for individual actions (Utility category) ---
@@ -159,11 +147,7 @@ Terminal=false
 Categories=GTK;Utility;
 NotShowIn=KDE;
 """
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-writer.desktop",
-         write_prefix_gtk,
-         _("Image writer"),
-         _("Write a disk image to a device"),
-         "")
+#generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-writer.desktop", write_prefix_gtk, _("Image writer"), _("Write a disk image to a device"), "")
 
 write_prefix_kde = """[Desktop Entry]
 Type=Application
@@ -173,11 +157,7 @@ Terminal=false
 Categories=Utility;
 OnlyShowIn=KDE;
 """
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-writer-kde.desktop",
-         write_prefix_kde,
-         _("Image writer"),
-         _("Write a disk image to a device"),
-         "")
+#generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-writer-kde.desktop", write_prefix_kde, _("Image writer"), _("Write a disk image to a device"), "")
 
 # --- Format Action ---
 format_prefix_gtk = """[Desktop Entry]
@@ -188,11 +168,7 @@ Terminal=false
 Categories=GTK;Utility;
 NotShowIn=KDE;
 """
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-formatter.desktop",
-         format_prefix_gtk,
-         _("Disk formatter"),
-         _("Format a disk"),
-         "")
+#generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-formatter.desktop", format_prefix_gtk, _("Disk formatter"), _("Format a disk"), "")
 
 format_prefix_kde = """[Desktop Entry]
 Type=Application
@@ -202,11 +178,7 @@ Terminal=false
 Categories=Utility;
 OnlyShowIn=KDE;
 """
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-formatter-kde.desktop",
-         format_prefix_kde,
-         _("Disk formatter"),
-         _("Format a disk"),
-         "")
+#generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-formatter-kde.desktop", format_prefix_kde, _("Disk formatter"), _("Format a disk"), "")
 
 # --- Wipe Action ---
 wipe_prefix_gtk = """[Desktop Entry]
@@ -217,11 +189,7 @@ Terminal=false
 Categories=GTK;Utility;
 NotShowIn=KDE;
 """
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-wiper.desktop",
-         wipe_prefix_gtk,
-         _("Disk wiper"),
-         _("Wipe a disk"),
-         "")
+#generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-wiper.desktop", wipe_prefix_gtk, _("Disk wiper"), _("Wipe a disk"), "")
 
 wipe_prefix_kde = """[Desktop Entry]
 Type=Application
@@ -231,11 +199,7 @@ Terminal=false
 Categories=Utility;
 OnlyShowIn=KDE;
 """
-generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-wiper-kde.desktop",
-         wipe_prefix_kde,
-         _("Disk wiper"),
-         _("Wipe a disk"),
-         "")
+#generate(DOMAIN, LOCALE_PATH, "share/applications/driveutility-wiper-kde.desktop", wipe_prefix_kde, _("Disk wiper"), _("Wipe a disk"), "")
 
 
 # --- 3. Create actions for file managers (Nemo) ---
@@ -250,11 +214,7 @@ Icon-Name=driveutility
 Selection=S
 Extensions=iso;img;bin;raw;dd;
 """
-generate(DOMAIN, LOCALE_PATH, "share/nemo/actions/driveutility-writer.nemo_action",
-         nemo_write_prefix,
-         _("Write image..."),
-         _("Write this image file to a device"),
-         "")
+generate(DOMAIN, LOCALE_PATH, "share/nemo/actions/driveutility-writer.nemo_action", nemo_write_prefix, _("Write image..."), _("Write this image file to a device"), "")
 
 # Action for Nemo (formatting)
 nemo_format_prefix = """[Nemo Action]
@@ -268,11 +228,7 @@ Extensions=dir;
 Mimetypes=inode/directory;
 Dependencies=udisks2;
 """
-generate(DOMAIN, LOCALE_PATH, "share/nemo/actions/driveutility-formatter.nemo_action",
-         nemo_format_prefix,
-         _("Format..."),
-         _("Format this device"),
-         "")
+generate(DOMAIN, LOCALE_PATH, "share/nemo/actions/driveutility-formatter.nemo_action", nemo_format_prefix, _("Format..."), _("Format this device"), "")
 
 # Action for Nemo (wiping)
 nemo_wipe_prefix = """[Nemo Action]
@@ -286,11 +242,7 @@ Extensions=dir;
 Mimetypes=inode/directory;
 Dependencies=udisks2;
 """
-generate(DOMAIN, LOCALE_PATH, "share/nemo/actions/driveutility-wiper.nemo_action",
-         nemo_wipe_prefix,
-         _("Wipe..."),
-         _("Wipe this device"),
-         "")
+generate(DOMAIN, LOCALE_PATH, "share/nemo/actions/driveutility-wiper.nemo_action", nemo_wipe_prefix, _("Wipe..."), _("Wipe this device"), "")
 
 
 # --- 4. Create PolicyKit rules ---
@@ -321,11 +273,7 @@ polkit_write_suffix = f"""
     <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/driveutility-write</annotate>
 {polkit_suffix}
 """
-generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-write.policy",
-                       polkit_write_prefix,
-                       _("Write a disk image"),
-                       _("Authentication is required to write an image to a device."),
-                       polkit_write_suffix)
+generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-write.policy", polkit_write_prefix, _("Write a disk image"), _("Authentication is required to write an image to a device."), polkit_write_suffix)
 
 # Rule for formatting
 polkit_format_prefix = f"""<?xml version="1.0" encoding="UTF-8"?>
@@ -342,11 +290,7 @@ polkit_format_suffix = f"""
     <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/driveutility-format</annotate>
 {polkit_suffix}
 """
-generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-format.policy",
-                       polkit_format_prefix,
-                       _("Format a disk"),
-                       _("Authentication is required to format a device."),
-                       polkit_format_suffix)
+generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-format.policy", polkit_format_prefix, _("Format a disk"), _("Authentication is required to format a device."), polkit_format_suffix)
 
 # Rule for wiping
 polkit_wipe_prefix = f"""<?xml version=\"1.0\" encoding=\"UTF-8\"?>
@@ -363,10 +307,6 @@ polkit_wipe_suffix = f"""
     <annotate key=\"org.freedesktop.policykit.exec.path\">/usr/bin/driveutility-wipe</annotate>
 {polkit_suffix}
 """
-generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-wipe.policy",
-                       polkit_wipe_prefix,
-                       _("Wipe a disk"),
-                       _("Authentication is required to wipe a device."),
-                       polkit_wipe_suffix)
+generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-wipe.policy", polkit_wipe_prefix, _("Wipe a disk"), _("Authentication is required to wipe a device."), polkit_wipe_suffix)
 
 print("Generated all files successfully.")
