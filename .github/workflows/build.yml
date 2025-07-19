@@ -30,12 +30,15 @@ jobs:
       - name: Build deb package
         run: |
           debuild -us -uc
+          mkdir -p ./deb_packages
+          mv ../*.deb ./deb_packages/
+          ls -l ./deb_packages/
 
       - name: Upload deb package artifact
         uses: actions/upload-artifact@v4
         with:
           name: deb-package
-          path: ../*.deb
+          path: ./deb_packages/*.deb
 
   release:
     needs: build
