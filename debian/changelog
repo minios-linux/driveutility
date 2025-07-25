@@ -1,3 +1,11 @@
+driveutility (1.7.1) unstable; urgency=medium
+
+  * Fix: improve device detection logic in DriveUtility class
+  * Remove unused desktop files
+  * Fix: fixed lintian error on changelog file
+
+ -- crims0n <crims0n@minios.dev>  Sun, 20 Jul 2025 15:24:09 +0300
+
 driveutility (1.7.0) unstable; urgency=medium
 
   * Fork mintstick for use in MiniOS
@@ -182,7 +190,7 @@ mintstick (1.4.8) vanessa; urgency=medium
   [ Clement Lefebvre ]
   * Packaging: Change dependency to exfatprogs
 
- -- Clement Lefebvre <clem@macbook>  Thu, 28 Apr 2022 07:42:35 +0100
+ -- Clement Lefebvre <root@linuxmint.com>  Thu, 28 Apr 2022 07:42:35 +0100
 
 mintstick (1.4.7) una; urgency=medium
 
