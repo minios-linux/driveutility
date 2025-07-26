@@ -25,6 +25,8 @@ Depends:
  python3-parted,
  python3-gnupg,
  python3-unidecode,
+ python3-zstandard,
+ python3-lz4,
  gir1.2-udisks-2.0,
  gir1.2-xapp-1.0,
  util-linux (>= 2.32),
