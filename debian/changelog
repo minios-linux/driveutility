@@ -2,8 +2,10 @@ driveutility (1.7.2) unstable; urgency=medium
 
   * By default, when formatting, the disk label is empty and is not required
   * Add the ability to create disk images
-    - Add the ability to set the rights of the user who launched the program on the image
-  * Add the ability to compress disk images on the fly and restore such images to disk
+    - Add the ability to set the rights of the user who launched the program on
+      the image
+  * Add the ability to compress disk images on the fly and restore such images
+    to disk
 
  -- crims0n <crims0n@minios.dev>  Sat, 26 Jul 2025 15:52:50 +0300
 
