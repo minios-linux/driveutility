@@ -1,0 +1,71 @@
+.TH DRIVEUTILITY-READ "8" "July 2025" "driveutility" "System Administration Commands"
+
+.SH NAME
+driveutility-read \- create a disk image from a device, with optional compression and user rights
+
+
+.SH SYNOPSIS
+.B driveutility-read
+.BI -s " source_device_path"
+.BI -t " target_image_path"
+.RI [ -u " uid" ]
+.RI [ -g " gid" ]
+.RI [ -c " compression" ]
+
+.SH DESCRIPTION
+.B driveutility-read
+is a command-line tool to create a disk image from a block device. It is used by the Drive Utility GUI to implement the "Create Image" (read) operation. The resulting image can optionally be compressed and its ownership set to the invoking user.
+
+
+.SH OPTIONS
+.TP
+.B -s, --source
+        Specify the path to the source block device (e.g.,
+        .I /dev/sdb)
+        to be imaged. This option is required.
+.TP
+.B -t, --target
+        Specify the path to the output image file (e.g.,
+        .I /home/user/usb.img)
+        This option is required.
+.TP
+.B -u, --uid
+        Set the user ID for the created image file (optional).
+.TP
+.B -g, --gid
+        Set the group ID for the created image file (optional).
+.TP
+.B -c, --compression
+        Compression type: gzip, bzip2, xz, lz4, zstd (optional).
+
+
+.SH EXIT STATUS
+.TP
+.B 0
+Success. The image was created successfully.
+.TP
+.B 2
+Argument parsing error. Invalid or missing command-line arguments.
+.TP
+.B 4
+Read error. A general error occurred during the reading process, such as the source being inaccessible or a failure during the read operation.
+
+.SH EXAMPLES
+.TP
+.B To create an uncompressed image:
+.B driveutility-read -s /dev/sdb -t /home/user/usb.img
+
+.TP
+.B To create a compressed image with gzip:
+.B driveutility-read -s /dev/sdb -t /home/user/usb.img.gz -c gzip
+
+
+.SH SEE ALSO
+driveutility(8), driveutility-write(8), driveutility-format(8), driveutility-wipe(8)
+
+.SH AUTHOR
+MiniOS Linux Team <support@minios.dev>
+
+.SH LICENSING
+.B driveutility-read
+is licensed under the GPLv2. See the COPYING file for details of GPL licensing.
