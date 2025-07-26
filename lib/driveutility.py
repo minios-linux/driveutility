@@ -560,8 +560,7 @@ class DriveUtility:
     def update_format_button(self):
         has_device = self.selected_format_device is not None
         has_fs = self.filesystem_combobox.get_active_iter() is not None
-        has_label = self.label_entry.get_buffer().get_length() > 0
-        self.format_button.set_sensitive(has_device and has_fs and has_label)
+        self.format_button.set_sensitive(has_device and has_fs)
    
     def update_wipe_button(self):
         has_device = self.selected_wipe_device is not None
