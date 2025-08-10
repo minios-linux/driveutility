@@ -1,8 +1,14 @@
-.idea
-debian/driveutility
-debian/.debhelper
+# Build files
+*.mo
+
+# Debian package build files
 debian/debhelper-build-stamp
-debian/driveutility.debhelper.log
-debian/driveutility.substvars
 debian/files
-mo/
+debian/*.substvars
+debian/driveutility/
+debian/tmp/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
