@@ -6,6 +6,52 @@ LOCAL_LOCALE_PATH = "mo"
 
 import os
 import gettext
+import subprocess
+import glob
+
+# --- Generate .mo files from .po files ---
+def compile_translations():
+    """Compile all .po files to .mo files in the mo/ directory."""
+    print("Compiling translations...")
+    
+    # Get all .po files
+    po_files = glob.glob("po/*.po")
+    if not po_files:
+        print("No .po files found in po/ directory")
+        return False
+    
+    # Create mo directory if it doesn't exist
+    os.makedirs(LOCAL_LOCALE_PATH, exist_ok=True)
+    
+    success = True
+    for po_file in po_files:
+        # Extract language code from filename (e.g., "po/de.po" -> "de")
+        lang = os.path.basename(po_file)[:-3]
+        
+        # Create language directory structure
+        mo_dir = os.path.join(LOCAL_LOCALE_PATH, lang, "LC_MESSAGES")
+        os.makedirs(mo_dir, exist_ok=True)
+        
+        # Output .mo file path
+        mo_file = os.path.join(mo_dir, f"{DOMAIN}.mo")
+        
+        try:
+            # Compile .po to .mo using msgfmt
+            result = subprocess.run(['msgfmt', '--output-file', mo_file, po_file], 
+                                  capture_output=True, text=True, check=True)
+            print(f"  Compiled: {po_file} -> {mo_file}")
+        except subprocess.CalledProcessError as e:
+            print(f"  Error compiling {po_file}: {e.stderr}")
+            success = False
+        except FileNotFoundError:
+            print("Error: msgfmt command not found. Please install gettext package.")
+            success = False
+    
+    return success
+
+# Compile translations first
+if not compile_translations():
+    print("Warning: Some translations failed to compile")
 
 # --- Determine the correct path for translations (local first) ---
 if os.path.isdir(LOCAL_LOCALE_PATH):
@@ -308,5 +354,22 @@ polkit_wipe_suffix = f"""
 {polkit_suffix}
 """
 generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-wipe.policy", polkit_wipe_prefix, _("Wipe a disk"), _("Authentication is required to wipe a device."), polkit_wipe_suffix)
+
+# Rule for reading
+polkit_read_prefix = f"""<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>MiniOS</vendor>
+  <vendor_url>https://minios.dev</vendor_url>
+  <action id="dev.minios.driveutility-read">
+    <icon_name>driveutility</icon_name>
+"""
+polkit_read_suffix = f"""
+    <annotate key="org.freedesktop.policykit.exec.path">/usr/bin/driveutility-read</annotate>
+{polkit_suffix}
+"""
+generate_polkit_policy(DOMAIN, LOCALE_PATH, "share/polkit/actions/dev.minios.driveutility-read.policy", polkit_read_prefix, _("Read a disk image"), _("Authentication is required to read a disk image from a device."), polkit_read_suffix)
 
 print("Generated all files successfully.")

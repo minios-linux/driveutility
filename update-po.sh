@@ -261,6 +261,34 @@ generate_pot() {
             join_opt="--join-existing"
         fi
 
+        # Check for .policy.template files first (untranslated versions)
+        local template_sources=""
+        local temp_dir=""
+        local cleanup_needed=false
+        
+        for policy_file in $polkit_sources; do
+            local template_file="${policy_file%.policy}.policy.template"
+            if [ -f "$template_file" ]; then
+                if [ -z "$temp_dir" ]; then
+                    temp_dir=$(mktemp -d)
+                    cleanup_needed=true
+                fi
+                # Create temporary .policy file from template (xgettext doesn't recognize .template extension)
+                local temp_policy="$temp_dir/$(basename "${template_file%.template}")"
+                cp "$template_file" "$temp_policy"
+                template_sources="$template_sources $temp_policy"
+            fi
+        done
+
+        # Use template files if available, otherwise use original policy files
+        local sources_to_use=""
+        if [ -n "$template_sources" ]; then
+            sources_to_use="$template_sources"
+            log_info "Using .policy.template files for string extraction."
+        else
+            sources_to_use="$polkit_sources"
+        fi
+
         xgettext \
             $join_opt \
             --add-comments=TRANSLATORS \
@@ -270,7 +298,7 @@ generate_pot() {
             --msgid-bugs-address="$BUGS_EMAIL" \
             --copyright-holder="$COPYRIGHT_HOLDER" \
             --output="$POTFILE" \
-            $polkit_sources
+            $sources_to_use
 
         if [ $? -eq 0 ]; then
             log_success "Processed Polkit policy sources."
@@ -278,6 +306,11 @@ generate_pot() {
         else
             log_error "Failed to process Polkit policy sources."
             success=false
+        fi
+        
+        # Clean up temporary files
+        if [ "$cleanup_needed" = true ]; then
+            rm -rf "$temp_dir"
         fi
     fi
 
