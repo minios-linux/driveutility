@@ -1,3 +1,20 @@
+driveutility (1.7.3) unstable; urgency=medium
+
+  * Add PolicyKit policy support for new driveutility-read functionality
+  * Translation improvements
+    - Fix fuzzy and untranslated strings across all supported languages
+    - Complete translations for compression format names (Bzip2, Gzip, LZ4,
+      XZ, ZStandard)
+    - Improve translation workflow to prevent duplication of already
+      translated policy strings
+  * Development workflow improvements
+    - Add automatic .mo file compilation to generate_additional_files.py
+    - Simplify development process by avoiding full package rebuilds for
+      translation testing
+    - Include driveutility-read PolicyKit policy generation in build script
+
+ -- crims0n <crims0n@minios.dev>  Wed, 30 Jul 2025 12:53:29 +0300
+
 driveutility (1.7.2) unstable; urgency=medium
 
   * By default, when formatting, the disk label is empty and is not required
