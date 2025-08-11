@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-07-19 19:30+0300\n"
+"POT-Creation-Date: 2025-08-11 09:03+0300\n"
 "PO-Revision-Date: 2025-07-19 00:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
@@ -17,87 +17,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: share/driveutility/driveutility.ui:661
+#: share/driveutility/driveutility.ui:733
 msgid "Add a final pass with zeros"
 msgstr "Ajouter un dernier passage avec des zéros"
 
-#: lib/driveutility.py:212
+#: lib/driveutility.py:241
 msgid "All files"
 msgstr "Tous les fichiers"
 
-#: lib/driveutility.py:513
+#: lib/driveutility.py:626
 #, python-format
 msgid "An error occured while creating a partition on %s."
 msgstr "Une erreur s'est produite lors de la création d'une partition sur %s."
 
-#: lib/driveutility.py:661
+#: lib/driveutility.py:874
+msgid "An error occured while creating the image."
+msgstr "Une erreur s'est produite lors de la création de l'image."
+
+#: lib/driveutility.py:855
 msgid "An error occured while writing the image."
 msgstr "Une erreur s'est produite lors de l'écriture de l'image."
 
-#: lib/driveutility.py:571
+#: lib/driveutility.py:689
 #, python-format
 msgid "An error occurred while wiping %s."
 msgstr "Une erreur s'est produite lors de l'effacement de %s."
 
-#: lib/driveutility.py:520 lib/driveutility.py:667
+#: lib/driveutility.py:633 lib/driveutility.py:861 lib/driveutility.py:880
 msgid "An error occurred."
 msgstr "Une erreur est survenue."
 
-#: lib/driveutility.py:516 lib/driveutility.py:567 lib/driveutility.py:663
+#: lib/driveutility.py:629 lib/driveutility.py:685 lib/driveutility.py:857
+#: lib/driveutility.py:876
 msgid "Authentication Error."
 msgstr "Erreur d'authentification."
 
-#: share/polkit/actions/dev.minios.driveutility-format.policy:11
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-format.policy:11
 msgid "Authentication is required to format a device."
 msgstr "L'authentification est requise pour formater un périphérique."
 
-#: share/polkit/actions/dev.minios.driveutility-wipe.policy:11
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-read.policy:11
+msgid "Authentication is required to read a disk image from a device."
+msgstr ""
+"L'authentification est requise pour lire une image disque depuis un "
+"périphérique."
+
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-wipe.policy:11
 msgid "Authentication is required to wipe a device."
 msgstr "L'authentification est requise pour effacer un périphérique."
 
-#: share/polkit/actions/dev.minios.driveutility-write.policy:11
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-write.policy:11
 msgid "Authentication is required to write an image to a device."
 msgstr ""
 "L'authentification est requise pour écrire une image sur un périphérique."
 
-#: share/driveutility/driveutility.ui:303
+#: share/driveutility/driveutility.ui:299
+msgid "Bzip2 (.bz2)"
+msgstr "Bzip2 (.bz2)"
+
+#: share/driveutility/driveutility.ui:249
+msgid "Choose a file location..."
+msgstr "Choisissez un emplacement de fichier..."
+
+#: share/driveutility/driveutility.ui:511
 msgid "Choose a name for the disk"
 msgstr "Choisissez un nom pour le disque"
 
-#: lib/driveutility.py:206
+#: share/driveutility/driveutility.ui:281
+msgid "Compression:"
+msgstr "Compression:"
+
+#: share/driveutility/driveutility.ui:389
+msgid "Create Image"
+msgstr "Créer l'image"
+
+#: lib/driveutility.py:230
 msgid "Disk Images"
 msgstr "Images disque"
 
-#: share/applications/driveutility-formatter-kde.desktop:9
-#: share/applications/driveutility-formatter.desktop:9
-msgid "Disk formatter"
-msgstr "Formateur de disque"
-
-#: share/driveutility/driveutility.ui:582
+#: share/driveutility/driveutility.ui:628
 msgid "Disk to wipe:"
 msgstr "Disque à effacer :"
 
-#: share/applications/driveutility-wiper.desktop:9
-#: share/applications/driveutility-wiper-kde.desktop:9
-msgid "Disk wiper"
-msgstr "Effaceur de disque"
-
-#: share/driveutility/driveutility.ui:205
+#: share/driveutility/driveutility.ui:413
 msgid "Disk:"
 msgstr "Disque :"
 
-#: share/applications/driveutility.desktop:11
-#: share/applications/driveutility-kde.desktop:11
+#: share/applications/driveutility.desktop:27
+#: share/applications/driveutility-kde.desktop:27
 msgid "Drive Management"
 msgstr "Gestion des disques"
 
-#: share/driveutility/driveutility.ui:960
+#: share/driveutility/driveutility.ui:1272
 #: share/applications/driveutility.desktop:9
 #: share/applications/driveutility-kde.desktop:9
 msgid "Drive Utility"
 msgstr "Utilitaire de disque"
 
-#: share/driveutility/driveutility.ui:258
+#: share/driveutility/driveutility.ui:466
 msgid ""
 "FAT32 \n"
 "  + Compatible everywhere.\n"
@@ -137,11 +154,11 @@ msgstr ""
 "  + Prend en charge les permissions de fichiers Linux.\n"
 "  -  Non compatible avec Windows, Mac et la plupart des appareils.\n"
 
-#: share/driveutility/driveutility.ui:233
+#: share/driveutility/driveutility.ui:441
 msgid "Filesystem:"
 msgstr "Système de fichiers :"
 
-#: share/driveutility/driveutility.ui:396
+#: share/driveutility/driveutility.ui:604
 msgid "Format"
 msgstr "Formater"
 
@@ -149,148 +166,192 @@ msgstr "Formater"
 msgid "Format USB stick"
 msgstr "Formater la clé USB"
 
-#: share/applications/driveutility-formatter-kde.desktop:10
-#: share/applications/driveutility-formatter.desktop:10
-#: share/polkit/actions/dev.minios.driveutility-format.policy:10
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-format.policy:10
 msgid "Format a disk"
 msgstr "Formater un disque"
 
-#: share/driveutility/driveutility.ui:72
+#: share/driveutility/driveutility.ui:201
+msgid "From disk:"
+msgstr "Depuis le disque:"
+
+#: share/driveutility/driveutility.ui:298
+msgid "Gzip (.gz)"
+msgstr "Gzip (.gz)"
+
+#: share/driveutility/driveutility.ui:77
 msgid "Image file:"
 msgstr "Fichier image :"
 
-#: share/applications/driveutility-writer-kde.desktop:9
-#: share/applications/driveutility-writer.desktop:9
-msgid "Image writer"
-msgstr "Graveur d'images"
+#: share/driveutility/driveutility.ui:301
+msgid "LZ4 (.lz4)"
+msgstr "LZ4 (.lz4)"
 
-#: share/driveutility/driveutility.ui:898
+#: share/driveutility/driveutility.ui:1210
 msgid "More information"
 msgstr "Plus d'informations"
 
-#: lib/driveutility.py:659
+#: share/driveutility/driveutility.ui:297
+msgid "None (raw image)"
+msgstr "Aucune (image brute)"
+
+#: lib/driveutility.py:853
 msgid "Not enough space on the destination disk."
 msgstr "Espace insuffisant sur le disque de destination."
 
-#: share/driveutility/driveutility.ui:638
+#: share/driveutility/driveutility.ui:684
 msgid "Passes:"
 msgstr "Passes :"
 
-#: share/driveutility/driveutility.ui:624
+#: share/driveutility/driveutility.ui:670
 msgid "Quick (fill with zeros)"
 msgstr "Rapide (remplir avec des zéros)"
 
-#: share/driveutility/driveutility.ui:625
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-read.policy:10
+msgid "Read a disk image"
+msgstr "Lire une image disque"
+
+#: share/driveutility/driveutility.ui:259
+msgid "Save As..."
+msgstr "Enregistrer sous..."
+
+#: share/driveutility/driveutility.ui:228
+msgid "Save As:"
+msgstr "Enregistrer sous:"
+
+#: lib/driveutility.py:262
+msgid "Save Image File"
+msgstr "Enregistrer le fichier d'image"
+
+#: share/driveutility/driveutility.ui:671
 msgid "Secure (fill with random data)"
 msgstr "Sécurisé (remplir avec des données aléatoires)"
 
-#: share/driveutility/driveutility.ui:87
+#: share/driveutility/driveutility.ui:92
 msgid "Select Image File"
 msgstr "Sélectionner un fichier image"
 
-#: share/driveutility/driveutility.ui:59
+#: share/driveutility/driveutility.ui:64
 msgid "Select a destination disk"
 msgstr "Sélectionner un disque de destination"
 
-#: share/driveutility/driveutility.ui:219
+#: share/driveutility/driveutility.ui:427
 msgid "Select a disk"
 msgstr "Sélectionner un disque"
 
-#: share/driveutility/driveutility.ui:596
+#: share/driveutility/driveutility.ui:642
 msgid "Select a disk to securely wipe"
 msgstr "Sélectionner un disque à effacer en toute sécurité"
 
-#: share/driveutility/driveutility.ui:85
+#: share/driveutility/driveutility.ui:215
+msgid "Select a source disk"
+msgstr "Sélectionner un disque source"
+
+#: share/driveutility/driveutility.ui:90
 msgid "Select an image file"
 msgstr "Sélectionner un fichier image"
 
-#: share/driveutility/driveutility.ui:131
-#: share/driveutility/driveutility.ui:345
-#: share/driveutility/driveutility.ui:706
+#: share/driveutility/driveutility.ui:127
+#: share/driveutility/driveutility.ui:338
+#: share/driveutility/driveutility.ui:553
+#: share/driveutility/driveutility.ui:775
 msgid "Show all disks (DANGEROUS)"
 msgstr "Afficher tous les disques (DANGEREUX)"
 
-#: lib/driveutility.py:511
+#: share/driveutility/driveutility.ui:710
+msgid "Size (MB, 0 for whole disk):"
+msgstr "Taille (Mo, 0 pour le disque entier):"
+
+#: lib/driveutility.py:624
 msgid "The disk was formatted successfully."
 msgstr "Le disque a été formaté avec succès."
 
-#: lib/driveutility.py:565
+#: lib/driveutility.py:683
 msgid "The disk was wiped successfully."
 msgstr "Le disque a été effacé avec succès."
 
-#: lib/driveutility.py:657
+#: lib/driveutility.py:872
+msgid "The image was successfully created."
+msgstr "L'image a été créée avec succès."
+
+#: lib/driveutility.py:851
 msgid "The image was successfully written to the disk."
 msgstr "L'image a été écrite avec succès sur le disque."
 
-#: share/driveutility/driveutility.ui:874
+#: share/driveutility/driveutility.ui:1186
 msgid "This file looks like a Windows image."
 msgstr "Ce fichier ressemble à une image Windows."
 
-#: share/driveutility/driveutility.ui:45
+#: share/driveutility/driveutility.ui:50
 msgid "To disk:"
 msgstr "Vers le disque :"
 
-#: share/driveutility/driveutility.ui:289
+#: share/driveutility/driveutility.ui:497
 msgid "Volume label:"
 msgstr "Étiquette de volume :"
 
-#: share/driveutility/driveutility.ui:887
+#: share/driveutility/driveutility.ui:1199
 msgid "Windows images require special processing."
 msgstr "Les images Windows nécessitent un traitement spécial."
 
-#: share/driveutility/driveutility.ui:757
+#: share/driveutility/driveutility.ui:826
 msgid "Wipe"
 msgstr "Effacer"
 
-#: share/applications/driveutility-wiper.desktop:10
-#: share/applications/driveutility-wiper-kde.desktop:10
-#: share/polkit/actions/dev.minios.driveutility-wipe.policy:10
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-wipe.policy:10
 msgid "Wipe a disk"
 msgstr "Effacer un disque"
 
-#: share/driveutility/driveutility.ui:609
+#: share/driveutility/driveutility.ui:655
 msgid "Wipe type:"
 msgstr "Type d'effacement :"
 
-#: share/driveutility/driveutility.ui:182
+#: share/driveutility/driveutility.ui:178
 msgid "Write Image"
 msgstr "Écrire l'image"
 
-#: share/polkit/actions/dev.minios.driveutility-write.policy:10
+#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-write.policy:10
 msgid "Write a disk image"
 msgstr "Écrire une image disque"
 
-#: share/applications/driveutility-writer-kde.desktop:10
-#: share/applications/driveutility-writer.desktop:10
-msgid "Write a disk image to a device"
-msgstr "Écrire une image disque sur un périphérique"
-
-#: share/applications/driveutility.desktop:10
-#: share/applications/driveutility-kde.desktop:10
+#: share/applications/driveutility.desktop:18
+#: share/applications/driveutility-kde.desktop:18
 msgid "Write disk images, format, or wipe drives"
 msgstr "Écrire des images disque, formater ou effacer des lecteurs"
 
-#: share/driveutility/driveutility.ui:458
-#: share/driveutility/driveutility.ui:539
-#: share/driveutility/driveutility.ui:819
-#: share/driveutility/driveutility.ui:923
+#: share/driveutility/driveutility.ui:300
+msgid "XZ (.xz)"
+msgstr "XZ (.xz)"
+
+#: share/driveutility/driveutility.ui:302
+msgid "ZStandard (.zst)"
+msgstr "ZStandard (.zst)"
+
+#: share/driveutility/driveutility.ui:888
+#: share/driveutility/driveutility.ui:969
+#: share/driveutility/driveutility.ui:1050
+#: share/driveutility/driveutility.ui:1131
+#: share/driveutility/driveutility.ui:1235
 msgid "_Back"
 msgstr "_Retour"
 
-#: share/driveutility/driveutility.ui:371
+#: share/driveutility/driveutility.ui:364
+msgid "_Create"
+msgstr "_Créer"
+
+#: share/driveutility/driveutility.ui:579
 msgid "_Format"
 msgstr "_Formater"
 
-#: share/driveutility/driveutility.ui:732
+#: share/driveutility/driveutility.ui:801
 msgid "_Wipe"
 msgstr "_Effacer"
 
-#: share/driveutility/driveutility.ui:157
+#: share/driveutility/driveutility.ui:153
 msgid "_Write"
 msgstr "_Écrire"
 
-#: share/applications/driveutility.desktop:12
-#: share/applications/driveutility-kde.desktop:12
+#: share/applications/driveutility.desktop:36
+#: share/applications/driveutility-kde.desktop:36
 msgid ""
 "usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
 msgstr ""
