@@ -2,6 +2,8 @@
 *.mo
 
 # Debian package build files
+debian/.debhelper
+debian/driveutility.debhelper.log
 debian/debhelper-build-stamp
 debian/files
 debian/*.substvars
