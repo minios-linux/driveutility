@@ -9,7 +9,11 @@ import parted
 import gzip
 import bz2
 import lzma
-import zstandard
+try:
+    import zstandard
+    ZSTD_AVAILABLE = True
+except ImportError:
+    ZSTD_AVAILABLE = False
 import lz4.frame
 
 def get_source_size(source_path):
@@ -42,6 +46,8 @@ def get_compression_writer(target_path, compression_method):
     elif compression_method == 'lz4':
         return lz4.frame.open(target_path, 'wb')
     elif compression_method == 'zstd':
+        if not ZSTD_AVAILABLE:
+            raise ImportError("zstandard module not available")
         # zstandard requires wrapping a file object
         f = open(target_path, 'wb')
         cctx = zstandard.ZstdCompressor()
@@ -129,12 +135,19 @@ def main():
     """
     Parses command line arguments and initiates the disk imaging process.
     """
+    compression_choices = ['gzip', 'bzip2', 'xz', 'lz4']
+    compression_help = "Compression method (gzip, bzip2, xz, lz4"
+    if ZSTD_AVAILABLE:
+        compression_choices.append('zstd')
+        compression_help += ", zstd"
+    compression_help += ")"
+    
     parser = argparse.ArgumentParser(description="Create a disk image from a device.",
                                      prog="driveutility-read",
                                      epilog="Example: driveutility-read -s /dev/sdj -t /foo/image -c zstd")
     parser.add_argument("-s", "--source", help="Source device path", type=str, required=True)
     parser.add_argument("-t", "--target", help="Target image file path (extension is added automatically)", type=str, required=True)
-    parser.add_argument("-c", "--compression", help="Compression method (gzip, bzip2, xz, lz4, zstd)", type=str, choices=['gzip', 'bzip2', 'xz', 'lz4', 'zstd'])
+    parser.add_argument("-c", "--compression", help=compression_help, type=str, choices=compression_choices)
     parser.add_argument("-u", "--uid", help="User ID to own the target file", type=int, default=-1)
     parser.add_argument("-g", "--gid", help="Group ID to own the target file", type=int, default=-1)
     

@@ -11,6 +11,12 @@ import signal
 import subprocess
 import sys
 
+try:
+    import zstandard
+    ZSTD_AVAILABLE = True
+except ImportError:
+    ZSTD_AVAILABLE = False
+
 gi.require_version('Polkit', '1.0')
 gi.require_version('Gtk', '3.0')
 gi.require_version('UDisks', '2.0')
@@ -139,6 +145,10 @@ class DriveUtility:
         self.setup_read_mode()
         self.setup_format_mode()
         self.setup_wipe_mode()
+        
+        # Remove zstd option if zstandard module is not available
+        if not ZSTD_AVAILABLE:
+            self.remove_zstd_from_compression_combobox()
 
         # --- Pre-fill widgets based on arguments ---
         if disk_path_arg:
@@ -828,8 +838,9 @@ class DriveUtility:
             b'BZh': 'bzip2',
             b'\xfd7zXZ\x00': 'xz',
             b'\x04"M\x18': 'lz4',
-            b'(\xb5/\xfd': 'zstd'
         }
+        if ZSTD_AVAILABLE:
+            MAGIC_NUMBERS[b'(\xb5/\xfd'] = 'zstd'
         try:
             with open(file_path, 'rb') as f:
                 header = f.read(16)
@@ -942,6 +953,22 @@ class DriveUtility:
         self.stack_switcher.set_sensitive(sensitive)
         if sensitive:
             self.update_format_button()
+    
+    def remove_zstd_from_compression_combobox(self):
+        """Remove zstd option from compression combobox when zstandard module is not available"""
+        # For GtkComboBoxText, we need to find and remove by ID
+        model = self.compression_combobox.get_model()
+        if model:
+            iter = model.get_iter_first()
+            while iter:
+                # Check both the ID (column 1) and display text (column 0) for zstd
+                row_id = model.get_value(iter, 1) if model.get_n_columns() > 1 else None
+                row_text = model.get_value(iter, 0)
+                
+                if (row_id == 'zstd') or ('zstd' in str(row_text).lower()) or ('zstandard' in str(row_text).lower()):
+                    model.remove(iter)
+                    break
+                iter = model.iter_next(iter)
     
     def set_wipe_sensitive(self, sensitive):
         self.wipe_device_combobox.set_sensitive(sensitive)

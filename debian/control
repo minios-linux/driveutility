@@ -2,7 +2,7 @@ Source: driveutility
 Section: misc
 Priority: optional
 Maintainer: crims0n <crims0n@minios.dev>
-Build-Depends: debhelper (>= 10), python3
+Build-Depends: debhelper (>= 12), python3 (>= 3.7)
 Build-Depends-Indep: gettext
 Standards-Version: 3.9.5
 
@@ -20,17 +20,17 @@ Depends:
  polkitd | policykit-1,
  pkexec | policykit-1,
  procps,
- python3,
+ python3 (>= 3.7),
  python3-gi,
  python3-parted,
  python3-gnupg,
  python3-unidecode,
- python3-zstandard,
  python3-lz4,
  gir1.2-udisks-2.0,
  gir1.2-xapp-1.0,
  util-linux (>= 2.32),
  exfatprogs | exfat-utils
+Recommends: python3-zstandard
 Conflicts: usb-imagewriter, mintstick
 Replaces: usb-imagewriter, mintstick
 Description: Graphical utility for writing, formatting, and wiping storage devices

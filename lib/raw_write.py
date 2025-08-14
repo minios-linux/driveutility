@@ -11,7 +11,11 @@ import syslog
 import gzip
 import bz2
 import lzma
-import zstandard
+try:
+    import zstandard
+    ZSTD_AVAILABLE = True
+except ImportError:
+    ZSTD_AVAILABLE = False
 import lz4.frame
 
 # Magic numbers used to identify file types by their headers
@@ -20,8 +24,10 @@ MAGIC_NUMBERS = {
     b'BZh': ('bzip2', bz2.open),
     b'\xfd7zXZ\x00': ('xz', lzma.open),
     b'\x04"M\x18': ('lz4', lz4.frame.open),
-    b'(\xb5/\xfd': ('zstd', zstandard.ZstdDecompressor().stream_reader)
 }
+
+if ZSTD_AVAILABLE:
+    MAGIC_NUMBERS[b'(\xb5/\xfd'] = ('zstd', zstandard.ZstdDecompressor().stream_reader)
 
 def get_opener_by_magic(file_path):
     """

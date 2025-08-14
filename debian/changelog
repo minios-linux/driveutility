@@ -1,3 +1,10 @@
+driveutility (1.7.4) unstable; urgency=medium
+
+  * Add python 3.7 support (Debian 10)
+  * Make zstd support optional
+
+ -- crims0n <crims0n@minios.dev>  Thu, 14 Aug 2025 22:50:47 +0300
+
 driveutility (1.7.3) unstable; urgency=medium
 
   * Add PolicyKit policy support for new driveutility-read functionality
