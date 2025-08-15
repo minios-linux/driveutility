@@ -1,0 +1,180 @@
+_driveutility() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
+    
+    # Global options
+    if [[ ${cur} == -* ]]; then
+        local global_opts="--help"
+        COMPREPLY=($(compgen -W "${global_opts}" -- ${cur}))
+        return 0
+    fi
+    
+    return 0
+}
+
+_driveutility_format() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
+    
+    case "${prev}" in
+        -d|--device)
+            # Complete block devices
+            local devices=$(lsblk -dnr -o NAME 2>/dev/null | sed 's|^|/dev/|')
+            COMPREPLY=($(compgen -W "${devices}" -- ${cur}))
+            ;;
+        -f|--filesystem)
+            local filesystems="fat32 exfat ntfs ext4"
+            COMPREPLY=($(compgen -W "${filesystems}" -- ${cur}))
+            ;;
+        -u|--uid)
+            # Complete common UIDs
+            local uids="1000 0"
+            COMPREPLY=($(compgen -W "${uids}" -- ${cur}))
+            ;;
+        -g|--gid)
+            # Complete common GIDs  
+            local gids="1000 0"
+            COMPREPLY=($(compgen -W "${gids}" -- ${cur}))
+            ;;
+        *)
+            if [[ ${cur} == -* ]]; then
+                local format_opts="--help -d --device -f --filesystem -u --uid -g --gid"
+                COMPREPLY=($(compgen -W "${format_opts}" -- ${cur}))
+            else
+                # Complete volume label (no specific suggestions)
+                COMPREPLY=()
+            fi
+            ;;
+    esac
+    
+    return 0
+}
+
+_driveutility_read() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
+    
+    case "${prev}" in
+        -s|--source)
+            # Complete block devices
+            local devices=$(lsblk -dnr -o NAME 2>/dev/null | sed 's|^|/dev/|')
+            COMPREPLY=($(compgen -W "${devices}" -- ${cur}))
+            ;;
+        -t|--target)
+            # Complete files/directories for output
+            COMPREPLY=($(compgen -f -- ${cur}))
+            ;;
+        -c|--compression)
+            local compression_types="gzip bzip2 xz lz4"
+            # Check if zstd is available
+            if command -v zstd >/dev/null 2>&1; then
+                compression_types="$compression_types zstd"
+            fi
+            COMPREPLY=($(compgen -W "${compression_types}" -- ${cur}))
+            ;;
+        -u|--uid)
+            # Complete common UIDs
+            local uids="1000 0 -1"
+            COMPREPLY=($(compgen -W "${uids}" -- ${cur}))
+            ;;
+        -g|--gid)
+            # Complete common GIDs
+            local gids="1000 0 -1"
+            COMPREPLY=($(compgen -W "${gids}" -- ${cur}))
+            ;;
+        *)
+            if [[ ${cur} == -* ]]; then
+                local read_opts="--help -s --source -t --target -c --compression -u --uid -g --gid"
+                COMPREPLY=($(compgen -W "${read_opts}" -- ${cur}))
+            fi
+            ;;
+    esac
+    
+    return 0
+}
+
+_driveutility_write() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
+    
+    case "${prev}" in
+        -s|--source)
+            # Complete image files
+            COMPREPLY=($(compgen -f -X "!*.@(img|iso|gz|bz2|xz|lz4|zst)" -- ${cur}))
+            if [[ ${#COMPREPLY[@]} -eq 0 ]]; then
+                # Fallback to all files if no image files found
+                COMPREPLY=($(compgen -f -- ${cur}))
+            fi
+            ;;
+        -t|--target)
+            # Complete block devices
+            local devices=$(lsblk -dnr -o NAME 2>/dev/null | sed 's|^|/dev/|')
+            COMPREPLY=($(compgen -W "${devices}" -- ${cur}))
+            ;;
+        *)
+            if [[ ${cur} == -* ]]; then
+                local write_opts="--help -s --source -t --target"
+                COMPREPLY=($(compgen -W "${write_opts}" -- ${cur}))
+            fi
+            ;;
+    esac
+    
+    return 0
+}
+
+_driveutility_wipe() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD - 1]}"
+    
+    case "${prev}" in
+        -d|--device)
+            # Complete block devices
+            local devices=$(lsblk -dnr -o NAME 2>/dev/null | sed 's|^|/dev/|')
+            COMPREPLY=($(compgen -W "${devices}" -- ${cur}))
+            ;;
+        -p|--passes)
+            # Common pass numbers
+            local passes="1 3 7 35"
+            COMPREPLY=($(compgen -W "${passes}" -- ${cur}))
+            ;;
+        -t|--type)
+            local wipe_types="zero random"
+            COMPREPLY=($(compgen -W "${wipe_types}" -- ${cur}))
+            ;;
+        -s|--size)
+            # Common sizes in MB
+            local sizes="100 500 1000 2000 4000 8000 16000"
+            COMPREPLY=($(compgen -W "${sizes}" -- ${cur}))
+            ;;
+        -b|--block-size)
+            # Common block sizes
+            local block_sizes="1M 4M 8M 16M 64K 256K 512K"
+            COMPREPLY=($(compgen -W "${block_sizes}" -- ${cur}))
+            ;;
+        *)
+            if [[ ${cur} == -* ]]; then
+                local wipe_opts="--help -d --device -p --passes -t --type -z --final-zero -s --size -b --block-size"
+                COMPREPLY=($(compgen -W "${wipe_opts}" -- ${cur}))
+            fi
+            ;;
+    esac
+    
+    return 0
+}
+
+# Register completion functions
+complete -F _driveutility driveutility
+complete -F _driveutility_format driveutility-format
+complete -F _driveutility_read driveutility-read  
+complete -F _driveutility_write driveutility-write
+complete -F _driveutility_wipe driveutility-wipe
