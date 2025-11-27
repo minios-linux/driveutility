@@ -124,7 +124,7 @@
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_write_checkbutton">
-                        <property name="label" translatable="yes">Show all disks (DANGEROUS)</property>
+                        <property name="label" translatable="yes">Show mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -335,7 +335,7 @@
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_read_checkbutton">
-                        <property name="label" translatable="yes">Show all disks (DANGEROUS)</property>
+                        <property name="label" translatable="yes">Show mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -550,7 +550,7 @@ EXT4
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_format_checkbutton">
-                        <property name="label" translatable="yes">Show all disks (DANGEROUS)</property>
+                        <property name="label" translatable="yes">Show mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -772,7 +772,7 @@ EXT4
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_wipe_checkbutton">
-                        <property name="label" translatable="yes">Show all disks (DANGEROUS)</property>
+                        <property name="label" translatable="yes">Show mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-08-11 09:03+0300\n"
+"POT-Creation-Date: 2025-11-27 15:35+0300\n"
 "PO-Revision-Date: 2025-07-19 00:43+0300\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
@@ -22,52 +22,36 @@ msgstr ""
 msgid "Add a final pass with zeros"
 msgstr "Добавить окончательный проход с нулями"
 
-#: lib/driveutility.py:241
+#: lib/driveutility.py:252
 msgid "All files"
 msgstr "Все файлы"
 
-#: lib/driveutility.py:626
+#: lib/driveutility.py:744
 #, python-format
 msgid "An error occured while creating a partition on %s."
 msgstr "Произошла ошибка при создании раздела на %s."
 
-#: lib/driveutility.py:874
+#: lib/driveutility.py:1001
 msgid "An error occured while creating the image."
 msgstr "Произошла ошибка при создании образа."
 
-#: lib/driveutility.py:855
+#: lib/driveutility.py:982
 msgid "An error occured while writing the image."
 msgstr "Произошла ошибка при записи образа."
 
-#: lib/driveutility.py:689
+#: lib/driveutility.py:811
 #, python-format
 msgid "An error occurred while wiping %s."
 msgstr "Произошла ошибка при очистке %s."
 
-#: lib/driveutility.py:633 lib/driveutility.py:861 lib/driveutility.py:880
+#: lib/driveutility.py:751 lib/driveutility.py:988 lib/driveutility.py:1007
 msgid "An error occurred."
 msgstr "Произошла ошибка."
 
-#: lib/driveutility.py:629 lib/driveutility.py:685 lib/driveutility.py:857
-#: lib/driveutility.py:876
+#: lib/driveutility.py:747 lib/driveutility.py:807 lib/driveutility.py:984
+#: lib/driveutility.py:1003
 msgid "Authentication Error."
 msgstr "Ошибка аутентификации."
-
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-format.policy:11
-msgid "Authentication is required to format a device."
-msgstr "Требуется аутентификация для форматирования устройства."
-
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-read.policy:11
-msgid "Authentication is required to read a disk image from a device."
-msgstr "Требуется аутентификация для чтения образа диска с устройства."
-
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-wipe.policy:11
-msgid "Authentication is required to wipe a device."
-msgstr "Требуется аутентификация для очистки устройства."
-
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-write.policy:11
-msgid "Authentication is required to write an image to a device."
-msgstr "Требуется аутентификация для записи образа на устройство."
 
 #: share/driveutility/driveutility.ui:299
 msgid "Bzip2 (.bz2)"
@@ -89,7 +73,7 @@ msgstr "Сжатие:"
 msgid "Create Image"
 msgstr "Создать образ"
 
-#: lib/driveutility.py:230
+#: lib/driveutility.py:241
 msgid "Disk Images"
 msgstr "Образы дисков"
 
@@ -101,14 +85,14 @@ msgstr "Диск для очистки:"
 msgid "Disk:"
 msgstr "Диск:"
 
-#: share/applications/driveutility.desktop:27
-#: share/applications/driveutility-kde.desktop:27
+#: share/applications/driveutility.desktop:26
+#: share/applications/driveutility-kde.desktop:26
 msgid "Drive Management"
 msgstr "Управление дисками"
 
 #: share/driveutility/driveutility.ui:1272
-#: share/applications/driveutility.desktop:9
-#: share/applications/driveutility-kde.desktop:9
+#: share/applications/driveutility.desktop:8
+#: share/applications/driveutility-kde.desktop:8
 msgid "Drive Utility"
 msgstr "Дисковая утилита"
 
@@ -156,17 +140,13 @@ msgstr ""
 msgid "Filesystem:"
 msgstr "Файловая система:"
 
-#: share/driveutility/driveutility.ui:604
+#: lib/driveutility.py:706 share/driveutility/driveutility.ui:604
 msgid "Format"
 msgstr "Форматировать"
 
 #: share/kde4/driveutility-format_action.desktop:9
 msgid "Format USB stick"
 msgstr "Форматировать USB-накопитель"
-
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-format.policy:10
-msgid "Format a disk"
-msgstr "Форматировать диск"
 
 #: share/driveutility/driveutility.ui:201
 msgid "From disk:"
@@ -192,7 +172,7 @@ msgstr "Подробнее"
 msgid "None (raw image)"
 msgstr "Нет (raw image)"
 
-#: lib/driveutility.py:853
+#: lib/driveutility.py:980
 msgid "Not enough space on the destination disk."
 msgstr "Недостаточно места на целевом диске."
 
@@ -204,10 +184,6 @@ msgstr "Проходы:"
 msgid "Quick (fill with zeros)"
 msgstr "Быстрый (заполнение нулями)"
 
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-read.policy:10
-msgid "Read a disk image"
-msgstr "Прочитать образ диска"
-
 #: share/driveutility/driveutility.ui:259
 msgid "Save As..."
 msgstr "Сохранить как..."
@@ -216,7 +192,7 @@ msgstr "Сохранить как..."
 msgid "Save As:"
 msgstr "Сохранить как:"
 
-#: lib/driveutility.py:262
+#: lib/driveutility.py:273
 msgid "Save Image File"
 msgstr "Сохранить файл образа"
 
@@ -252,26 +228,48 @@ msgstr "Выбрать файл образа"
 #: share/driveutility/driveutility.ui:338
 #: share/driveutility/driveutility.ui:553
 #: share/driveutility/driveutility.ui:775
-msgid "Show all disks (DANGEROUS)"
-msgstr "Показать все диски (ОПАСНО)"
+msgid "Show mounted disks"
+msgstr "Показать примонтированные диски"
 
 #: share/driveutility/driveutility.ui:710
 msgid "Size (MB, 0 for whole disk):"
 msgstr "Размер (МБ, 0 для всего диска):"
 
-#: lib/driveutility.py:624
+#: lib/driveutility.py:405
+#, python-brace-format
+msgid ""
+"The device <b>{device}</b> is currently mounted and in use.\n"
+"\n"
+"Performing '<b>{operation}</b>' operation on a mounted device can result "
+"in:\n"
+"  • Data loss\n"
+"  • System instability\n"
+"  • File system corruption\n"
+"\n"
+"Are you sure you want to continue?"
+msgstr ""
+"Устройство <b>{device}</b> в настоящее время примонтировано и используется.\n"
+"\n"
+"Выполнение операции '<b>{operation}</b>' на примонтированном устройстве может привести к:\n"
+"  • Потере данных\n"
+"  • Нестабильности системы\n"
+"  • Повреждению файловой системы\n"
+"\n"
+"Вы уверены, что хотите продолжить?"
+
+#: lib/driveutility.py:742
 msgid "The disk was formatted successfully."
 msgstr "Диск успешно отформатирован."
 
-#: lib/driveutility.py:683
+#: lib/driveutility.py:805
 msgid "The disk was wiped successfully."
 msgstr "Диск успешно очищен."
 
-#: lib/driveutility.py:872
+#: lib/driveutility.py:999
 msgid "The image was successfully created."
 msgstr "Образ успешно создан."
 
-#: lib/driveutility.py:851
+#: lib/driveutility.py:978
 msgid "The image was successfully written to the disk."
 msgstr "Образ успешно записан на диск."
 
@@ -287,32 +285,32 @@ msgstr "На диск:"
 msgid "Volume label:"
 msgstr "Метка тома:"
 
+#: lib/driveutility.py:378 lib/driveutility.py:398
+msgid "WARNING: Device is mounted!"
+msgstr "ВНИМАНИЕ: Устройство примонтировано!"
+
 #: share/driveutility/driveutility.ui:1199
 msgid "Windows images require special processing."
 msgstr "Образы Windows требуют специальной обработки."
 
-#: share/driveutility/driveutility.ui:826
+#: lib/driveutility.py:766 share/driveutility/driveutility.ui:826
 msgid "Wipe"
 msgstr "Очистить"
-
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-wipe.policy:10
-msgid "Wipe a disk"
-msgstr "Очистить диск"
 
 #: share/driveutility/driveutility.ui:655
 msgid "Wipe type:"
 msgstr "Тип очистки:"
 
+#: lib/driveutility.py:829
+msgid "Write"
+msgstr "Записать"
+
 #: share/driveutility/driveutility.ui:178
 msgid "Write Image"
 msgstr "Записать образ"
 
-#: /tmp/tmp.C1xfMBPwPw/dev.minios.driveutility-write.policy:10
-msgid "Write a disk image"
-msgstr "Записать образ диска"
-
-#: share/applications/driveutility.desktop:18
-#: share/applications/driveutility-kde.desktop:18
+#: share/applications/driveutility.desktop:17
+#: share/applications/driveutility-kde.desktop:17
 msgid "Write disk images, format, or wipe drives"
 msgstr "Записывать образы дисков, форматировать или очищать накопители"
 
@@ -332,6 +330,14 @@ msgstr "ZStandard (.zst)"
 msgid "_Back"
 msgstr "_Назад"
 
+#: lib/driveutility.py:426
+msgid "_Cancel"
+msgstr "_Отмена"
+
+#: lib/driveutility.py:433
+msgid "_Continue"
+msgstr "_Продолжить"
+
 #: share/driveutility/driveutility.ui:364
 msgid "_Create"
 msgstr "_Создать"
@@ -348,10 +354,34 @@ msgstr "_Очистить"
 msgid "_Write"
 msgstr "_Записать"
 
-#: share/applications/driveutility.desktop:36
-#: share/applications/driveutility-kde.desktop:36
-msgid ""
-"usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
-msgstr ""
-"usb;iso;образ;запись;флеш;загрузочный;форматировать;fat32;ntfs;ext4;стереть;"
-"очистить;диск;"
+#: share/applications/driveutility.desktop:35
+#: share/applications/driveutility-kde.desktop:35
+msgid "usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
+msgstr "usb;iso;образ;запись;флеш;загрузочный;форматировать;fat32;ntfs;ext4;стереть;очистить;диск;"
+
+#~ msgid "Authentication is required to format a device."
+#~ msgstr "Требуется аутентификация для форматирования устройства."
+
+#~ msgid "Authentication is required to read a disk image from a device."
+#~ msgstr "Требуется аутентификация для чтения образа диска с устройства."
+
+#~ msgid "Authentication is required to wipe a device."
+#~ msgstr "Требуется аутентификация для очистки устройства."
+
+#~ msgid "Authentication is required to write an image to a device."
+#~ msgstr "Требуется аутентификация для записи образа на устройство."
+
+#~ msgid "Format a disk"
+#~ msgstr "Форматировать диск"
+
+#~ msgid "Read a disk image"
+#~ msgstr "Прочитать образ диска"
+
+#~ msgid "Show all disks (DANGEROUS)"
+#~ msgstr "Показать все диски (ОПАСНО)"
+
+#~ msgid "Wipe a disk"
+#~ msgstr "Очистить диск"
+
+#~ msgid "Write a disk image"
+#~ msgstr "Записать образ диска"

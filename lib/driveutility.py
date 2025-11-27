@@ -7,6 +7,7 @@ import gettext
 import gi
 import locale
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -345,8 +346,105 @@ class DriveUtility:
         except Exception as e:
             print(e)
 
+    def get_mounted_devices(self):
+        """Get set of mounted device paths"""
+        mounted_devices = set()
+        try:
+            with open('/proc/mounts', 'r') as f:
+                for line in f:
+                    parts = line.split()
+                    if len(parts) >= 1 and parts[0].startswith('/dev/'):
+                        device = parts[0]
+                        # Remove partition number to get base device
+                        # e.g., /dev/sda1 -> /dev/sda, /dev/nvme0n1p1 -> /dev/nvme0n1
+                        base_device = re.sub(r'(p)?\d+$', '', device)
+                        mounted_devices.add(base_device)
+        except Exception:
+            pass
+        return mounted_devices
+
+    def is_device_mounted(self, device_path):
+        """Check if a specific device is mounted"""
+        mounted_devices = self.get_mounted_devices()
+        return device_path in mounted_devices
+
+    def confirm_mounted_device_operation(self, device_path, operation):
+        """Show warning dialog for operations on mounted devices"""
+        if not self.is_device_mounted(device_path):
+            return True
+
+        # Create custom dialog
+        dialog = Gtk.Dialog(
+            title=_("WARNING: Device is mounted!"),
+            transient_for=self.window,
+            flags=Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
+        )
+        dialog.set_default_size(450, 250)
+        dialog.set_resizable(False)
+
+        # Content area
+        content_area = dialog.get_content_area()
+        content_area.set_border_width(20)
+        content_area.set_spacing(12)
+
+        # Warning icon and title in horizontal box
+        header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
+        header_box.set_halign(Gtk.Align.CENTER)
+
+        warning_icon = Gtk.Image.new_from_icon_name("dialog-warning", Gtk.IconSize.DIALOG)
+        header_box.pack_start(warning_icon, False, False, 0)
+
+        title_label = Gtk.Label()
+        title_label.set_markup(f"<span size='large' weight='bold'>{_('WARNING: Device is mounted!')}</span>")
+        header_box.pack_start(title_label, False, False, 0)
+
+        content_area.pack_start(header_box, False, False, 0)
+
+        # Message text
+        message = _(
+            "The device <b>{device}</b> is currently mounted and in use.\n\n"
+            "Performing '<b>{operation}</b>' operation on a mounted device can result in:\n"
+            "  • Data loss\n"
+            "  • System instability\n"
+            "  • File system corruption\n\n"
+            "Are you sure you want to continue?"
+        ).format(device=device_path, operation=operation)
+
+        message_label = Gtk.Label()
+        message_label.set_markup(message)
+        message_label.set_line_wrap(True)
+        message_label.set_max_width_chars(50)
+        message_label.set_xalign(0)
+        content_area.pack_start(message_label, True, True, 0)
+
+        # Action area with custom buttons
+        action_area = dialog.get_action_area()
+        action_area.set_layout(Gtk.ButtonBoxStyle.END)
+        action_area.set_spacing(6)
+
+        # Cancel button (safe action, suggested style)
+        cancel_button = Gtk.Button(label=_("_Cancel"))
+        cancel_button.set_use_underline(True)
+        cancel_button.get_style_context().add_class("suggested-action")
+        cancel_button.connect("clicked", lambda w: dialog.response(Gtk.ResponseType.CANCEL))
+        action_area.pack_start(cancel_button, False, False, 0)
+
+        # Continue button (dangerous action, destructive style)
+        continue_button = Gtk.Button(label=_("_Continue"))
+        continue_button.set_use_underline(True)
+        continue_button.get_style_context().add_class("destructive-action")
+        continue_button.connect("clicked", lambda w: dialog.response(Gtk.ResponseType.OK))
+        action_area.pack_start(continue_button, False, False, 0)
+
+        dialog.show_all()
+        response = dialog.run()
+        dialog.destroy()
+
+        return response == Gtk.ResponseType.OK
+
     def get_devices(self):
-        show_all = self.show_all_disks_write_checkbutton.get_active()
+        show_mounted = self.show_all_disks_write_checkbutton.get_active()
+        mounted_devices = self.get_mounted_devices()
 
         self.write_button.set_sensitive(False)
         self.read_button.set_sensitive(False)
@@ -378,12 +476,15 @@ class DriveUtility:
         for obj in manager.get_objects():
             block = obj.get_block()
             if not block: continue
-            
-            if block.get_property('id-usage') != '':
-                continue
 
             drive = self.udisks_client.get_drive_for_block(block)
             if not drive: continue
+
+            optical = bool(drive.get_property('optical'))
+
+            # Skip devices with id-usage (partitions/filesystems) unless they are optical drives
+            if block.get_property('id-usage') != '' and not optical:
+                continue
 
             device_path = block.get_property('device')
             if device_path in detected_device_paths:
@@ -391,13 +492,13 @@ class DriveUtility:
 
             self.print_drive(drive)
             is_usb = str(drive.get_property('connection-bus')) in ['usb', 'cpio', 'sdio']
-            
+
             size = int(block.get_property('size'))
-            
-            optical = bool(drive.get_property('optical'))
             removable = bool(drive.get_property('removable'))
 
-            if size > 0 and not optical and (show_all or (is_usb and removable) or device_path == self.last_used_device_path):
+            # Skip mounted devices unless the checkbox is enabled
+            is_mounted = device_path in mounted_devices
+            if size > 0 and (show_mounted or not is_mounted):
                 drive_vendor = str(drive.get_property('vendor')).strip()
                 drive_model = str(drive.get_property('model')).strip()
                 display_model = f"{drive_vendor} {drive_model}".strip()
@@ -408,12 +509,15 @@ class DriveUtility:
                 else: size_str = f"{size / 10**3:.0f} KB"
 
                 item = f"{display_model} ({os.path.basename(device_path)}) - {size_str}"
-                
+
                 detected_device_paths.append(device_path)
-                self.write_devicemodel.append([device_path, item])
+                # Optical devices can only be used for reading (creating images)
+                if not optical:
+                    self.write_devicemodel.append([device_path, item])
+                    self.format_devicemodel.append([device_path, item])
+                    self.wipe_devicemodel.append([device_path, item])
+                # All devices (including optical) can be used for reading
                 self.read_devicemodel.append([device_path, item])
-                self.format_devicemodel.append([device_path, item])
-                self.wipe_devicemodel.append([device_path, item])
         
         self.select_device(self.last_used_device_path, self.write_devicemodel, self.write_device_combobox)
         self.select_device(self.last_used_device_path, self.read_devicemodel, self.read_device_combobox)
@@ -597,7 +701,11 @@ class DriveUtility:
         if self.debug:
             print(f"DEBUG: Format {self.selected_format_device} as {self.filesystem}")
             return
-            
+
+        # Confirm operation if device is mounted
+        if not self.confirm_mounted_device_operation(self.selected_format_device, _("Format")):
+            return
+
         self.udisks_client.handler_block(self.udisk_listener_id)
         self.set_format_sensitive(False)
         self.set_write_sensitive(False)
@@ -653,7 +761,11 @@ class DriveUtility:
         if self.debug:
             print(f"DEBUG: Wipe {device}, type={wipe_type}, passes={passes}, final_zero={final_zero}, size={size}MB")
             return
-        
+
+        # Confirm operation if device is mounted
+        if not self.confirm_mounted_device_operation(device, _("Wipe")):
+            return
+
         self.udisks_client.handler_block(self.udisk_listener_id)
         self.set_write_sensitive(False)
         self.set_read_sensitive(False)
@@ -706,13 +818,17 @@ class DriveUtility:
         if self.debug:
             print(f"DEBUG: Write {source} to {target}")
             return
-        
+
         filename = os.path.basename(source).lower()
         for keyword in ["windows", "win7", "win8", "win10", "winxp"]:
             if keyword in filename:
                 self.main_stack.set_visible_child_name("windows_page")
                 return
-        
+
+        # Confirm operation if device is mounted
+        if not self.confirm_mounted_device_operation(target, _("Write")):
+            return
+
         self.udisks_client.handler_block(self.udisk_listener_id)
         self.set_write_sensitive(False)
         self.set_read_sensitive(False)

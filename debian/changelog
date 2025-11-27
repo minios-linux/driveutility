@@ -1,3 +1,29 @@
+driveutility (1.8.0) unstable; urgency=medium
+
+  * Change disk filtering logic to hide mounted disks by default
+    - Rename "Show all disks (DANGEROUS)" checkbox to "Show mounted disks"
+    - By default, hide all mounted devices to prevent accidental data loss
+    - Enable checkbox to show mounted devices including system disk
+    - Improve safety by protecting all mounted filesystems, not just USB devices
+  * Add confirmation dialog for operations on mounted devices
+    - Show custom warning dialog before Write, Format, or Wipe on mounted devices
+    - Dialog features warning icon, bold formatting, and structured risk list
+    - Use color-coded buttons: green/blue Cancel (safe) and red Continue (dangerous)
+    - Explain risks: data loss, system instability, file system corruption
+    - Require explicit user confirmation to proceed
+    - Significantly improve safety by preventing accidental operations
+  * Fix mountutils to allow operations on mounted devices
+    - Don't exit with error when unmount fails
+    - Log warnings instead and continue with operation
+    - Allow advanced users to work with mounted devices if needed
+  * Add support for optical drives in Create Image mode
+    - Allow reading from CD/DVD drives to create ISO images
+    - Optical drives still blocked for Write, Format, and Wipe operations
+    - Fix id-usage filter to allow optical drives with media inserted
+  * Add translations for new UI strings to all supported languages
+
+ -- crims0n <crims0n@minios.dev>  Thu, 27 Nov 2025 14:58:50 +0300
+
 driveutility (1.7.4) unstable; urgency=medium
 
   * Add python 3.7 support (Debian 10)
@@ -618,7 +644,7 @@ mintstick (0.1.3-1linuxmint3) nadia; urgency=low
 
   * Initial nadia release
   * Change authentication to policykit
-  
+
  -- Frédéric Gaudet <fred@linuxmint.com>  Tue, 25 Sep 2012 22:44:39 +0200
 
 mintstick (0.1.3-1linuxmint2) maya; urgency=low
@@ -638,8 +664,8 @@ mintstick (0.1.3-1linuxmint1) lisa; urgency=low
 
 mintstick (0.1.3-0ubuntu5) oneiric; urgency=low
 
-  * switch from 1K to 1M blocksize to speed up the data transfer, thanks to 
-    Neil Mayhew <neil_mayhew@users.sourceforge.net> for the fix (LP: #790981) 
+  * switch from 1K to 1M blocksize to speed up the data transfer, thanks to
+    Neil Mayhew <neil_mayhew@users.sourceforge.net> for the fix (LP: #790981)
 
  -- Oliver Grawert <ogra@ubuntu.com>  Tue, 04 Oct 2011 12:11:27 +0200
 
@@ -676,7 +702,7 @@ mintstick (0.1.3-0ubuntu2) karmic; urgency=low
   * debian/po, debian/rules, debian/install, debian/control:
      - Install all translations available on Launchpad.
   * Fix debian/watch, and little changes to debian/mintstick.1.
-  
+
   [ Mike Szczys ]
   * Applied patch to handle spaces in image path (LP: #366607)
      - lib/mintstick.py: line 101: encapsulated source in double

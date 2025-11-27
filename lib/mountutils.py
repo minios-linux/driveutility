@@ -14,17 +14,17 @@ def do_umount(target):
                 if retcode < 0:
                     error = str(retcode)
                     syslog.syslog(f"Error, umount {device} was terminated by signal {error}")
-                    sys.exit(6)
+                    syslog.syslog(f"Continuing anyway - operation may fail if device is in use")
                 else:
                     if retcode == 0:
                         syslog.syslog(f"{device} successfully unmounted")
                     else:
-                        syslog.syslog(f"Error, umount {device} returned 0")
-                        sys.exit(6)
+                        syslog.syslog(f"Warning, umount {device} returned {retcode}")
+                        syslog.syslog(f"Continuing anyway - operation may fail if device is in use")
             except OSError as e:
                 error = str(e)
                 syslog.syslog(f"Execution failed: {error}")
-                sys.exit(6)
+                syslog.syslog(f"Continuing anyway - operation may fail if device is in use")
 
 
 def get_mounted(target):
