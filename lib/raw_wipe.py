@@ -39,7 +39,7 @@ def execute(command):
     process = subprocess.Popen(command, 
                                stdout=subprocess.DEVNULL, 
                                stderr=subprocess.PIPE,
-                               text=True, 
+                               universal_newlines=True, 
                                bufsize=1, 
                                universal_newlines=True)
 

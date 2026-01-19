@@ -1,3 +1,29 @@
+driveutility (1.8.1) unstable; urgency=medium
+
+  * Security improvements and code quality:
+    - Fix critical command injection vulnerability in mountutils.py (shell=True)
+    - Add comprehensive input validation for device paths and labels
+    - Add safe subprocess execution with list-form arguments
+    - Replace broad exception handlers with specific exception types
+    - Add validation for UID/GID values in raw_format
+    - Add return code checking for all subprocess calls
+  * Python 3.6 compatibility:
+    - Lower Python requirement from 3.7 to 3.6 for Debian 10 support
+    - Replace capture_output=True with explicit stdout/stderr pipes
+    - Replace text=True with universal_newlines=True in subprocess calls
+    - Update debian/compat from 12 to 11
+  * Ubuntu 18.04 compatibility:
+    - Lower util-linux requirement from 2.32 to 2.31
+    - Lower coreutils requirement from 8.30 to 8.28
+  * Testing infrastructure:
+    - Add comprehensive pytest test suite
+    - Add tests for mountutils module (validation, mounting, unmounting)
+    - Add tests for raw_format module (device/label validation, formatting)
+    - Add pytest.ini configuration file
+    - Add conftest.py with common fixtures
+
+ -- crims0n <crims0n@minios.dev>  Mon, 19 Jan 2026 17:40:05 +0300
+
 driveutility (1.8.0) unstable; urgency=medium
 
   * Change disk filtering logic to hide mounted disks by default

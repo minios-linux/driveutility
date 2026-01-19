@@ -2,7 +2,7 @@ Source: driveutility
 Section: misc
 Priority: optional
 Maintainer: crims0n <crims0n@minios.dev>
-Build-Depends: debhelper (>= 12), python3 (>= 3.7)
+Build-Depends: debhelper (>= 11), python3 (>= 3.6)
 Build-Depends-Indep: gettext
 Standards-Version: 3.9.5
 
@@ -10,7 +10,7 @@ Package: driveutility
 Architecture: all
 Depends:
  ${misc:Depends},
- coreutils (>= 8.30),
+ coreutils (>= 8.28),
  genisoimage,
  gir1.2-glib-2.0,
  gir1.2-gtk-3.0,
@@ -20,7 +20,7 @@ Depends:
  polkitd | policykit-1,
  pkexec | policykit-1,
  procps,
- python3 (>= 3.7),
+ python3 (>= 3.6),
  python3-gi,
  python3-parted,
  python3-gnupg,
@@ -28,7 +28,7 @@ Depends:
  python3-lz4,
  gir1.2-udisks-2.0,
  gir1.2-xapp-1.0,
- util-linux (>= 2.32),
+ util-linux (>= 2.31),
  exfatprogs | exfat-utils
 Recommends: python3-zstandard
 Conflicts: usb-imagewriter, mintstick

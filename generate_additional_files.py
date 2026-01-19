@@ -38,7 +38,7 @@ def compile_translations():
         try:
             # Compile .po to .mo using msgfmt
             result = subprocess.run(['msgfmt', '--output-file', mo_file, po_file], 
-                                  capture_output=True, text=True, check=True)
+                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, check=True)
             print(f"  Compiled: {po_file} -> {mo_file}")
         except subprocess.CalledProcessError as e:
             print(f"  Error compiling {po_file}: {e.stderr}")
