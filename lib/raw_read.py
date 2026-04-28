@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import io
 import os
 import sys
 import argparse
@@ -15,6 +16,33 @@ try:
 except ImportError:
     ZSTD_AVAILABLE = False
 import lz4.frame
+
+
+class _LZ4FrameWriter:
+    """LZ4 compressed file writer compatible with lz4 < 0.19 (no lz4.frame.open)."""
+
+    def __init__(self, path):
+        self._path = path
+        self._file = None
+        self._compressor = None
+
+    def __enter__(self):
+        self._file = open(self._path, 'wb')
+        self._compressor = lz4.frame.LZ4FrameCompressor()
+        self._file.write(self._compressor.compress_begin())
+        return self
+
+    def write(self, data):
+        self._file.write(self._compressor.compress(data))
+
+    def flush(self):
+        self._file.flush()
+
+    def __exit__(self, *args):
+        if self._compressor and self._file:
+            self._file.write(self._compressor.flush())
+            self._file.close()
+        return False
 
 def get_source_size(source_path):
     """
@@ -44,7 +72,10 @@ def get_compression_writer(target_path, compression_method):
     elif compression_method == 'xz':
         return lzma.open(target_path, 'wb')
     elif compression_method == 'lz4':
-        return lz4.frame.open(target_path, 'wb')
+        if hasattr(lz4.frame, 'open'):
+            return lz4.frame.open(target_path, 'wb')
+        else:
+            return _LZ4FrameWriter(target_path)
     elif compression_method == 'zstd':
         if not ZSTD_AVAILABLE:
             raise ImportError("zstandard module not available")

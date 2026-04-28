@@ -35,13 +35,12 @@ def execute(command):
     This function correctly handles the 'No space left on device' case for 'dd'.
     """
     syslog.syslog("Executing: " + " ".join(command))
-    
-    process = subprocess.Popen(command, 
-                               stdout=subprocess.DEVNULL, 
+
+    process = subprocess.Popen(command,
+                               stdout=subprocess.DEVNULL,
                                stderr=subprocess.PIPE,
-                               universal_newlines=True, 
-                               bufsize=1, 
-                               universal_newlines=True)
+                               universal_newlines=True,
+                               bufsize=1)
 
     q = queue.Queue()
     thread = threading.Thread(target=reader_thread, args=[process.stderr, q])
@@ -57,7 +56,7 @@ def execute(command):
         if line is None:
             continue
         stderr_lines.append(line)
-            
+
     stderr_output = "".join(stderr_lines)
 
     if return_code != 0:
@@ -86,26 +85,26 @@ def raw_wipe(device, passes, wipe_type, final_zero, size_mb, block_size):
 
     for i in range(1, passes + 1):
         print(f"\n--- Pass {i}/{passes}: Wiping with '{wipe_type}' ---")
-        
+
         dd_command = [
             'dd', f'if={source_path}', f'of={device}',
             f'bs={block_size}', 'status=progress'
         ]
         if count is not None:
             dd_command.append(f'count={count}')
-        
+
         execute(dd_command)
 
     if wipe_type == 'random' and final_zero:
         print("\n--- Final Pass: Wiping with 'zero' ---")
-        
+
         dd_command = [
             'dd', f'if={WIPE_SOURCES["zero"]}', f'of={device}',
             f'bs={block_size}', 'status=progress'
         ]
         if count is not None:
             dd_command.append(f'count={count}')
-            
+
         execute(dd_command)
 
     syslog.syslog(f"Wipe completed for {device}")

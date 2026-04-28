@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import io
 import os
 import sys
 import argparse
@@ -18,16 +19,34 @@ except ImportError:
     ZSTD_AVAILABLE = False
 import lz4.frame
 
+
+def _lz4_open_compat(path, mode):
+    """Open an LZ4 file for reading, compatible with lz4 < 0.19 (no lz4.frame.open)."""
+    if hasattr(lz4.frame, 'open'):
+        return lz4.frame.open(path, mode)
+    # Fallback for lz4 < 0.19: read entire file and decompress in memory
+    syslog.syslog("lz4.frame.open not available, falling back to in-memory decompression")
+    with open(path, 'rb') as f:
+        decompressed = lz4.frame.decompress(f.read())
+    return io.BytesIO(decompressed)
+
+
+def _zstd_open_compat(path, mode):
+    """Open a Zstandard file for reading."""
+    f = open(path, 'rb')
+    return zstandard.ZstdDecompressor().stream_reader(f)
+
+
 # Magic numbers used to identify file types by their headers
 MAGIC_NUMBERS = {
     b'\x1f\x8b': ('gzip', gzip.open),
     b'BZh': ('bzip2', bz2.open),
     b'\xfd7zXZ\x00': ('xz', lzma.open),
-    b'\x04"M\x18': ('lz4', lz4.frame.open),
+    b'\x04"M\x18': ('lz4', _lz4_open_compat),
 }
 
 if ZSTD_AVAILABLE:
-    MAGIC_NUMBERS[b'(\xb5/\xfd'] = ('zstd', zstandard.ZstdDecompressor().stream_reader)
+    MAGIC_NUMBERS[b'(\xb5/\xfd'] = ('zstd', _zstd_open_compat)
 
 def get_opener_by_magic(file_path):
     """
