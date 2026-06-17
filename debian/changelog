@@ -1,3 +1,9 @@
+driveutility (1.8.3) unstable; urgency=medium
+
+  * Improve translation coverage and update translations for all languages
+
+ -- crims0n <crims0n@minios.dev>  Thu, 18 Jun 2026 01:30:08 +0300
+
 driveutility (1.8.2) unstable; urgency=medium
 
   * Fix Ubuntu 18.04/Bionic compatibility regressions

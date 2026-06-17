@@ -2,13 +2,13 @@
 # Copyright (C) 2025 MiniOS Linux
 # This file is distributed under the same license as the driveutility package.
 # crims0n <crims0n@minios.dev>, 2025.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2025-11-27 15:35+0300\n"
-"PO-Revision-Date: 2025-07-19 00:43+0300\n"
+"POT-Creation-Date: 2026-06-18 01:27+0300\n"
+"PO-Revision-Date: 2026-06-17 22:20+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -17,84 +17,293 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: share/driveutility/driveutility.ui:733
-msgid "Add a final pass with zeros"
-msgstr "Aggiungi un passaggio finale con zeri"
+#: generate_additional_files.py:171 generate_additional_files.py:182
+#: share/driveutility/driveutility.ui:1272
+#: share/applications/driveutility-kde.desktop:8
+#: share/applications/driveutility.desktop:8
+msgid "Drive Utility"
+msgstr "Utilità disco"
+
+#: generate_additional_files.py:171 generate_additional_files.py:182
+#: share/applications/driveutility-kde.desktop:17
+#: share/applications/driveutility.desktop:17
+msgid "Write disk images, format, or wipe drives"
+msgstr "Scrivi immagini disco, formatta o elimina unità"
+
+#: generate_additional_files.py:171 generate_additional_files.py:182
+#: share/applications/driveutility-kde.desktop:26
+#: share/applications/driveutility.desktop:26
+msgid "Drive Management"
+msgstr "Gestione unità"
+
+#: generate_additional_files.py:263
+#: share/nemo/actions/driveutility-writer.nemo_action:9
+msgid "Write image..."
+msgstr "Scrivi immagine..."
+
+#: generate_additional_files.py:263
+#: share/nemo/actions/driveutility-writer.nemo_action:10
+msgid "Write this image file to a device"
+msgstr "Scrivi questo file immagine su un dispositivo"
+
+#: generate_additional_files.py:277
+#: share/nemo/actions/driveutility-formatter.nemo_action:11
+msgid "Format..."
+msgstr "Formatta..."
+
+#: generate_additional_files.py:277
+#: share/nemo/actions/driveutility-formatter.nemo_action:12
+msgid "Format this device"
+msgstr "Formatta questo dispositivo"
+
+#: generate_additional_files.py:291
+#: share/nemo/actions/driveutility-wiper.nemo_action:11
+msgid "Wipe..."
+msgstr "Cancella..."
+
+#: generate_additional_files.py:291
+#: share/nemo/actions/driveutility-wiper.nemo_action:12
+msgid "Wipe this device"
+msgstr "Cancella questo dispositivo"
+
+#: generate_additional_files.py:322
+msgid "Write a disk image"
+msgstr "Scrivi un'immagine disco"
+
+#: generate_additional_files.py:322
+msgid "Authentication is required to write an image to a device."
+msgstr "È richiesta l'autenticazione per scrivere un'immagine su un dispositivo."
+
+#: generate_additional_files.py:339
+msgid "Format a disk"
+msgstr "Formatta un disco"
+
+#: generate_additional_files.py:339
+msgid "Authentication is required to format a device."
+msgstr "È richiesta l'autenticazione per formattare un dispositivo."
+
+#: generate_additional_files.py:356
+msgid "Wipe a disk"
+msgstr "Cancella un disco"
+
+#: generate_additional_files.py:356
+msgid "Authentication is required to wipe a device."
+msgstr "È richiesta l'autenticazione per cancellare un dispositivo."
+
+#: generate_additional_files.py:373
+msgid "Read a disk image"
+msgstr "Leggi un'immagine disco"
+
+#: generate_additional_files.py:373
+msgid "Authentication is required to read a disk image from a device."
+msgstr "È richiesta l'autenticazione per leggere un'immagine disco da un dispositivo."
+
+#: lib/driveutility.py:241
+msgid "Disk Images"
+msgstr "Immagini disco"
 
 #: lib/driveutility.py:252
 msgid "All files"
 msgstr "Tutti i file"
 
+#: lib/driveutility.py:273
+msgid "Save Image File"
+msgstr "Salva file immagine"
+
+#: lib/driveutility.py:378 lib/driveutility.py:398
+msgid "WARNING: Device is mounted!"
+msgstr "AVVERTENZA: Dispositivo montato!"
+
+#: lib/driveutility.py:405
+#, python-brace-format
+msgid ""
+"The device <b>{device}</b> is currently mounted and in use.\n"
+"\n"
+"Performing '<b>{operation}</b>' operation on a mounted device can result in:\n"
+"  • Data loss\n"
+"  • System instability\n"
+"  • File system corruption\n"
+"\n"
+"Are you sure you want to continue?"
+msgstr ""
+"Il dispositivo <b>{device}</b> è attualmente montato e in uso.\n"
+"\n"
+"L'esecuzione dell'operazione '<b>{operation}</b>' su un dispositivo montato può causare:\n"
+"  • Perdita di dati\n"
+"  • Instabilità del sistema\n"
+"  • Corruzione del file system\n"
+"\n"
+"Sei sicuro di voler continuare?"
+
+#: lib/driveutility.py:426
+msgid "_Cancel"
+msgstr "_Annulla"
+
+#: lib/driveutility.py:433
+msgid "_Continue"
+msgstr "_Continua"
+
+#: lib/driveutility.py:706 share/driveutility/driveutility.ui:604
+msgid "Format"
+msgstr "Formatta"
+
+#: lib/driveutility.py:742
+msgid "The disk was formatted successfully."
+msgstr "Il disco è stato formattato con successo."
+
 #: lib/driveutility.py:744
 #, python-format
 msgid "An error occured while creating a partition on %s."
-msgstr ""
-"Si è verificato un errore durante la creazione di una partizione su %s."
-
-#: lib/driveutility.py:1001
-msgid "An error occured while creating the image."
-msgstr "Si è verificato un errore durante la creazione dell'immagine."
-
-#: lib/driveutility.py:982
-msgid "An error occured while writing the image."
-msgstr "Si è verificato un errore durante la scrittura dell'immagine."
-
-#: lib/driveutility.py:811
-#, python-format
-msgid "An error occurred while wiping %s."
-msgstr "Si è verificato un errore durante l'eliminazione di %s."
-
-#: lib/driveutility.py:751 lib/driveutility.py:988 lib/driveutility.py:1007
-msgid "An error occurred."
-msgstr "Si è verificato un errore."
+msgstr "Si è verificato un errore durante la creazione di una partizione su %s."
 
 #: lib/driveutility.py:747 lib/driveutility.py:807 lib/driveutility.py:984
 #: lib/driveutility.py:1003
 msgid "Authentication Error."
 msgstr "Errore di autenticazione."
 
-#: share/driveutility/driveutility.ui:299
-msgid "Bzip2 (.bz2)"
-msgstr "Bzip2 (.bz2)"
+#: lib/driveutility.py:751 lib/driveutility.py:988 lib/driveutility.py:1007
+msgid "An error occurred."
+msgstr "Si è verificato un errore."
+
+#: lib/driveutility.py:766 share/driveutility/driveutility.ui:826
+msgid "Wipe"
+msgstr "Elimina"
+
+#: lib/driveutility.py:805
+msgid "The disk was wiped successfully."
+msgstr "Il disco è stato eliminato con successo."
+
+#: lib/driveutility.py:811
+#, python-format
+msgid "An error occurred while wiping %s."
+msgstr "Si è verificato un errore durante l'eliminazione di %s."
+
+#: lib/driveutility.py:829
+msgid "Write"
+msgstr "Scrivi"
+
+#: lib/driveutility.py:978
+msgid "The image was successfully written to the disk."
+msgstr "L'immagine è stata scritta con successo sul disco."
+
+#: lib/driveutility.py:980
+msgid "Not enough space on the destination disk."
+msgstr "Spazio insufficiente sul disco di destinazione."
+
+#: lib/driveutility.py:982
+msgid "An error occured while writing the image."
+msgstr "Si è verificato un errore durante la scrittura dell'immagine."
+
+#: lib/driveutility.py:999
+msgid "The image was successfully created."
+msgstr "L'immagine è stata creata con successo."
+
+#: lib/driveutility.py:1001
+msgid "An error occured while creating the image."
+msgstr "Si è verificato un errore durante la creazione dell'immagine."
+
+#: share/driveutility/driveutility.ui:50
+msgid "To disk:"
+msgstr "Su disco:"
+
+#: share/driveutility/driveutility.ui:64
+msgid "Select a destination disk"
+msgstr "Seleziona un disco di destinazione"
+
+#: share/driveutility/driveutility.ui:77
+msgid "Image file:"
+msgstr "File immagine:"
+
+#: share/driveutility/driveutility.ui:90
+msgid "Select an image file"
+msgstr "Seleziona un file immagine"
+
+#: share/driveutility/driveutility.ui:92
+msgid "Select Image File"
+msgstr "Seleziona file immagine"
+
+#: share/driveutility/driveutility.ui:127
+#: share/driveutility/driveutility.ui:338
+#: share/driveutility/driveutility.ui:553
+#: share/driveutility/driveutility.ui:775
+msgid "Show mounted disks"
+msgstr "Mostra dischi montati"
+
+#: share/driveutility/driveutility.ui:153
+msgid "_Write"
+msgstr "_Scrivi"
+
+#: share/driveutility/driveutility.ui:178
+msgid "Write Image"
+msgstr "Scrivi immagine"
+
+#: share/driveutility/driveutility.ui:201
+msgid "From disk:"
+msgstr "Dal disco:"
+
+#: share/driveutility/driveutility.ui:215
+msgid "Select a source disk"
+msgstr "Seleziona un disco sorgente"
+
+#: share/driveutility/driveutility.ui:228
+msgid "Save As:"
+msgstr "Salva come:"
 
 #: share/driveutility/driveutility.ui:249
 msgid "Choose a file location..."
 msgstr "Scegli un percorso per il file..."
 
-#: share/driveutility/driveutility.ui:511
-msgid "Choose a name for the disk"
-msgstr "Scegli un nome per il disco"
+#: share/driveutility/driveutility.ui:259
+msgid "Save As..."
+msgstr "Salva come..."
 
 #: share/driveutility/driveutility.ui:281
 msgid "Compression:"
 msgstr "Compressione:"
 
+#: share/driveutility/driveutility.ui:297
+msgid "None (raw image)"
+msgstr "Nessuna (immagine raw)"
+
+#: share/driveutility/driveutility.ui:298
+msgid "Gzip (.gz)"
+msgstr "Gzip (.gz)"
+
+#: share/driveutility/driveutility.ui:299
+msgid "Bzip2 (.bz2)"
+msgstr "Bzip2 (.bz2)"
+
+#: share/driveutility/driveutility.ui:300
+msgid "XZ (.xz)"
+msgstr "XZ (.xz)"
+
+#: share/driveutility/driveutility.ui:301
+msgid "LZ4 (.lz4)"
+msgstr "LZ4 (.lz4)"
+
+#: share/driveutility/driveutility.ui:302
+msgid "ZStandard (.zst)"
+msgstr "ZStandard (.zst)"
+
+#: share/driveutility/driveutility.ui:364
+msgid "_Create"
+msgstr "_Crea"
+
 #: share/driveutility/driveutility.ui:389
 msgid "Create Image"
 msgstr "Crea immagine"
-
-#: lib/driveutility.py:241
-msgid "Disk Images"
-msgstr "Immagini disco"
-
-#: share/driveutility/driveutility.ui:628
-msgid "Disk to wipe:"
-msgstr "Disco da eliminare:"
 
 #: share/driveutility/driveutility.ui:413
 msgid "Disk:"
 msgstr "Disco:"
 
-#: share/applications/driveutility.desktop:26
-#: share/applications/driveutility-kde.desktop:26
-msgid "Drive Management"
-msgstr "Gestione unità"
+#: share/driveutility/driveutility.ui:427
+msgid "Select a disk"
+msgstr "Seleziona un disco"
 
-#: share/driveutility/driveutility.ui:1272
-#: share/applications/driveutility.desktop:8
-#: share/applications/driveutility-kde.desktop:8
-msgid "Drive Utility"
-msgstr "Utilità disco"
+#: share/driveutility/driveutility.ui:441
+msgid "Filesystem:"
+msgstr "Filesystem:"
 
 #: share/driveutility/driveutility.ui:466
 msgid ""
@@ -136,191 +345,53 @@ msgstr ""
 "  + Supporta i permessi dei file Linux.\n"
 "  -  Non compatibile con Windows, Mac e la maggior parte dei dispositivi.\n"
 
-#: share/driveutility/driveutility.ui:441
-msgid "Filesystem:"
-msgstr "Filesystem:"
+#: share/driveutility/driveutility.ui:497
+msgid "Volume label:"
+msgstr "Etichetta volume:"
 
-#: lib/driveutility.py:706 share/driveutility/driveutility.ui:604
-msgid "Format"
-msgstr "Formatta"
+#: share/driveutility/driveutility.ui:511
+msgid "Choose a name for the disk"
+msgstr "Scegli un nome per il disco"
 
-#: share/kde4/driveutility-format_action.desktop:9
-msgid "Format USB stick"
-msgstr "Formatta chiavetta USB"
+#: share/driveutility/driveutility.ui:579
+msgid "_Format"
+msgstr "_Formatta"
 
-#: share/driveutility/driveutility.ui:201
-msgid "From disk:"
-msgstr "Dal disco:"
-
-#: share/driveutility/driveutility.ui:298
-msgid "Gzip (.gz)"
-msgstr "Gzip (.gz)"
-
-#: share/driveutility/driveutility.ui:77
-msgid "Image file:"
-msgstr "File immagine:"
-
-#: share/driveutility/driveutility.ui:301
-msgid "LZ4 (.lz4)"
-msgstr "LZ4 (.lz4)"
-
-#: share/driveutility/driveutility.ui:1210
-msgid "More information"
-msgstr "Maggiori informazioni"
-
-#: share/driveutility/driveutility.ui:297
-msgid "None (raw image)"
-msgstr "Nessuna (immagine raw)"
-
-#: lib/driveutility.py:980
-msgid "Not enough space on the destination disk."
-msgstr "Spazio insufficiente sul disco di destinazione."
-
-#: share/driveutility/driveutility.ui:684
-msgid "Passes:"
-msgstr "Passaggi:"
-
-#: share/driveutility/driveutility.ui:670
-msgid "Quick (fill with zeros)"
-msgstr "Veloce (riempi con zeri)"
-
-#: share/driveutility/driveutility.ui:259
-msgid "Save As..."
-msgstr "Salva come..."
-
-#: share/driveutility/driveutility.ui:228
-msgid "Save As:"
-msgstr "Salva come:"
-
-#: lib/driveutility.py:273
-msgid "Save Image File"
-msgstr "Salva file immagine"
-
-#: share/driveutility/driveutility.ui:671
-msgid "Secure (fill with random data)"
-msgstr "Sicura (riempi con dati casuali)"
-
-#: share/driveutility/driveutility.ui:92
-msgid "Select Image File"
-msgstr "Seleziona file immagine"
-
-#: share/driveutility/driveutility.ui:64
-msgid "Select a destination disk"
-msgstr "Seleziona un disco di destinazione"
-
-#: share/driveutility/driveutility.ui:427
-msgid "Select a disk"
-msgstr "Seleziona un disco"
+#: share/driveutility/driveutility.ui:628
+msgid "Disk to wipe:"
+msgstr "Disco da eliminare:"
 
 #: share/driveutility/driveutility.ui:642
 msgid "Select a disk to securely wipe"
 msgstr "Seleziona un disco da eliminare in modo sicuro"
 
-#: share/driveutility/driveutility.ui:215
-msgid "Select a source disk"
-msgstr "Seleziona un disco sorgente"
+#: share/driveutility/driveutility.ui:655
+msgid "Wipe type:"
+msgstr "Tipo di eliminazione:"
 
-#: share/driveutility/driveutility.ui:90
-msgid "Select an image file"
-msgstr "Seleziona un file immagine"
+#: share/driveutility/driveutility.ui:670
+msgid "Quick (fill with zeros)"
+msgstr "Veloce (riempi con zeri)"
 
-#: share/driveutility/driveutility.ui:127
-#: share/driveutility/driveutility.ui:338
-#: share/driveutility/driveutility.ui:553
-#: share/driveutility/driveutility.ui:775
-msgid "Show mounted disks"
-msgstr "Mostra dischi montati"
+#: share/driveutility/driveutility.ui:671
+msgid "Secure (fill with random data)"
+msgstr "Sicura (riempi con dati casuali)"
+
+#: share/driveutility/driveutility.ui:684
+msgid "Passes:"
+msgstr "Passaggi:"
 
 #: share/driveutility/driveutility.ui:710
 msgid "Size (MB, 0 for whole disk):"
 msgstr "Dimensioni (MB, 0 per l'intero disco):"
 
-#: lib/driveutility.py:405
-#, python-brace-format
-msgid ""
-"The device <b>{device}</b> is currently mounted and in use.\n"
-"\n"
-"Performing '<b>{operation}</b>' operation on a mounted device can result "
-"in:\n"
-"  • Data loss\n"
-"  • System instability\n"
-"  • File system corruption\n"
-"\n"
-"Are you sure you want to continue?"
-msgstr ""
-"Il dispositivo <b>{device}</b> è attualmente montato e in uso.\n"
-"\n"
-"L'esecuzione dell'operazione '<b>{operation}</b>' su un dispositivo montato può causare:\n"
-"  • Perdita di dati\n"
-"  • Instabilità del sistema\n"
-"  • Corruzione del file system\n"
-"\n"
-"Sei sicuro di voler continuare?"
+#: share/driveutility/driveutility.ui:733
+msgid "Add a final pass with zeros"
+msgstr "Aggiungi un passaggio finale con zeri"
 
-#: lib/driveutility.py:742
-msgid "The disk was formatted successfully."
-msgstr "Il disco è stato formattato con successo."
-
-#: lib/driveutility.py:805
-msgid "The disk was wiped successfully."
-msgstr "Il disco è stato eliminato con successo."
-
-#: lib/driveutility.py:999
-msgid "The image was successfully created."
-msgstr "L'immagine è stata creata con successo."
-
-#: lib/driveutility.py:978
-msgid "The image was successfully written to the disk."
-msgstr "L'immagine è stata scritta con successo sul disco."
-
-#: share/driveutility/driveutility.ui:1186
-msgid "This file looks like a Windows image."
-msgstr "Questo file sembra un'immagine di Windows."
-
-#: share/driveutility/driveutility.ui:50
-msgid "To disk:"
-msgstr "Su disco:"
-
-#: share/driveutility/driveutility.ui:497
-msgid "Volume label:"
-msgstr "Etichetta volume:"
-
-#: lib/driveutility.py:378 lib/driveutility.py:398
-msgid "WARNING: Device is mounted!"
-msgstr "AVVERTENZA: Dispositivo montato!"
-
-#: share/driveutility/driveutility.ui:1199
-msgid "Windows images require special processing."
-msgstr "Le immagini di Windows richiedono una elaborazione speciale."
-
-#: lib/driveutility.py:766 share/driveutility/driveutility.ui:826
-msgid "Wipe"
-msgstr "Elimina"
-
-#: share/driveutility/driveutility.ui:655
-msgid "Wipe type:"
-msgstr "Tipo di eliminazione:"
-
-#: lib/driveutility.py:829
-msgid "Write"
-msgstr "Scrivi"
-
-#: share/driveutility/driveutility.ui:178
-msgid "Write Image"
-msgstr "Scrivi immagine"
-
-#: share/applications/driveutility.desktop:17
-#: share/applications/driveutility-kde.desktop:17
-msgid "Write disk images, format, or wipe drives"
-msgstr "Scrivi immagini disco, formatta o elimina unità"
-
-#: share/driveutility/driveutility.ui:300
-msgid "XZ (.xz)"
-msgstr "XZ (.xz)"
-
-#: share/driveutility/driveutility.ui:302
-msgid "ZStandard (.zst)"
-msgstr "ZStandard (.zst)"
+#: share/driveutility/driveutility.ui:801
+msgid "_Wipe"
+msgstr "_Elimina"
 
 #: share/driveutility/driveutility.ui:888
 #: share/driveutility/driveutility.ui:969
@@ -330,61 +401,23 @@ msgstr "ZStandard (.zst)"
 msgid "_Back"
 msgstr "_Indietro"
 
-#: lib/driveutility.py:426
-msgid "_Cancel"
-msgstr "_Annulla"
+#: share/driveutility/driveutility.ui:1186
+msgid "This file looks like a Windows image."
+msgstr "Questo file sembra un'immagine di Windows."
 
-#: lib/driveutility.py:433
-msgid "_Continue"
-msgstr "_Continua"
+#: share/driveutility/driveutility.ui:1199
+msgid "Windows images require special processing."
+msgstr "Le immagini di Windows richiedono una elaborazione speciale."
 
-#: share/driveutility/driveutility.ui:364
-msgid "_Create"
-msgstr "_Crea"
+#: share/driveutility/driveutility.ui:1210
+msgid "More information"
+msgstr "Maggiori informazioni"
 
-#: share/driveutility/driveutility.ui:579
-msgid "_Format"
-msgstr "_Formatta"
-
-#: share/driveutility/driveutility.ui:801
-msgid "_Wipe"
-msgstr "_Elimina"
-
-#: share/driveutility/driveutility.ui:153
-msgid "_Write"
-msgstr "_Scrivi"
-
-#: share/applications/driveutility.desktop:35
 #: share/applications/driveutility-kde.desktop:35
+#: share/applications/driveutility.desktop:35
 msgid "usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
 msgstr "usb;iso;immagine;scrivi;flash;avviabile;formatta;fat32;ntfs;ext4;cancella;elimina;disco;"
 
-#~ msgid "Authentication is required to format a device."
-#~ msgstr "È necessaria l'autenticazione per formattare un dispositivo."
-
-#~ msgid "Authentication is required to read a disk image from a device."
-#~ msgstr ""
-#~ "È necessaria l'autenticazione per leggere un'immagine disco da un "
-#~ "dispositivo."
-
-#~ msgid "Authentication is required to wipe a device."
-#~ msgstr "È necessaria l'autenticazione per eliminare un dispositivo."
-
-#~ msgid "Authentication is required to write an image to a device."
-#~ msgstr ""
-#~ "È necessaria l'autenticazione per scrivere un'immagine su un dispositivo."
-
-#~ msgid "Format a disk"
-#~ msgstr "Formatta un disco"
-
-#~ msgid "Read a disk image"
-#~ msgstr "Leggi un'immagine disco"
-
-#~ msgid "Show all disks (DANGEROUS)"
-#~ msgstr "Mostra tutti i dischi (PERICOLOSO)"
-
-#~ msgid "Wipe a disk"
-#~ msgstr "Elimina un disco"
-
-#~ msgid "Write a disk image"
-#~ msgstr "Scrivi un'immagine disco"
+#: share/kde4/driveutility-format_action.desktop:9
+msgid "Format USB stick"
+msgstr "Formatta chiavetta USB"
