@@ -13,10 +13,9 @@
   </object>
   <object class="GtkWindow" id="main_window">
     <property name="can_focus">False</property>
-    <property name="resizable">False</property>
+    <property name="resizable">True</property>
     <property name="window_position">center</property>
     <property name="default_width">480</property>
-    <property name="default_height">260</property>
     <property name="icon_name">driveutility</property>
     <child>
       <object class="GtkBox">
@@ -46,8 +45,8 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">To disk:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_To disk:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">write_device_combobox</property>
                         <property name="xalign">0</property>
@@ -60,7 +59,7 @@
                     <child>
                       <object class="GtkComboBox" id="write_device_combobox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Select a destination disk</property>
                         <property name="hexpand">True</property>
                       </object>
@@ -73,8 +72,9 @@
                       <object class="GtkLabel" id="label_write_image">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Image file:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Image file:</property>
+                        <property name="use_underline">True</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -84,9 +84,8 @@
                     </child>
                     <child>
                       <object class="GtkFileChooserButton" id="write_filechooserbutton">
-                        <property name="width_request">250</property>
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Select an image file</property>
                         <property name="hexpand">True</property>
                         <property name="title" translatable="yes">Select Image File</property>
@@ -124,12 +123,13 @@
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_write_checkbutton">
-                        <property name="label" translatable="yes">Show mounted disks</property>
+                        <property name="label" translatable="yes">Show _mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">start</property>
                         <property name="draw_indicator">True</property>
+                        <property name="use_underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -197,8 +197,8 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">From disk:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_From disk:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">read_device_combobox</property>
                         <property name="xalign">0</property>
@@ -211,7 +211,7 @@
                     <child>
                       <object class="GtkComboBox" id="read_device_combobox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Select a source disk</property>
                         <property name="hexpand">True</property>
                       </object>
@@ -224,10 +224,10 @@
                       <object class="GtkLabel" id="label_read_image">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Save As:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Save As:</property>
                         <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">read_target_entry</property>
+                        <property name="mnemonic_widget">read_target_button</property>
                         <property name="xalign">0</property>
                       </object>
                       <packing>
@@ -256,10 +256,11 @@
                         </child>
                         <child>
                           <object class="GtkButton" id="read_target_button">
-                            <property name="label" translatable="yes">Save As...</property>
+                            <property name="label" translatable="yes">Save _As…</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
+                            <property name="use_underline">True</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -277,8 +278,8 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Compression:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Compression:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">compression_combobox</property>
                         <property name="xalign">0</property>
@@ -291,7 +292,7 @@
                     <child>
                       <object class="GtkComboBoxText" id="compression_combobox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="active_id">none</property>
                         <items>
                           <item id="none" translatable="yes">None (raw image)</item>
@@ -335,12 +336,13 @@
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_read_checkbutton">
-                        <property name="label" translatable="yes">Show mounted disks</property>
+                        <property name="label" translatable="yes">Show _mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">start</property>
                         <property name="draw_indicator">True</property>
+                        <property name="use_underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -361,7 +363,7 @@
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkButton" id="read_button">
-                        <property name="label" translatable="yes">_Create</property>
+                        <property name="label" translatable="yes">Cr_eate</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -409,8 +411,8 @@
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Disk:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Disk:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">format_device_combobox</property>
                         <property name="xalign">0</property>
@@ -423,7 +425,7 @@
                     <child>
                       <object class="GtkComboBox" id="format_device_combobox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Select a disk</property>
                         <property name="hexpand">True</property>
                       </object>
@@ -434,14 +436,58 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Filesystem:</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">filesystem_combobox</property>
-                        <property name="xalign">0</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">_Filesystem:</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">filesystem_combobox</property>
+                            <property name="xalign">0</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkImage">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="tooltip_text" translatable="yes">FAT32
+  + Compatible everywhere.
+  -  Cannot handle files larger than 4GB.
+
+exFAT
+  + Compatible almost everywhere.
+  + Can handle files larger than 4GB.
+  -  Not as compatible as FAT32.
+
+NTFS
+  + Compatible with Windows.
+  -  Not compatible with Mac and most hardware devices.
+  -  Occasional compatibility problems with Linux.
+
+EXT4
+  + Modern, stable, fast, journalized.
+  + Supports Linux file permissions.
+  -  Not compatible with Windows, Mac and most devices.
+</property>
+                            <property name="icon_name">dialog-information-symbolic</property>
+                            <property name="icon_size">1</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -451,50 +497,21 @@
                     <child>
                       <object class="GtkComboBox" id="filesystem_combobox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="hexpand">True</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
                         <property name="top_attach">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkImage">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="tooltip_text" translatable="yes">FAT32 
-  + Compatible everywhere.
-  -  Cannot handle files larger than 4GB.
-
-exFAT
-  + Compatible almost everywhere.
-  + Can handle files larger than 4GB.
-  -  Not as compatible as FAT32.
-
-NTFS 
-  + Compatible with Windows.
-  -  Not compatible with Mac and most hardware devices.
-  -  Occasional compatibility problems with Linux.
-
-EXT4 
-  + Modern, stable, fast, journalized.
-  + Supports Linux file permissions.
-  -  Not compatible with Windows, Mac and most devices.
-</property>
-                        <property name="icon_name">dialog-information</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">2</property>
-                        <property name="top_attach">1</property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Volume label:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Volume label:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">volume_label_entry</property>
                         <property name="xalign">0</property>
@@ -511,7 +528,6 @@ EXT4
                         <property name="tooltip_text" translatable="yes">Choose a name for the disk</property>
                         <property name="hexpand">True</property>
                         <property name="max_length">32</property>
-                        <property name="width_chars">20</property>
                         <property name="text">STORAGE</property>
                       </object>
                       <packing>
@@ -550,12 +566,13 @@ EXT4
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_format_checkbutton">
-                        <property name="label" translatable="yes">Show mounted disks</property>
+                        <property name="label" translatable="yes">Show _mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">start</property>
                         <property name="draw_indicator">True</property>
+                        <property name="use_underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -576,7 +593,7 @@ EXT4
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkButton" id="format_button">
-                        <property name="label" translatable="yes">_Format</property>
+                        <property name="label" translatable="yes">F_ormat</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
@@ -624,8 +641,8 @@ EXT4
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Disk to wipe:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Disk to wipe:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">wipe_device_combobox</property>
                         <property name="xalign">0</property>
@@ -638,7 +655,7 @@ EXT4
                     <child>
                       <object class="GtkComboBox" id="wipe_device_combobox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Select a disk to securely wipe</property>
                         <property name="hexpand">True</property>
                       </object>
@@ -651,8 +668,9 @@ EXT4
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Wipe type:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">Wipe _type:</property>
+                        <property name="use_underline">True</property>
                         <property name="mnemonic_widget">wipe_type_combobox</property>
                         <property name="xalign">0</property>
                       </object>
@@ -664,7 +682,7 @@ EXT4
                     <child>
                       <object class="GtkComboBoxText" id="wipe_type_combobox">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="active_id">zero</property>
                         <items>
                           <item id="zero" translatable="yes">Quick (fill with zeros)</item>
@@ -680,8 +698,9 @@ EXT4
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Passes:</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Passes:</property>
+                        <property name="use_underline">True</property>
                         <property name="mnemonic_widget">wipe_passes_spinbutton</property>
                         <property name="xalign">0</property>
                       </object>
@@ -706,8 +725,9 @@ EXT4
                       <object class="GtkLabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">end</property>
-                        <property name="label" translatable="yes">Size (MB, 0 for whole disk):</property>
+                        <property name="halign">start</property>
+                        <property name="label" translatable="yes">_Size (MB, 0 for whole disk):</property>
+                        <property name="use_underline">True</property>
                         <property name="mnemonic_widget">wipe_size_spinbutton</property>
                         <property name="xalign">0</property>
                       </object>
@@ -730,13 +750,14 @@ EXT4
                     </child>
                     <child>
                       <object class="GtkCheckButton" id="wipe_final_zero_checkbutton">
-                        <property name="label" translatable="yes">Add a final pass with zeros</property>
+                        <property name="label" translatable="yes">_Add a final pass with zeros</property>
                         <property name="visible">True</property>
                         <property name="sensitive">False</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">start</property>
                         <property name="draw_indicator">True</property>
+                        <property name="use_underline">True</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -772,12 +793,13 @@ EXT4
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_wipe_checkbutton">
-                        <property name="label" translatable="yes">Show mounted disks</property>
+                        <property name="label" translatable="yes">Show _mounted disks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="halign">start</property>
                         <property name="draw_indicator">True</property>
+                        <property name="use_underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -838,7 +860,7 @@ EXT4
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="vexpand">True</property>
-                    <property name="border_width">24</property>
+                    <property name="border_width">12</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">12</property>
                     <child>
@@ -892,7 +914,7 @@ EXT4
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
-                        <property name="pack_type">end</property>
+                        <property name="pack_type">start</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -919,7 +941,7 @@ EXT4
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="vexpand">True</property>
-                    <property name="border_width">24</property>
+                    <property name="border_width">12</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">12</property>
                     <child>
@@ -973,7 +995,7 @@ EXT4
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
-                        <property name="pack_type">end</property>
+                        <property name="pack_type">start</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -1000,7 +1022,7 @@ EXT4
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="vexpand">True</property>
-                    <property name="border_width">24</property>
+                    <property name="border_width">12</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">12</property>
                     <child>
@@ -1054,7 +1076,7 @@ EXT4
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
-                        <property name="pack_type">end</property>
+                        <property name="pack_type">start</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -1081,7 +1103,7 @@ EXT4
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="vexpand">True</property>
-                    <property name="border_width">24</property>
+                    <property name="border_width">12</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">12</property>
                     <child>
@@ -1135,7 +1157,7 @@ EXT4
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
-                        <property name="pack_type">end</property>
+                        <property name="pack_type">start</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
@@ -1207,10 +1229,11 @@ EXT4
                     </child>
                     <child>
                       <object class="GtkLinkButton">
-                        <property name="label" translatable="yes">More information</property>
+                        <property name="label" translatable="yes">_More information</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="use_underline">True</property>
                         <property name="uri">https://linuxmint-user-guide.readthedocs.io/en/latest/winiso.html</property>
                       </object>
                       <packing>
@@ -1239,7 +1262,7 @@ EXT4
                         <property name="use_underline">True</property>
                       </object>
                       <packing>
-                        <property name="pack_type">end</property>
+                        <property name="pack_type">start</property>
                         <property name="position">0</property>
                       </packing>
                     </child>

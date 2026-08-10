@@ -2,13 +2,13 @@
 # Copyright (C) 2025 MiniOS Linux
 # This file is distributed under the same license as the driveutility package.
 # crims0n <crims0n@minios.dev>, 2025.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-18 01:27+0300\n"
-"PO-Revision-Date: 2026-06-17 22:20+0000\n"
+"POT-Creation-Date: 2026-08-10 01:45+0300\n"
+"PO-Revision-Date: 2026-08-05 14:11+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
 "Language: id\n"
@@ -16,104 +16,104 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: generate_additional_files.py:171 generate_additional_files.py:182
-#: share/driveutility/driveutility.ui:1272
+#: generate_additional_files.py:172 generate_additional_files.py:183
+#: share/driveutility/driveutility.ui:1295
 #: share/applications/driveutility-kde.desktop:8
 #: share/applications/driveutility.desktop:8
 msgid "Drive Utility"
 msgstr "Utilitas Disk"
 
-#: generate_additional_files.py:171 generate_additional_files.py:182
+#: generate_additional_files.py:172 generate_additional_files.py:183
 #: share/applications/driveutility-kde.desktop:17
 #: share/applications/driveutility.desktop:17
 msgid "Write disk images, format, or wipe drives"
 msgstr "Tulis citra disk, format, atau hapus drive"
 
-#: generate_additional_files.py:171 generate_additional_files.py:182
+#: generate_additional_files.py:172 generate_additional_files.py:183
 #: share/applications/driveutility-kde.desktop:26
 #: share/applications/driveutility.desktop:26
 msgid "Drive Management"
 msgstr "Manajemen Disk"
 
-#: generate_additional_files.py:263
+#: generate_additional_files.py:264
 #: share/nemo/actions/driveutility-writer.nemo_action:9
 msgid "Write image..."
-msgstr "Tulis gambar..."
+msgstr "Tulis citra..."
 
-#: generate_additional_files.py:263
+#: generate_additional_files.py:264
 #: share/nemo/actions/driveutility-writer.nemo_action:10
 msgid "Write this image file to a device"
-msgstr "Tulis file gambar ini ke perangkat"
+msgstr "Tulis file citra ini ke perangkat"
 
-#: generate_additional_files.py:277
+#: generate_additional_files.py:278
 #: share/nemo/actions/driveutility-formatter.nemo_action:11
 msgid "Format..."
 msgstr "Format..."
 
-#: generate_additional_files.py:277
+#: generate_additional_files.py:278
 #: share/nemo/actions/driveutility-formatter.nemo_action:12
 msgid "Format this device"
 msgstr "Format perangkat ini"
 
-#: generate_additional_files.py:291
+#: generate_additional_files.py:292
 #: share/nemo/actions/driveutility-wiper.nemo_action:11
 msgid "Wipe..."
 msgstr "Hapus..."
 
-#: generate_additional_files.py:291
+#: generate_additional_files.py:292
 #: share/nemo/actions/driveutility-wiper.nemo_action:12
 msgid "Wipe this device"
 msgstr "Hapus perangkat ini"
 
-#: generate_additional_files.py:322
+#: generate_additional_files.py:323
 msgid "Write a disk image"
-msgstr "Tulis gambar disk"
+msgstr "Tulis citra disk"
 
-#: generate_additional_files.py:322
+#: generate_additional_files.py:323
 msgid "Authentication is required to write an image to a device."
-msgstr "Otentikasi diperlukan untuk menulis gambar ke perangkat."
+msgstr "Autentikasi diperlukan untuk menulis citra ke perangkat."
 
-#: generate_additional_files.py:339
+#: generate_additional_files.py:340
 msgid "Format a disk"
 msgstr "Format disk"
 
-#: generate_additional_files.py:339
+#: generate_additional_files.py:340
 msgid "Authentication is required to format a device."
-msgstr "Otentikasi diperlukan untuk memformat perangkat."
+msgstr "Autentikasi diperlukan untuk memformat perangkat."
 
-#: generate_additional_files.py:356
+#: generate_additional_files.py:357
 msgid "Wipe a disk"
 msgstr "Hapus disk"
 
-#: generate_additional_files.py:356
+#: generate_additional_files.py:357
 msgid "Authentication is required to wipe a device."
-msgstr "Otentikasi diperlukan untuk menghapus perangkat."
+msgstr "Autentikasi diperlukan untuk menghapus perangkat."
 
-#: generate_additional_files.py:373
+#: generate_additional_files.py:374
 msgid "Read a disk image"
-msgstr "Baca gambar disk"
+msgstr "Baca citra disk"
 
-#: generate_additional_files.py:373
+#: generate_additional_files.py:374
 msgid "Authentication is required to read a disk image from a device."
-msgstr "Otentikasi diperlukan untuk membaca gambar disk dari perangkat."
+msgstr "Autentikasi diperlukan untuk membaca citra disk dari perangkat."
 
-#: lib/driveutility.py:241
+#: lib/driveutility.py:299
 msgid "Disk Images"
 msgstr "Citra Disk"
 
-#: lib/driveutility.py:252
+#: lib/driveutility.py:310
 msgid "All files"
-msgstr "Semua berkas"
+msgstr "Semua file"
 
-#: lib/driveutility.py:273
+#: lib/driveutility.py:331
 msgid "Save Image File"
-msgstr "Simpan Berkas Citra"
+msgstr "Simpan File Citra"
 
-#: lib/driveutility.py:378 lib/driveutility.py:398
+#: lib/driveutility.py:441 lib/driveutility.py:458
 msgid "WARNING: Device is mounted!"
-msgstr "PERINGATAN: Perangkat dipasang!"
+msgstr "PERINGATAN: Perangkat sedang ter-mount!"
 
-#: lib/driveutility.py:405
+#: lib/driveutility.py:465
 #, python-brace-format
 msgid ""
 "The device <b>{device}</b> is currently mounted and in use.\n"
@@ -125,108 +125,108 @@ msgid ""
 "\n"
 "Are you sure you want to continue?"
 msgstr ""
-"Perangkat <b>{device}</b> saat ini dipasang dan sedang digunakan.\n"
+"Perangkat <b>{device}</b> saat ini sedang ter-mount dan digunakan.\n"
 "\n"
-"Melakukan operasi '<b>{operation}</b>' pada perangkat yang dipasang dapat menghasilkan:\n"
+"Melakukan operasi '<b>{operation}</b>' pada perangkat yang ter-mount dapat menyebabkan:\n"
 "  • Kehilangan data\n"
 "  • Ketidakstabilan sistem\n"
-"  • Kerusakan sistem berkas\n"
+"  • Kerusakan sistem file\n"
 "\n"
 "Apakah Anda yakin ingin melanjutkan?"
 
-#: lib/driveutility.py:426
+#: lib/driveutility.py:480
 msgid "_Cancel"
 msgstr "_Batal"
 
-#: lib/driveutility.py:433
-msgid "_Continue"
-msgstr "_Lanjutkan"
+#: lib/driveutility.py:482
+msgid "C_ontinue"
+msgstr "L_anjutkan"
 
-#: lib/driveutility.py:706 share/driveutility/driveutility.ui:604
+#: lib/driveutility.py:760 share/driveutility/driveutility.ui:621
 msgid "Format"
 msgstr "Format"
 
-#: lib/driveutility.py:742
+#: lib/driveutility.py:797
 msgid "The disk was formatted successfully."
 msgstr "Disk berhasil diformat."
 
-#: lib/driveutility.py:744
+#: lib/driveutility.py:799
 #, python-format
 msgid "An error occured while creating a partition on %s."
-msgstr "Terjadi kesalahan saat membuat partisi di %s."
+msgstr "Terjadi kesalahan saat membuat partisi pada %s."
 
-#: lib/driveutility.py:747 lib/driveutility.py:807 lib/driveutility.py:984
-#: lib/driveutility.py:1003
+#: lib/driveutility.py:802 lib/driveutility.py:863 lib/driveutility.py:1041
+#: lib/driveutility.py:1060
 msgid "Authentication Error."
 msgstr "Kesalahan Autentikasi."
 
-#: lib/driveutility.py:751 lib/driveutility.py:988 lib/driveutility.py:1007
+#: lib/driveutility.py:806 lib/driveutility.py:1045 lib/driveutility.py:1064
 msgid "An error occurred."
 msgstr "Terjadi kesalahan."
 
-#: lib/driveutility.py:766 share/driveutility/driveutility.ui:826
+#: lib/driveutility.py:821 share/driveutility/driveutility.ui:848
 msgid "Wipe"
 msgstr "Hapus"
 
-#: lib/driveutility.py:805
+#: lib/driveutility.py:861
 msgid "The disk was wiped successfully."
 msgstr "Disk berhasil dihapus."
 
-#: lib/driveutility.py:811
+#: lib/driveutility.py:867
 #, python-format
 msgid "An error occurred while wiping %s."
 msgstr "Terjadi kesalahan saat menghapus %s."
 
-#: lib/driveutility.py:829
+#: lib/driveutility.py:885
 msgid "Write"
 msgstr "Tulis"
 
-#: lib/driveutility.py:978
+#: lib/driveutility.py:1035
 msgid "The image was successfully written to the disk."
 msgstr "Citra berhasil ditulis ke disk."
 
-#: lib/driveutility.py:980
+#: lib/driveutility.py:1037
 msgid "Not enough space on the destination disk."
-msgstr "Ruang tidak cukup di disk tujuan."
+msgstr "Ruang pada disk tujuan tidak cukup."
 
-#: lib/driveutility.py:982
+#: lib/driveutility.py:1039
 msgid "An error occured while writing the image."
 msgstr "Terjadi kesalahan saat menulis citra."
 
-#: lib/driveutility.py:999
+#: lib/driveutility.py:1056
 msgid "The image was successfully created."
 msgstr "Citra berhasil dibuat."
 
-#: lib/driveutility.py:1001
+#: lib/driveutility.py:1058
 msgid "An error occured while creating the image."
 msgstr "Terjadi kesalahan saat membuat citra."
 
-#: share/driveutility/driveutility.ui:50
-msgid "To disk:"
-msgstr "Ke disk:"
+#: share/driveutility/driveutility.ui:49
+msgid "_To disk:"
+msgstr "_Ke disk:"
 
-#: share/driveutility/driveutility.ui:64
+#: share/driveutility/driveutility.ui:63
 msgid "Select a destination disk"
 msgstr "Pilih disk tujuan"
 
-#: share/driveutility/driveutility.ui:77
-msgid "Image file:"
-msgstr "Berkas citra:"
+#: share/driveutility/driveutility.ui:76
+msgid "_Image file:"
+msgstr "_File citra:"
 
-#: share/driveutility/driveutility.ui:90
+#: share/driveutility/driveutility.ui:89
 msgid "Select an image file"
-msgstr "Pilih berkas citra"
+msgstr "Pilih file citra"
 
-#: share/driveutility/driveutility.ui:92
+#: share/driveutility/driveutility.ui:91
 msgid "Select Image File"
-msgstr "Pilih Berkas Citra"
+msgstr "Pilih File Citra"
 
-#: share/driveutility/driveutility.ui:127
-#: share/driveutility/driveutility.ui:338
-#: share/driveutility/driveutility.ui:553
-#: share/driveutility/driveutility.ui:775
-msgid "Show mounted disks"
-msgstr "Tampilkan disk yang dipasang"
+#: share/driveutility/driveutility.ui:126
+#: share/driveutility/driveutility.ui:339
+#: share/driveutility/driveutility.ui:569
+#: share/driveutility/driveutility.ui:796
+msgid "Show _mounted disks"
+msgstr "Tampilkan disk yang ter-_mount"
 
 #: share/driveutility/driveutility.ui:153
 msgid "_Write"
@@ -237,76 +237,76 @@ msgid "Write Image"
 msgstr "Tulis Citra"
 
 #: share/driveutility/driveutility.ui:201
-msgid "From disk:"
-msgstr "Dari disk:"
+msgid "_From disk:"
+msgstr "_Dari disk:"
 
 #: share/driveutility/driveutility.ui:215
 msgid "Select a source disk"
 msgstr "Pilih disk sumber"
 
 #: share/driveutility/driveutility.ui:228
-msgid "Save As:"
-msgstr "Simpan Sebagai:"
+msgid "_Save As:"
+msgstr "_Simpan Sebagai:"
 
 #: share/driveutility/driveutility.ui:249
 msgid "Choose a file location..."
 msgstr "Pilih lokasi file..."
 
 #: share/driveutility/driveutility.ui:259
-msgid "Save As..."
-msgstr "Simpan Sebagai..."
+msgid "Save _As…"
+msgstr "Simpan _Sebagai…"
 
-#: share/driveutility/driveutility.ui:281
-msgid "Compression:"
-msgstr "Kompresi:"
+#: share/driveutility/driveutility.ui:282
+msgid "_Compression:"
+msgstr "_Kompresi:"
 
-#: share/driveutility/driveutility.ui:297
+#: share/driveutility/driveutility.ui:298
 msgid "None (raw image)"
 msgstr "Tidak ada (citra mentah)"
 
-#: share/driveutility/driveutility.ui:298
+#: share/driveutility/driveutility.ui:299
 msgid "Gzip (.gz)"
 msgstr "Gzip (.gz)"
 
-#: share/driveutility/driveutility.ui:299
+#: share/driveutility/driveutility.ui:300
 msgid "Bzip2 (.bz2)"
 msgstr "Bzip2 (.bz2)"
 
-#: share/driveutility/driveutility.ui:300
+#: share/driveutility/driveutility.ui:301
 msgid "XZ (.xz)"
 msgstr "XZ (.xz)"
 
-#: share/driveutility/driveutility.ui:301
+#: share/driveutility/driveutility.ui:302
 msgid "LZ4 (.lz4)"
 msgstr "LZ4 (.lz4)"
 
-#: share/driveutility/driveutility.ui:302
+#: share/driveutility/driveutility.ui:303
 msgid "ZStandard (.zst)"
 msgstr "ZStandard (.zst)"
 
-#: share/driveutility/driveutility.ui:364
-msgid "_Create"
-msgstr "_Buat"
+#: share/driveutility/driveutility.ui:366
+msgid "Cr_eate"
+msgstr "Bu_at"
 
-#: share/driveutility/driveutility.ui:389
+#: share/driveutility/driveutility.ui:391
 msgid "Create Image"
 msgstr "Buat Citra"
 
-#: share/driveutility/driveutility.ui:413
-msgid "Disk:"
-msgstr "Disk:"
+#: share/driveutility/driveutility.ui:415
+msgid "_Disk:"
+msgstr "_Disk:"
 
-#: share/driveutility/driveutility.ui:427
+#: share/driveutility/driveutility.ui:429
 msgid "Select a disk"
 msgstr "Pilih disk"
 
-#: share/driveutility/driveutility.ui:441
-msgid "Filesystem:"
-msgstr "Sistem berkas:"
+#: share/driveutility/driveutility.ui:448
+msgid "_Filesystem:"
+msgstr "_Sistem file:"
 
-#: share/driveutility/driveutility.ui:466
+#: share/driveutility/driveutility.ui:463
 msgid ""
-"FAT32 \n"
+"FAT32\n"
 "  + Compatible everywhere.\n"
 "  -  Cannot handle files larger than 4GB.\n"
 "\n"
@@ -315,108 +315,108 @@ msgid ""
 "  + Can handle files larger than 4GB.\n"
 "  -  Not as compatible as FAT32.\n"
 "\n"
-"NTFS \n"
+"NTFS\n"
 "  + Compatible with Windows.\n"
 "  -  Not compatible with Mac and most hardware devices.\n"
 "  -  Occasional compatibility problems with Linux.\n"
 "\n"
-"EXT4 \n"
+"EXT4\n"
 "  + Modern, stable, fast, journalized.\n"
 "  + Supports Linux file permissions.\n"
 "  -  Not compatible with Windows, Mac and most devices.\n"
 msgstr ""
-"FAT32 \n"
+"FAT32\n"
 "  + Kompatibel di mana saja.\n"
-"  -  Tidak dapat menangani berkas lebih besar dari 4GB.\n"
+"  -  Tidak dapat menangani file lebih besar dari 4GB.\n"
 "\n"
 "exFAT\n"
-"  + Kompatibel hampir di mana saja.\n"
-"  + Dapat menangani berkas lebih besar dari 4GB.\n"
+"  + Hampir kompatibel di mana saja.\n"
+"  + Dapat menangani file lebih besar dari 4GB.\n"
 "  -  Tidak sekompatibel FAT32.\n"
 "\n"
-"NTFS \n"
+"NTFS\n"
 "  + Kompatibel dengan Windows.\n"
 "  -  Tidak kompatibel dengan Mac dan sebagian besar perangkat keras.\n"
-"  -  Kadang-kadang masalah kompatibilitas dengan Linux.\n"
+"  -  Kadang bermasalah dengan Linux.\n"
 "\n"
-"EXT4 \n"
-"  + Modern, stabil, cepat, terjurnal.\n"
-"  + Mendukung izin berkas Linux.\n"
+"EXT4\n"
+"  + Modern, stabil, cepat, jurnal.\n"
+"  + Mendukung izin file Linux.\n"
 "  -  Tidak kompatibel dengan Windows, Mac, dan sebagian besar perangkat.\n"
 
-#: share/driveutility/driveutility.ui:497
-msgid "Volume label:"
-msgstr "Label volume:"
+#: share/driveutility/driveutility.ui:514
+msgid "_Volume label:"
+msgstr "_Label volume:"
 
-#: share/driveutility/driveutility.ui:511
+#: share/driveutility/driveutility.ui:528
 msgid "Choose a name for the disk"
 msgstr "Pilih nama untuk disk"
 
-#: share/driveutility/driveutility.ui:579
-msgid "_Format"
-msgstr "_Format"
+#: share/driveutility/driveutility.ui:596
+msgid "F_ormat"
+msgstr "F_ormat"
 
-#: share/driveutility/driveutility.ui:628
-msgid "Disk to wipe:"
-msgstr "Disk untuk dihapus:"
+#: share/driveutility/driveutility.ui:645
+msgid "_Disk to wipe:"
+msgstr "_Disk yang akan dihapus:"
 
-#: share/driveutility/driveutility.ui:642
+#: share/driveutility/driveutility.ui:659
 msgid "Select a disk to securely wipe"
 msgstr "Pilih disk untuk dihapus secara aman"
 
-#: share/driveutility/driveutility.ui:655
-msgid "Wipe type:"
-msgstr "Jenis penghapusan:"
+#: share/driveutility/driveutility.ui:672
+msgid "Wipe _type:"
+msgstr "Jenis _hapus:"
 
-#: share/driveutility/driveutility.ui:670
+#: share/driveutility/driveutility.ui:688
 msgid "Quick (fill with zeros)"
 msgstr "Cepat (isi dengan nol)"
 
-#: share/driveutility/driveutility.ui:671
+#: share/driveutility/driveutility.ui:689
 msgid "Secure (fill with random data)"
 msgstr "Aman (isi dengan data acak)"
 
-#: share/driveutility/driveutility.ui:684
-msgid "Passes:"
-msgstr "Jumlah putaran:"
+#: share/driveutility/driveutility.ui:702
+msgid "_Passes:"
+msgstr "_Putaran:"
 
-#: share/driveutility/driveutility.ui:710
-msgid "Size (MB, 0 for whole disk):"
-msgstr "Ukuran (MB, 0 untuk seluruh disk):"
+#: share/driveutility/driveutility.ui:729
+msgid "_Size (MB, 0 for whole disk):"
+msgstr "_Ukuran (MB, 0 untuk seluruh disk):"
 
-#: share/driveutility/driveutility.ui:733
-msgid "Add a final pass with zeros"
-msgstr "Tambahkan penimpaan akhir dengan nol"
+#: share/driveutility/driveutility.ui:753
+msgid "_Add a final pass with zeros"
+msgstr "_Tambahkan putaran akhir dengan nol"
 
-#: share/driveutility/driveutility.ui:801
+#: share/driveutility/driveutility.ui:823
 msgid "_Wipe"
 msgstr "_Hapus"
 
-#: share/driveutility/driveutility.ui:888
-#: share/driveutility/driveutility.ui:969
-#: share/driveutility/driveutility.ui:1050
-#: share/driveutility/driveutility.ui:1131
-#: share/driveutility/driveutility.ui:1235
+#: share/driveutility/driveutility.ui:910
+#: share/driveutility/driveutility.ui:991
+#: share/driveutility/driveutility.ui:1072
+#: share/driveutility/driveutility.ui:1153
+#: share/driveutility/driveutility.ui:1258
 msgid "_Back"
 msgstr "_Kembali"
 
-#: share/driveutility/driveutility.ui:1186
+#: share/driveutility/driveutility.ui:1208
 msgid "This file looks like a Windows image."
-msgstr "Berkas ini terlihat seperti citra Windows."
+msgstr "File ini tampak seperti citra Windows."
 
-#: share/driveutility/driveutility.ui:1199
+#: share/driveutility/driveutility.ui:1221
 msgid "Windows images require special processing."
 msgstr "Citra Windows memerlukan pemrosesan khusus."
 
-#: share/driveutility/driveutility.ui:1210
-msgid "More information"
-msgstr "Informasi lebih lanjut"
+#: share/driveutility/driveutility.ui:1232
+msgid "_More information"
+msgstr "_Informasi lebih lanjut"
 
 #: share/applications/driveutility-kde.desktop:35
 #: share/applications/driveutility.desktop:35
 msgid "usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
-msgstr "usb;iso;citra;tulis;flash;bootable;format;fat32;ntfs;ext4;hapus;hapus;disk;"
+msgstr "usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
 
 #: share/kde4/driveutility-format_action.desktop:9
 msgid "Format USB stick"
-msgstr "Format flash drive USB"
+msgstr "Format USB stick"

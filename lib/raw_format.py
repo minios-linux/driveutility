@@ -2,11 +2,12 @@
 
 import os
 import re
-import stat
+import shutil
 from subprocess import call
 import sys
 import argparse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from deviceutils import is_block_device
 from mountutils import do_umount
 import syslog
 
@@ -24,30 +25,10 @@ LABEL_PATTERNS = {
 
 def _validate_device_path(device_path):
     """Validate that device_path is a valid block device."""
-    if not device_path or not isinstance(device_path, str):
-        syslog.syslog(f"Invalid device path: empty or not a string")
-        return False
-    # Must start with /dev/
-    if not device_path.startswith('/dev/'):
-        syslog.syslog(f"Invalid device path: must start with /dev/")
-        return False
-    # No path traversal
-    if '..' in device_path:
-        syslog.syslog(f"Invalid device path: path traversal detected")
-        return False
-    # Check if exists and is a block device
-    try:
-        if not os.path.exists(device_path):
-            syslog.syslog(f"Device does not exist: {device_path}")
-            return False
-        mode = os.stat(device_path).st_mode
-        if not stat.S_ISBLK(mode):
-            syslog.syslog(f"Not a block device: {device_path}")
-            return False
-    except (OSError, IOError) as e:
-        syslog.syslog(f"Cannot stat device {device_path}: {e}")
-        return False
-    return True
+    valid = is_block_device(device_path)
+    if not valid:
+        syslog.syslog(f"Invalid block device: {device_path}")
+    return valid
 
 
 def _validate_volume_label(label, fstype):
@@ -69,6 +50,28 @@ def execute(command):
         syslog.syslog(f"Command failed with exit code {retcode}: {command}")
         sys.exit(5)
     call(["sync"])
+
+
+def _required_tools(fstype):
+    filesystem_tools = {
+        "fat32": "mkdosfs",
+        "exfat": "mkfs.exfat",
+        "ntfs": "mkntfs",
+        "ext4": "mkfs.ext4",
+    }
+    return ("dd", "parted", "wipefs", "sync", "umount",
+            filesystem_tools[fstype])
+
+
+def _preflight_tools(fstype):
+    """Fail before unmounting or changing a disk if a helper is missing."""
+    missing = [tool for tool in _required_tools(fstype)
+               if shutil.which(tool) is None]
+    if missing:
+        syslog.syslog("Missing required command(s): {}".format(
+            ", ".join(missing)))
+        return False
+    return True
 
 
 def raw_format(device_path, fstype, volume_label, uid, gid):
@@ -97,6 +100,9 @@ def raw_format(device_path, fstype, volume_label, uid, gid):
     except (ValueError, TypeError) as e:
         syslog.syslog(f"Invalid UID/GID: {e}")
         sys.exit(2)
+
+    if not _preflight_tools(fstype):
+        sys.exit(3)
 
     do_umount(device_path)
 

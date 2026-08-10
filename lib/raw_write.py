@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
-import io
 import os
 import sys
 import argparse
 import stat
 sys.path.append('/usr/lib/driveutility')
+from deviceutils import is_block_device
 from mountutils import do_umount
-import parted
 import syslog
 import gzip
 import bz2
@@ -20,15 +19,57 @@ except ImportError:
 import lz4.frame
 
 
+class _LZ4FrameReader:
+    """Bounded streaming reader for Bionic's pre-lz4.frame.open API."""
+
+    _COMPRESSED_CHUNK_SIZE = 1024 * 1024
+
+    def __init__(self, path):
+        self._file = open(path, 'rb')
+        self._decompressor = lz4.frame.LZ4FrameDecompressor()
+        self._buffer = bytearray()
+        self._eof = False
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        self.close()
+        return False
+
+    def close(self):
+        if self._file is not None:
+            self._file.close()
+            self._file = None
+
+    def read(self, size=-1):
+        if size is None or size < 0:
+            chunks = [bytes(self._buffer)]
+            self._buffer.clear()
+            while not self._eof:
+                chunks.append(self._read_compressed_chunk())
+            return b''.join(chunks)
+
+        while len(self._buffer) < size and not self._eof:
+            self._buffer.extend(self._read_compressed_chunk())
+        data = bytes(self._buffer[:size])
+        del self._buffer[:size]
+        return data
+
+    def _read_compressed_chunk(self):
+        compressed = self._file.read(self._COMPRESSED_CHUNK_SIZE)
+        if not compressed:
+            self._eof = True
+            return b''
+        return self._decompressor.decompress(compressed)
+
+
 def _lz4_open_compat(path, mode):
-    """Open an LZ4 file for reading, compatible with lz4 < 0.19 (no lz4.frame.open)."""
+    """Open LZ4 input without loading the complete image on old python3-lz4."""
     if hasattr(lz4.frame, 'open'):
         return lz4.frame.open(path, mode)
-    # Fallback for lz4 < 0.19: read entire file and decompress in memory
-    syslog.syslog("lz4.frame.open not available, falling back to in-memory decompression")
-    with open(path, 'rb') as f:
-        decompressed = lz4.frame.decompress(f.read())
-    return io.BytesIO(decompressed)
+    syslog.syslog("lz4.frame.open not available, using streaming decompression")
+    return _LZ4FrameReader(path)
 
 
 def _zstd_open_compat(path, mode):
@@ -69,6 +110,11 @@ def get_opener_by_magic(file_path):
     return open, None
 
 def raw_write(source, target):
+    if not is_block_device(target):
+        print("Error: The target must be a block device.", file=sys.stderr)
+        print("failed")
+        exit(4)
+
     opener, compression_method = get_opener_by_magic(source)
 
     if opener is None:
@@ -84,6 +130,15 @@ def raw_write(source, target):
         do_umount(target)
         bs = 1048576 # 1MB block size
         size = 0
+
+        # Open first and validate the descriptor too, closing the path-race
+        # window between the initial block-device check and the write.
+        target_fd = os.open(target,
+                            os.O_WRONLY | getattr(os, 'O_CLOEXEC', 0))
+        if not stat.S_ISBLK(os.fstat(target_fd).st_mode):
+            os.close(target_fd)
+            raise ValueError("The opened target is not a block device")
+        output_file = os.fdopen(target_fd, 'wb')
         
         # Check available space on target device
         # This is a best-effort check for uncompressed files only.
@@ -95,9 +150,10 @@ def raw_write(source, target):
                 print("failed")
                 exit(4)
             
-            device = parted.getDevice(target)
-            device_size = device.getLength() * device.sectorSize
+            device_size = os.lseek(output_file.fileno(), 0, os.SEEK_END)
+            os.lseek(output_file.fileno(), 0, os.SEEK_SET)
             if device_size < source_size:
+                output_file.close()
                 syslog.syslog(f"Error: Not enough space on target '{target}'. Required: {source_size}, Available: {device_size}")
                 print("nospace")
                 exit(3)
@@ -108,7 +164,7 @@ def raw_write(source, target):
 
         input_stream = opener(source, 'rb')
 
-        with input_stream, open(target, 'wb') as output_file:
+        with input_stream, output_file:
             while True:
                 buffer = input_stream.read(bs)
                 if not buffer:

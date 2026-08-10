@@ -93,7 +93,7 @@ class TestDoUmount:
     def test_do_umount_with_no_mounts(self):
         """Test do_umount when device has no mounted partitions."""
         with patch.object(mountutils, 'get_mounted', return_value=[]):
-            with patch('subprocess.call') as mock_call:
+            with patch.object(mountutils, 'call') as mock_call:
                 mountutils.do_umount('/dev/sdc')
                 # Should not call umount if nothing is mounted
                 mock_call.assert_not_called()
@@ -103,18 +103,18 @@ class TestDoUmount:
         with patch.object(mountutils, 'get_mounted', return_value=[
             ['/dev/../etc/passwd', '/mnt/evil']  # Invalid path
         ]):
-            with patch('subprocess.call') as mock_call:
-                mountutils.do_umount('/dev/sdb')
-                # Should skip invalid device path
+            with patch.object(mountutils, 'call') as mock_call:
+                with pytest.raises(mountutils.UnmountError):
+                    mountutils.do_umount('/dev/sdb')
                 mock_call.assert_not_called()
     
     def test_do_umount_uses_list_form(self):
         """Test that do_umount uses list form of call (not shell=True)."""
-        with patch.object(mountutils, 'get_mounted', return_value=[
-            ['/dev/sdb1', '/mnt/usb']
+        with patch.object(mountutils, 'get_mounted', side_effect=[
+            [['/dev/sdb1', '/mnt/usb']], []
         ]):
             with patch.object(mountutils, '_validate_device_path', return_value=True):
-                with patch('subprocess.call') as mock_call:
+                with patch.object(mountutils, 'call') as mock_call:
                     mock_call.return_value = 0
                     mountutils.do_umount('/dev/sdb')
                     # Verify call was made with list, not string

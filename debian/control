@@ -11,10 +11,13 @@ Architecture: all
 Depends:
  ${misc:Depends},
  coreutils (>= 8.28),
+ dosfstools,
+ e2fsprogs,
  genisoimage,
  gir1.2-glib-2.0,
  gir1.2-gtk-3.0,
  gir1.2-polkit-1.0,
+ python3-minios-gui (>= 1.0.0),
  ntfs-3g,
  parted,
  polkitd | policykit-1,

@@ -3,13 +3,13 @@
 # Copyright (C) 2025 MiniOS Linux
 # This file is distributed under the same license as the driveutility package.
 # crims0n <crims0n@minios.dev>, 2025.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-06-18 01:27+0300\n"
-"PO-Revision-Date: 2026-06-17 22:20+0000\n"
+"POT-Creation-Date: 2026-08-10 01:45+0300\n"
+"PO-Revision-Date: 2026-08-05 14:11+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
 "Language: pt_BR\n"
@@ -18,104 +18,104 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: generate_additional_files.py:171 generate_additional_files.py:182
-#: share/driveutility/driveutility.ui:1272
+#: generate_additional_files.py:172 generate_additional_files.py:183
+#: share/driveutility/driveutility.ui:1295
 #: share/applications/driveutility-kde.desktop:8
 #: share/applications/driveutility.desktop:8
 msgid "Drive Utility"
 msgstr "Utilitário de Disco"
 
-#: generate_additional_files.py:171 generate_additional_files.py:182
+#: generate_additional_files.py:172 generate_additional_files.py:183
 #: share/applications/driveutility-kde.desktop:17
 #: share/applications/driveutility.desktop:17
 msgid "Write disk images, format, or wipe drives"
 msgstr "Gravar imagens de disco, formatar ou apagar unidades"
 
-#: generate_additional_files.py:171 generate_additional_files.py:182
+#: generate_additional_files.py:172 generate_additional_files.py:183
 #: share/applications/driveutility-kde.desktop:26
 #: share/applications/driveutility.desktop:26
 msgid "Drive Management"
 msgstr "Gerenciamento de Discos"
 
-#: generate_additional_files.py:263
+#: generate_additional_files.py:264
 #: share/nemo/actions/driveutility-writer.nemo_action:9
 msgid "Write image..."
 msgstr "Gravar imagem..."
 
-#: generate_additional_files.py:263
+#: generate_additional_files.py:264
 #: share/nemo/actions/driveutility-writer.nemo_action:10
 msgid "Write this image file to a device"
 msgstr "Gravar este arquivo de imagem em um dispositivo"
 
-#: generate_additional_files.py:277
+#: generate_additional_files.py:278
 #: share/nemo/actions/driveutility-formatter.nemo_action:11
 msgid "Format..."
 msgstr "Formatar..."
 
-#: generate_additional_files.py:277
+#: generate_additional_files.py:278
 #: share/nemo/actions/driveutility-formatter.nemo_action:12
 msgid "Format this device"
 msgstr "Formatar este dispositivo"
 
-#: generate_additional_files.py:291
+#: generate_additional_files.py:292
 #: share/nemo/actions/driveutility-wiper.nemo_action:11
 msgid "Wipe..."
-msgstr "Apagar..."
+msgstr "Limpar..."
 
-#: generate_additional_files.py:291
+#: generate_additional_files.py:292
 #: share/nemo/actions/driveutility-wiper.nemo_action:12
 msgid "Wipe this device"
-msgstr "Apagar este dispositivo"
+msgstr "Limpar este dispositivo"
 
-#: generate_additional_files.py:322
+#: generate_additional_files.py:323
 msgid "Write a disk image"
 msgstr "Gravar uma imagem de disco"
 
-#: generate_additional_files.py:322
+#: generate_additional_files.py:323
 msgid "Authentication is required to write an image to a device."
-msgstr "É necessária autenticação para gravar uma imagem em um dispositivo."
+msgstr "Autenticação é necessária para gravar uma imagem em um dispositivo."
 
-#: generate_additional_files.py:339
+#: generate_additional_files.py:340
 msgid "Format a disk"
 msgstr "Formatar um disco"
 
-#: generate_additional_files.py:339
+#: generate_additional_files.py:340
 msgid "Authentication is required to format a device."
-msgstr "É necessária autenticação para formatar um dispositivo."
+msgstr "Autenticação é necessária para formatar um dispositivo."
 
-#: generate_additional_files.py:356
+#: generate_additional_files.py:357
 msgid "Wipe a disk"
-msgstr "Apagar um disco"
+msgstr "Limpar um disco"
 
-#: generate_additional_files.py:356
+#: generate_additional_files.py:357
 msgid "Authentication is required to wipe a device."
-msgstr "É necessária autenticação para apagar um dispositivo."
+msgstr "Autenticação é necessária para limpar um dispositivo."
 
-#: generate_additional_files.py:373
+#: generate_additional_files.py:374
 msgid "Read a disk image"
 msgstr "Ler uma imagem de disco"
 
-#: generate_additional_files.py:373
+#: generate_additional_files.py:374
 msgid "Authentication is required to read a disk image from a device."
-msgstr "É necessária autenticação para ler uma imagem de disco de um dispositivo."
+msgstr "Autenticação é necessária para ler uma imagem de disco de um dispositivo."
 
-#: lib/driveutility.py:241
+#: lib/driveutility.py:299
 msgid "Disk Images"
 msgstr "Imagens de Disco"
 
-#: lib/driveutility.py:252
+#: lib/driveutility.py:310
 msgid "All files"
 msgstr "Todos os arquivos"
 
-#: lib/driveutility.py:273
+#: lib/driveutility.py:331
 msgid "Save Image File"
 msgstr "Salvar Arquivo de Imagem"
 
-#: lib/driveutility.py:378 lib/driveutility.py:398
+#: lib/driveutility.py:441 lib/driveutility.py:458
 msgid "WARNING: Device is mounted!"
-msgstr "AVISO: Dispositivo montado!"
+msgstr "AVISO: O dispositivo está montado!"
 
-#: lib/driveutility.py:405
+#: lib/driveutility.py:465
 #, python-brace-format
 msgid ""
 "The device <b>{device}</b> is currently mounted and in use.\n"
@@ -134,101 +134,101 @@ msgstr ""
 "  • Instabilidade do sistema\n"
 "  • Corrupção do sistema de arquivos\n"
 "\n"
-"Você tem certeza de que deseja continuar?"
+"Tem certeza de que deseja continuar?"
 
-#: lib/driveutility.py:426
+#: lib/driveutility.py:480
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: lib/driveutility.py:433
-msgid "_Continue"
-msgstr "_Continuar"
+#: lib/driveutility.py:482
+msgid "C_ontinue"
+msgstr "C_ontinuar"
 
-#: lib/driveutility.py:706 share/driveutility/driveutility.ui:604
+#: lib/driveutility.py:760 share/driveutility/driveutility.ui:621
 msgid "Format"
 msgstr "Formatar"
 
-#: lib/driveutility.py:742
+#: lib/driveutility.py:797
 msgid "The disk was formatted successfully."
 msgstr "O disco foi formatado com sucesso."
 
-#: lib/driveutility.py:744
+#: lib/driveutility.py:799
 #, python-format
 msgid "An error occured while creating a partition on %s."
 msgstr "Ocorreu um erro ao criar uma partição em %s."
 
-#: lib/driveutility.py:747 lib/driveutility.py:807 lib/driveutility.py:984
-#: lib/driveutility.py:1003
+#: lib/driveutility.py:802 lib/driveutility.py:863 lib/driveutility.py:1041
+#: lib/driveutility.py:1060
 msgid "Authentication Error."
-msgstr "Erro de autenticação."
+msgstr "Erro de Autenticação."
 
-#: lib/driveutility.py:751 lib/driveutility.py:988 lib/driveutility.py:1007
+#: lib/driveutility.py:806 lib/driveutility.py:1045 lib/driveutility.py:1064
 msgid "An error occurred."
 msgstr "Ocorreu um erro."
 
-#: lib/driveutility.py:766 share/driveutility/driveutility.ui:826
+#: lib/driveutility.py:821 share/driveutility/driveutility.ui:848
 msgid "Wipe"
-msgstr "Apagar"
+msgstr "Limpar"
 
-#: lib/driveutility.py:805
+#: lib/driveutility.py:861
 msgid "The disk was wiped successfully."
-msgstr "O disco foi apagado com sucesso."
+msgstr "O disco foi limpo com sucesso."
 
-#: lib/driveutility.py:811
+#: lib/driveutility.py:867
 #, python-format
 msgid "An error occurred while wiping %s."
-msgstr "Ocorreu um erro ao apagar %s."
+msgstr "Ocorreu um erro ao limpar %s."
 
-#: lib/driveutility.py:829
+#: lib/driveutility.py:885
 msgid "Write"
 msgstr "Gravar"
 
-#: lib/driveutility.py:978
+#: lib/driveutility.py:1035
 msgid "The image was successfully written to the disk."
 msgstr "A imagem foi gravada com sucesso no disco."
 
-#: lib/driveutility.py:980
+#: lib/driveutility.py:1037
 msgid "Not enough space on the destination disk."
 msgstr "Espaço insuficiente no disco de destino."
 
-#: lib/driveutility.py:982
+#: lib/driveutility.py:1039
 msgid "An error occured while writing the image."
 msgstr "Ocorreu um erro ao gravar a imagem."
 
-#: lib/driveutility.py:999
+#: lib/driveutility.py:1056
 msgid "The image was successfully created."
 msgstr "A imagem foi criada com sucesso."
 
-#: lib/driveutility.py:1001
+#: lib/driveutility.py:1058
 msgid "An error occured while creating the image."
 msgstr "Ocorreu um erro ao criar a imagem."
 
-#: share/driveutility/driveutility.ui:50
-msgid "To disk:"
-msgstr "Para o disco:"
+#: share/driveutility/driveutility.ui:49
+msgid "_To disk:"
+msgstr "_Para o disco:"
 
-#: share/driveutility/driveutility.ui:64
+#: share/driveutility/driveutility.ui:63
 msgid "Select a destination disk"
-msgstr "Selecionar um disco de destino"
+msgstr "Selecione um disco de destino"
 
-#: share/driveutility/driveutility.ui:77
-msgid "Image file:"
-msgstr "Arquivo de imagem:"
+#: share/driveutility/driveutility.ui:76
+msgid "_Image file:"
+msgstr "_Arquivo de imagem:"
 
-#: share/driveutility/driveutility.ui:90
+#: share/driveutility/driveutility.ui:89
 msgid "Select an image file"
-msgstr "Selecionar um arquivo de imagem"
+msgstr "Selecione um arquivo de imagem"
 
-#: share/driveutility/driveutility.ui:92
+#: share/driveutility/driveutility.ui:91
 msgid "Select Image File"
 msgstr "Selecionar Arquivo de Imagem"
 
-#: share/driveutility/driveutility.ui:127
-#: share/driveutility/driveutility.ui:338
-#: share/driveutility/driveutility.ui:553
-#: share/driveutility/driveutility.ui:775
-msgid "Show mounted disks"
-msgstr "Mostrar discos montados"
+#: share/driveutility/driveutility.ui:126
+#: share/driveutility/driveutility.ui:339
+#: share/driveutility/driveutility.ui:569
+#: share/driveutility/driveutility.ui:796
+msgid "Show _mounted disks"
+msgstr "Mostrar discos _montados"
 
 #: share/driveutility/driveutility.ui:153
 msgid "_Write"
@@ -239,76 +239,76 @@ msgid "Write Image"
 msgstr "Gravar Imagem"
 
 #: share/driveutility/driveutility.ui:201
-msgid "From disk:"
-msgstr "Do disco:"
+msgid "_From disk:"
+msgstr "_Do disco:"
 
 #: share/driveutility/driveutility.ui:215
 msgid "Select a source disk"
-msgstr "Selecionar um disco de origem"
+msgstr "Selecione um disco de origem"
 
 #: share/driveutility/driveutility.ui:228
-msgid "Save As:"
-msgstr "Salvar como:"
+msgid "_Save As:"
+msgstr "_Salvar como:"
 
 #: share/driveutility/driveutility.ui:249
 msgid "Choose a file location..."
 msgstr "Escolha um local para o arquivo..."
 
 #: share/driveutility/driveutility.ui:259
-msgid "Save As..."
-msgstr "Salvar como..."
+msgid "Save _As…"
+msgstr "Salvar _como…"
 
-#: share/driveutility/driveutility.ui:281
-msgid "Compression:"
-msgstr "Compressão:"
-
-#: share/driveutility/driveutility.ui:297
-msgid "None (raw image)"
-msgstr "Nenhuma (imagem raw)"
+#: share/driveutility/driveutility.ui:282
+msgid "_Compression:"
+msgstr "_Compressão:"
 
 #: share/driveutility/driveutility.ui:298
+msgid "None (raw image)"
+msgstr "Nenhum (imagem bruta)"
+
+#: share/driveutility/driveutility.ui:299
 msgid "Gzip (.gz)"
 msgstr "Gzip (.gz)"
 
-#: share/driveutility/driveutility.ui:299
+#: share/driveutility/driveutility.ui:300
 msgid "Bzip2 (.bz2)"
 msgstr "Bzip2 (.bz2)"
 
-#: share/driveutility/driveutility.ui:300
+#: share/driveutility/driveutility.ui:301
 msgid "XZ (.xz)"
 msgstr "XZ (.xz)"
 
-#: share/driveutility/driveutility.ui:301
+#: share/driveutility/driveutility.ui:302
 msgid "LZ4 (.lz4)"
 msgstr "LZ4 (.lz4)"
 
-#: share/driveutility/driveutility.ui:302
+#: share/driveutility/driveutility.ui:303
 msgid "ZStandard (.zst)"
 msgstr "ZStandard (.zst)"
 
-#: share/driveutility/driveutility.ui:364
-msgid "_Create"
-msgstr "_Criar"
+#: share/driveutility/driveutility.ui:366
+msgid "Cr_eate"
+msgstr "Cr_iar"
 
-#: share/driveutility/driveutility.ui:389
+#: share/driveutility/driveutility.ui:391
 msgid "Create Image"
 msgstr "Criar Imagem"
 
-#: share/driveutility/driveutility.ui:413
-msgid "Disk:"
-msgstr "Disco:"
+#: share/driveutility/driveutility.ui:415
+msgid "_Disk:"
+msgstr "_Disco:"
 
-#: share/driveutility/driveutility.ui:427
+#: share/driveutility/driveutility.ui:429
 msgid "Select a disk"
-msgstr "Selecionar um disco"
+msgstr "Selecione um disco"
 
-#: share/driveutility/driveutility.ui:441
-msgid "Filesystem:"
-msgstr "Sistema de arquivos:"
+#: share/driveutility/driveutility.ui:448
+msgid "_Filesystem:"
+msgstr "_Sistema de arquivos:"
 
-#: share/driveutility/driveutility.ui:466
+#: share/driveutility/driveutility.ui:463
 msgid ""
-"FAT32 \n"
+"FAT32\n"
 "  + Compatible everywhere.\n"
 "  -  Cannot handle files larger than 4GB.\n"
 "\n"
@@ -317,108 +317,108 @@ msgid ""
 "  + Can handle files larger than 4GB.\n"
 "  -  Not as compatible as FAT32.\n"
 "\n"
-"NTFS \n"
+"NTFS\n"
 "  + Compatible with Windows.\n"
 "  -  Not compatible with Mac and most hardware devices.\n"
 "  -  Occasional compatibility problems with Linux.\n"
 "\n"
-"EXT4 \n"
+"EXT4\n"
 "  + Modern, stable, fast, journalized.\n"
 "  + Supports Linux file permissions.\n"
 "  -  Not compatible with Windows, Mac and most devices.\n"
 msgstr ""
-"FAT32 \n"
-"  + Compatível em qualquer lugar.\n"
-"  -  Não consegue lidar com arquivos maiores que 4 GB.\n"
+"FAT32\n"
+"  + Compatível em todos os lugares.\n"
+"  -  Não suporta arquivos maiores que 4GB.\n"
 "\n"
 "exFAT\n"
-"  + Compatível em quase qualquer lugar.\n"
-"  + Consegue lidar com arquivos maiores que 4 GB.\n"
-"  -  Não é tão compatível quanto FAT32.\n"
+"  + Compatível quase em todos os lugares.\n"
+"  + Suporta arquivos maiores que 4GB.\n"
+"  -  Não tão compatível quanto FAT32.\n"
 "\n"
-"NTFS \n"
+"NTFS\n"
 "  + Compatível com Windows.\n"
-"  -  Não compatível com Mac e a maioria dos dispositivos de hardware.\n"
-"  -  Problemas de compatibilidade ocasionais com Linux.\n"
+"  -  Não compatível com Mac e a maioria dos dispositivos.\n"
+"  -  Problemas ocasionais de compatibilidade com Linux.\n"
 "\n"
-"EXT4 \n"
+"EXT4\n"
 "  + Moderno, estável, rápido, com journaling.\n"
-"  + Suporta permissões de arquivo do Linux.\n"
+"  + Suporta permissões de arquivos do Linux.\n"
 "  -  Não compatível com Windows, Mac e a maioria dos dispositivos.\n"
 
-#: share/driveutility/driveutility.ui:497
-msgid "Volume label:"
-msgstr "Rótulo do volume:"
+#: share/driveutility/driveutility.ui:514
+msgid "_Volume label:"
+msgstr "Rótulo do _volume:"
 
-#: share/driveutility/driveutility.ui:511
+#: share/driveutility/driveutility.ui:528
 msgid "Choose a name for the disk"
 msgstr "Escolha um nome para o disco"
 
-#: share/driveutility/driveutility.ui:579
-msgid "_Format"
-msgstr "_Formatar"
+#: share/driveutility/driveutility.ui:596
+msgid "F_ormat"
+msgstr "F_ormatar"
 
-#: share/driveutility/driveutility.ui:628
-msgid "Disk to wipe:"
-msgstr "Disco para apagar:"
+#: share/driveutility/driveutility.ui:645
+msgid "_Disk to wipe:"
+msgstr "_Disco para limpar:"
 
-#: share/driveutility/driveutility.ui:642
+#: share/driveutility/driveutility.ui:659
 msgid "Select a disk to securely wipe"
-msgstr "Selecionar um disco para apagar com segurança"
+msgstr "Selecione um disco para limpeza segura"
 
-#: share/driveutility/driveutility.ui:655
-msgid "Wipe type:"
-msgstr "Tipo de apagamento:"
+#: share/driveutility/driveutility.ui:672
+msgid "Wipe _type:"
+msgstr "Tipo de _limpeza:"
 
-#: share/driveutility/driveutility.ui:670
+#: share/driveutility/driveutility.ui:688
 msgid "Quick (fill with zeros)"
 msgstr "Rápido (preencher com zeros)"
 
-#: share/driveutility/driveutility.ui:671
+#: share/driveutility/driveutility.ui:689
 msgid "Secure (fill with random data)"
 msgstr "Seguro (preencher com dados aleatórios)"
 
-#: share/driveutility/driveutility.ui:684
-msgid "Passes:"
-msgstr "Passagens:"
+#: share/driveutility/driveutility.ui:702
+msgid "_Passes:"
+msgstr "_Passagens:"
 
-#: share/driveutility/driveutility.ui:710
-msgid "Size (MB, 0 for whole disk):"
-msgstr "Tamanho (MB, 0 para o disco inteiro):"
+#: share/driveutility/driveutility.ui:729
+msgid "_Size (MB, 0 for whole disk):"
+msgstr "_Tamanho (MB, 0 para o disco inteiro):"
 
-#: share/driveutility/driveutility.ui:733
-msgid "Add a final pass with zeros"
-msgstr "Adicionar uma passagem final com zeros"
+#: share/driveutility/driveutility.ui:753
+msgid "_Add a final pass with zeros"
+msgstr "_Adicionar uma passagem final com zeros"
 
-#: share/driveutility/driveutility.ui:801
+#: share/driveutility/driveutility.ui:823
 msgid "_Wipe"
-msgstr "_Apagar"
+msgstr "_Limpar"
 
-#: share/driveutility/driveutility.ui:888
-#: share/driveutility/driveutility.ui:969
-#: share/driveutility/driveutility.ui:1050
-#: share/driveutility/driveutility.ui:1131
-#: share/driveutility/driveutility.ui:1235
+#: share/driveutility/driveutility.ui:910
+#: share/driveutility/driveutility.ui:991
+#: share/driveutility/driveutility.ui:1072
+#: share/driveutility/driveutility.ui:1153
+#: share/driveutility/driveutility.ui:1258
 msgid "_Back"
 msgstr "_Voltar"
 
-#: share/driveutility/driveutility.ui:1186
+#: share/driveutility/driveutility.ui:1208
 msgid "This file looks like a Windows image."
-msgstr "Este arquivo parece uma imagem do Windows."
+msgstr "Este arquivo parece ser uma imagem do Windows."
 
-#: share/driveutility/driveutility.ui:1199
+#: share/driveutility/driveutility.ui:1221
 msgid "Windows images require special processing."
-msgstr "Imagens do Windows exigem processamento especial."
+msgstr "Imagens do Windows requerem processamento especial."
 
-#: share/driveutility/driveutility.ui:1210
-msgid "More information"
-msgstr "Mais informações"
+#: share/driveutility/driveutility.ui:1232
+msgid "_More information"
+msgstr "_Mais informações"
 
 #: share/applications/driveutility-kde.desktop:35
 #: share/applications/driveutility.desktop:35
 msgid "usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;disk;"
-msgstr "usb;iso;imagem;gravar;flash;inicializável;formatar;fat32;ntfs;ext4;apagar;apagar_dados;disco;"
+msgstr "usb;iso;imagem;gravar;flash;bootável;formatar;fat32;ntfs;ext4;apagar;limpar;disco;"
 
 #: share/kde4/driveutility-format_action.desktop:9
 msgid "Format USB stick"
-msgstr "Formatar pendrive"
+msgstr "Formatar pen drive"

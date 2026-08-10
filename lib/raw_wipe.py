@@ -3,14 +3,15 @@
 import argparse
 import os
 import queue
-import stat
-import subprocess
+import shutil
+from subprocess import DEVNULL, PIPE, Popen, call
 import sys
 import threading
 import syslog
 
 # Add the shared library path
 sys.path.append('/usr/lib/driveutility')
+from deviceutils import is_block_device
 from mountutils import do_umount
 
 WIPE_SOURCES = {
@@ -36,11 +37,11 @@ def execute(command):
     """
     syslog.syslog("Executing: " + " ".join(command))
 
-    process = subprocess.Popen(command,
-                               stdout=subprocess.DEVNULL,
-                               stderr=subprocess.PIPE,
-                               universal_newlines=True,
-                               bufsize=1)
+    process = Popen(command,
+                    stdout=DEVNULL,
+                    stderr=PIPE,
+                    universal_newlines=True,
+                    bufsize=1)
 
     q = queue.Queue()
     thread = threading.Thread(target=reader_thread, args=[process.stderr, q])
@@ -68,14 +69,30 @@ def execute(command):
             print("\nfailed")
             sys.exit(1)
 
-    subprocess.call(["sync"])
+    if call(["sync"]) != 0:
+        syslog.syslog("sync failed after wipe command")
+        sys.exit(1)
+
+
+def _preflight_tools():
+    missing = [tool for tool in ("dd", "sync", "umount")
+               if shutil.which(tool) is None]
+    if missing:
+        raise RuntimeError("Missing required command(s): {}".format(
+            ", ".join(missing)))
 
 def raw_wipe(device, passes, wipe_type, final_zero, size_mb, block_size):
     """Overwrites a device with the specified pattern."""
+    if not is_block_device(device):
+        raise ValueError("The wipe target must be a block device")
+    if passes < 1:
+        raise ValueError("Wipe passes must be at least 1")
+    if size_mb is not None and size_mb <= 0:
+        raise ValueError("Explicit wipe size must be greater than zero")
     if wipe_type not in WIPE_SOURCES:
-        syslog.syslog(f"Error: Invalid wipe type '{wipe_type}'")
-        print("failed")
-        sys.exit(1)
+        raise ValueError("Invalid wipe type '{}'".format(wipe_type))
+
+    _preflight_tools()
 
     syslog.syslog(f"Unmounting {device}")
     do_umount(device)
@@ -128,8 +145,7 @@ def main():
         sys.exit(2)
 
     try:
-        mode = os.stat(args.device).st_mode
-        if not stat.S_ISBLK(mode):
+        if not is_block_device(args.device):
             print(f"Error: The specified path '{args.device}' is not a block device.", file=sys.stderr)
             sys.exit(1)
     except FileNotFoundError:
@@ -138,6 +154,11 @@ def main():
     except Exception as e:
         print(f"Error: Could not access device '{args.device}': {e}", file=sys.stderr)
         sys.exit(1)
+
+    if args.passes < 1:
+        parser.error("passes must be at least 1")
+    if args.size is not None and args.size <= 0:
+        parser.error("size must be greater than zero when specified")
 
     try:
         raw_wipe(

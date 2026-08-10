@@ -52,7 +52,7 @@ class TestExecute:
     def test_execute_checks_return_code(self):
         """Test that execute checks command return code."""
         with patch('syslog.syslog'):
-            with patch('subprocess.call', return_value=1) as mock_call:
+            with patch.object(raw_format, 'call', return_value=1) as mock_call:
                 with pytest.raises(SystemExit) as exc_info:
                     raw_format.execute(['false'])
                 assert exc_info.value.code == 5
@@ -60,7 +60,7 @@ class TestExecute:
     def test_execute_calls_sync(self):
         """Test that execute calls sync after command."""
         with patch('syslog.syslog'):
-            with patch('subprocess.call', return_value=0) as mock_call:
+            with patch.object(raw_format, 'call', return_value=0) as mock_call:
                 raw_format.execute(['true'])
                 # Should be called twice: once for command, once for sync
                 assert mock_call.call_count == 2

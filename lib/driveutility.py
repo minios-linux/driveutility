@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 
 from unidecode import unidecode
-from subprocess import Popen, PIPE
+from subprocess import DEVNULL, PIPE, Popen
 import getopt
 import gettext
 import gi
 import locale
 import os
-import re
 import signal
-import subprocess
 import sys
+
+from deviceutils import resolve_udisks_disk_path
 
 try:
     import zstandard
@@ -24,6 +24,7 @@ gi.require_version('UDisks', '2.0')
 gi.require_version('XApp', '1.0')
 
 from gi.repository import Polkit, Gtk, GLib, UDisks, XApp
+from minios_gui import apply_minios_css, new_icon
 
 try:
     gi.require_version('Unity', '7.0')
@@ -49,6 +50,51 @@ RELEVANT_UDISK_PROPERTIES = ['connection-bus', 'ejectable', 'id', \
 'media-available', 'media-compatibility', 'media-removable', \
 'model', 'vendor', 'optical', 'removable', 'size']
 
+
+def _assign_unique_mnemonics(widgets):
+    """Resolve accelerator collisions introduced by translated labels."""
+    used = set()
+    for widget in widgets:
+        label = widget.get_label() or ''
+        plain_label = label.replace('_', '')
+        preferred = label.find('_')
+        candidates = []
+        if preferred >= 0 and preferred + 1 < len(label):
+            candidates.append(label[preferred + 1])
+        candidates.extend(plain_label)
+
+        mnemonic = next((char for char in candidates
+                         if char.isalnum() and char.casefold() not in used),
+                        None)
+        if mnemonic is None:
+            widget.set_label(plain_label)
+            continue
+
+        used.add(mnemonic.casefold())
+        marker = next(index for index, char in enumerate(plain_label)
+                      if char.casefold() == mnemonic.casefold())
+        widget.set_label(plain_label[:marker] + '_' + plain_label[marker:])
+
+
+def _mnemonic_widgets(container):
+    widgets = []
+
+    def collect(widget):
+        if isinstance(widget, Gtk.Button):
+            if widget.get_use_underline():
+                widgets.append(widget)
+                return
+        elif isinstance(widget, Gtk.Label):
+            if widget.get_use_underline():
+                widgets.append(widget)
+                return
+        if isinstance(widget, Gtk.Container):
+            for child in widget.get_children():
+                collect(child)
+
+    collect(container)
+    return widgets
+
 class DriveUtility:
     def __init__(self, image_path_arg=None, disk_path_arg=None, filesystem_arg=None, mode_arg=None, debug_arg=False):
 
@@ -65,6 +111,18 @@ class DriveUtility:
         self.wTree = Gtk.Builder()
         self.wTree.set_translation_domain(APP)
         self.wTree.add_from_file("/usr/share/driveutility/driveutility.ui")
+
+        # Use the shared MiniOS stylesheet like every other MiniOS app so the
+        # look-and-feel (theme-native buttons, entries, lists) stays universal.
+        apply_minios_css()
+
+        for page_id in ("write_page_container", "read_page_container",
+                        "format_page_container", "wipe_page_container",
+                        "write_result_page", "read_result_page",
+                        "format_result_page", "wipe_result_page",
+                        "windows_page"):
+            page = self.wTree.get_object(page_id)
+            _assign_unique_mnemonics(_mnemonic_widgets(page))
 
         self.window = self.wTree.get_object("main_window")
         self.main_stack = self.wTree.get_object("main_stack")
@@ -325,14 +383,18 @@ class DriveUtility:
             device_iter = model.get_iter_first()
             while device_iter:
                 value = model.get_value(device_iter, 0)
-                if disk_path in value:
+                if disk_path == value:
                     combobox.set_active_iter(device_iter)
-                    return
+                    return True
                 device_iter = model.iter_next(device_iter)
+            # An explicit or previous path must never select a different disk.
+            return False
         
         device_iter = model.get_iter_first()
         if device_iter:
             combobox.set_active_iter(device_iter)
+            return True
+        return False
 
     def print_drive(self, drive):
         if not self.debug: return
@@ -346,19 +408,20 @@ class DriveUtility:
         except Exception as e:
             print(e)
 
-    def get_mounted_devices(self):
+    def get_mounted_devices(self, object_manager=None):
         """Get set of mounted device paths"""
         mounted_devices = set()
+        if object_manager is None:
+            object_manager = self.udisks_client.get_object_manager()
         try:
             with open('/proc/mounts', 'r') as f:
                 for line in f:
                     parts = line.split()
                     if len(parts) >= 1 and parts[0].startswith('/dev/'):
                         device = parts[0]
-                        # Remove partition number to get base device
-                        # e.g., /dev/sda1 -> /dev/sda, /dev/nvme0n1p1 -> /dev/nvme0n1
-                        base_device = re.sub(r'(p)?\d+$', '', device)
-                        mounted_devices.add(base_device)
+                        disk = resolve_udisks_disk_path(
+                            object_manager, device)
+                        mounted_devices.add(disk or os.path.realpath(device))
         except Exception:
             pass
         return mounted_devices
@@ -379,19 +442,16 @@ class DriveUtility:
             transient_for=self.window,
             flags=Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
         )
-        dialog.set_default_size(450, 250)
-        dialog.set_resizable(False)
-
         # Content area
         content_area = dialog.get_content_area()
-        content_area.set_border_width(20)
+        content_area.set_border_width(12)
         content_area.set_spacing(12)
 
         # Warning icon and title in horizontal box
         header_box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=12)
         header_box.set_halign(Gtk.Align.CENTER)
 
-        warning_icon = Gtk.Image.new_from_icon_name("dialog-warning", Gtk.IconSize.DIALOG)
+        warning_icon = new_icon("dialog-warning", Gtk.IconSize.DIALOG)
         header_box.pack_start(warning_icon, False, False, 0)
 
         title_label = Gtk.Label()
@@ -417,24 +477,12 @@ class DriveUtility:
         message_label.set_xalign(0)
         content_area.pack_start(message_label, True, True, 0)
 
-        # Action area with custom buttons
-        action_area = dialog.get_action_area()
-        action_area.set_layout(Gtk.ButtonBoxStyle.END)
-        action_area.set_spacing(6)
-
-        # Cancel button (safe action, suggested style)
-        cancel_button = Gtk.Button(label=_("_Cancel"))
-        cancel_button.set_use_underline(True)
-        cancel_button.get_style_context().add_class("suggested-action")
-        cancel_button.connect("clicked", lambda w: dialog.response(Gtk.ResponseType.CANCEL))
-        action_area.pack_start(cancel_button, False, False, 0)
-
-        # Continue button (dangerous action, destructive style)
-        continue_button = Gtk.Button(label=_("_Continue"))
-        continue_button.set_use_underline(True)
+        cancel_button = dialog.add_button(_("_Cancel"), Gtk.ResponseType.CANCEL)
+        continue_button = dialog.add_button(
+            _("C_ontinue"), Gtk.ResponseType.OK)
+        _assign_unique_mnemonics((cancel_button, continue_button))
         continue_button.get_style_context().add_class("destructive-action")
-        continue_button.connect("clicked", lambda w: dialog.response(Gtk.ResponseType.OK))
-        action_area.pack_start(continue_button, False, False, 0)
+        dialog.set_default_response(Gtk.ResponseType.CANCEL)
 
         dialog.show_all()
         response = dialog.run()
@@ -443,8 +491,15 @@ class DriveUtility:
         return response == Gtk.ResponseType.OK
 
     def get_devices(self):
+        manager = self.udisks_client.get_object_manager()
+        if self.last_used_device_path:
+            resolved = resolve_udisks_disk_path(
+                manager, self.last_used_device_path)
+            if resolved:
+                self.last_used_device_path = resolved
+
         show_mounted = self.show_all_disks_write_checkbutton.get_active()
-        mounted_devices = self.get_mounted_devices()
+        mounted_devices = self.get_mounted_devices(manager)
 
         self.write_button.set_sensitive(False)
         self.read_button.set_sensitive(False)
@@ -472,7 +527,6 @@ class DriveUtility:
         self.selected_format_device = None
         self.selected_wipe_device = None
 
-        manager = self.udisks_client.get_object_manager()
         for obj in manager.get_objects():
             block = obj.get_block()
             if not block: continue
@@ -730,7 +784,8 @@ class DriveUtility:
         cmd = ['/usr/bin/driveutility-format', '-d', disk_path,
                '-f', fstype, '-u', str(os.geteuid()), '-g', str(os.getgid()), '--', label]
         if os.geteuid() > 0: cmd.insert(0, 'pkexec')
-        self.process = Popen(cmd, shell=False, stdout=PIPE, stderr=PIPE, preexec_fn=os.setsid)
+        self.process = Popen(cmd, shell=False, stdout=DEVNULL, stderr=None,
+                             start_new_session=True)
         self.format_progressbar.show()
         self.pulse_progress(self.format_progressbar)
         GLib.timeout_add(500, self.check_format_job)
@@ -794,7 +849,8 @@ class DriveUtility:
             cmd.extend(['-s', str(size)])
         if os.geteuid() > 0: cmd.insert(0, 'pkexec')
         
-        self.process = Popen(cmd, shell=False, stdout=PIPE, stderr=PIPE, preexec_fn=os.setsid)
+        self.process = Popen(cmd, shell=False, stdout=DEVNULL, stderr=None,
+                             start_new_session=True)
         self.pulse_progress(self.wipe_progressbar)
         GLib.timeout_add(500, self.check_wipe_job)
 
@@ -902,7 +958,8 @@ class DriveUtility:
         _, compression = self.get_opener_by_magic(source)
         cmd = ['/usr/bin/driveutility-write', '-s', source, '-t', target]
         if os.geteuid() > 0: cmd.insert(0, 'pkexec')
-        self.process = Popen(cmd, shell=False, stdout=PIPE, stderr=PIPE, preexec_fn=os.setsid)
+        self.process = Popen(cmd, shell=False, stdout=PIPE, stderr=None,
+                             start_new_session=True)
         self.write_progress = 0
         if compression:
              self.source_id = None
@@ -926,14 +983,14 @@ class DriveUtility:
         return self.check_write_job()
         
     def raw_read(self, source, target, compression):
-        cmd = ['/usr/bin/driveutility-read', '-s', source, '-t', target,
-            '-u', str(os.geteuid()), '-g', str(os.getgid())]
+        cmd = ['/usr/bin/driveutility-read', '-s', source, '-t', target]
         if compression:
             cmd.extend(['-c', compression])
         if os.geteuid() > 0:
             cmd.insert(0, 'pkexec')
         
-        self.process = Popen(cmd, shell=False, stdout=PIPE, stderr=PIPE, preexec_fn=os.setsid)
+        self.process = Popen(cmd, shell=False, stdout=PIPE, stderr=None,
+                             start_new_session=True)
         self.read_progress = 0
         self.source_id = GLib.io_add_watch(self.process.stdout, GLib.IO_IN | GLib.IO_HUP, self.update_progress, self.read_progressbar, "read_progress")
         GLib.timeout_add(500, self.check_read_job)
@@ -1126,7 +1183,7 @@ if __name__ == "__main__":
         elif o in ("-i", "--image"):
             image_path = a
         elif o in ("-d", "--disk"):
-            disk_path = ''.join([i for i in a if not i.isdigit()])
+            disk_path = a
         elif o in ("-f", "--filesystem"):
             filesystem = a
         elif o == "--debug":
