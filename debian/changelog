@@ -1,3 +1,9 @@
+driveutility (1.8.5) unstable; urgency=medium
+
+  * Exclude VCS metadata and generated build/test artifacts
+
+ -- crims0n <crims0n@minios.dev>  Thu, 27 Aug 2026 19:40:15 +0300
+
 driveutility (1.8.4) unstable; urgency=high
 
   * Fail closed on ambiguous disks, mounted devices, and missing format tools

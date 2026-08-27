@@ -1,0 +1,7 @@
+# Exclude VCS metadata and generated build/test artifacts.
+tar-ignore=.git
+tar-ignore=.pytest_cache
+tar-ignore=__pycache__
+tar-ignore=*.pyc
+tar-ignore=*.pyo
+tar-ignore=*.mo
