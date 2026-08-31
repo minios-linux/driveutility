@@ -92,7 +92,8 @@ class TestDoUmount:
     
     def test_do_umount_with_no_mounts(self):
         """Test do_umount when device has no mounted partitions."""
-        with patch.object(mountutils, 'get_mounted', return_value=[]):
+        with patch.object(mountutils, '_validate_device_path', return_value=True), \
+                patch.object(mountutils, 'get_mounted', return_value=[]):
             with patch.object(mountutils, 'call') as mock_call:
                 mountutils.do_umount('/dev/sdc')
                 # Should not call umount if nothing is mounted
