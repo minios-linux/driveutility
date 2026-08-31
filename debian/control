@@ -33,7 +33,9 @@ Depends:
  gir1.2-xapp-1.0,
  util-linux (>= 2.31),
  exfatprogs | exfat-utils
-Recommends: python3-zstandard
+Recommends:
+ nvme-cli,
+ python3-zstandard
 Conflicts: usb-imagewriter, mintstick
 Replaces: usb-imagewriter, mintstick
 Description: Graphical utility for writing, formatting, and wiping storage devices

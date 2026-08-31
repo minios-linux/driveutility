@@ -629,7 +629,7 @@ EXT4
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <!-- n-columns=2 n-rows=6 -->
+                  <!-- n-columns=2 n-rows=7 -->
                   <object class="GtkGrid" id="wipe_page">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -669,7 +669,7 @@ EXT4
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="label" translatable="yes">Wipe _type:</property>
+                        <property name="label" translatable="yes">Erase _method:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">wipe_type_combobox</property>
                         <property name="xalign">0</property>
@@ -683,11 +683,6 @@ EXT4
                       <object class="GtkComboBoxText" id="wipe_type_combobox">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="active_id">zero</property>
-                        <items>
-                          <item id="zero" translatable="yes">Quick (fill with zeros)</item>
-                          <item id="random" translatable="yes">Secure (fill with random data)</item>
-                        </items>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -695,7 +690,7 @@ EXT4
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="wipe_passes_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -722,7 +717,7 @@ EXT4
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkLabel" id="wipe_size_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
@@ -765,6 +760,20 @@ EXT4
                       </packing>
                     </child>
                     <child>
+                      <object class="GtkLabel" id="wipe_method_description">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="halign">start</property>
+                        <property name="hexpand">True</property>
+                        <property name="wrap">True</property>
+                        <property name="xalign">0</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">5</property>
+                      </packing>
+                    </child>
+                    <child>
                       <object class="GtkProgressBar" id="wipe_progressbar">
                         <property name="can_focus">False</property>
                         <property name="valign">center</property>
@@ -773,7 +782,7 @@ EXT4
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="top_attach">5</property>
+                        <property name="top_attach">6</property>
                       </packing>
                     </child>
                     <child>
@@ -793,7 +802,7 @@ EXT4
                     <property name="border_width">6</property>
                     <child>
                       <object class="GtkCheckButton" id="show_all_disks_wipe_checkbutton">
-                        <property name="label" translatable="yes">Show _mounted disks</property>
+                        <property name="label" translatable="yes">Show mounted dis_ks</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>

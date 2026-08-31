@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-08-10 01:45+0300\n"
-"PO-Revision-Date: 2026-08-05 14:11+0000\n"
+"POT-Creation-Date: 2026-08-31 21:03+0300\n"
+"PO-Revision-Date: 2026-08-31 18:03+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: generate_additional_files.py:172 generate_additional_files.py:183
-#: share/driveutility/driveutility.ui:1295
+#: share/driveutility/driveutility.ui:1304
 #: share/applications/driveutility-kde.desktop:8
 #: share/applications/driveutility.desktop:8
 msgid "Drive Utility"
@@ -98,23 +98,39 @@ msgstr "Leggi un'immagine disco"
 msgid "Authentication is required to read a disk image from a device."
 msgstr "È richiesta l'autenticazione per leggere un'immagine disco da un dispositivo."
 
-#: lib/driveutility.py:299
+#: lib/driveutility.py:311
 msgid "Disk Images"
 msgstr "Immagini Disco"
 
-#: lib/driveutility.py:310
+#: lib/driveutility.py:322
 msgid "All files"
 msgstr "Tutti i file"
 
-#: lib/driveutility.py:331
+#: lib/driveutility.py:343
 msgid "Save Image File"
 msgstr "Salva File Immagine"
 
-#: lib/driveutility.py:441 lib/driveutility.py:458
+#: lib/driveutility.py:406
+msgid "Secure erase (controller, recommended)"
+msgstr "Cancellazione sicura (controller, consigliato)"
+
+#: lib/driveutility.py:408
+msgid "Discard/TRIM (fast, no overwrite)"
+msgstr "Discard/TRIM (rapido, senza sovrascrittura)"
+
+#: lib/driveutility.py:409
+msgid "Overwrite with zeros"
+msgstr "Sovrascrivi con zeri"
+
+#: lib/driveutility.py:410
+msgid "Overwrite with random data"
+msgstr "Sovrascrivi con dati casuali"
+
+#: lib/driveutility.py:488 lib/driveutility.py:505
 msgid "WARNING: Device is mounted!"
 msgstr "ATTENZIONE: Dispositivo montato!"
 
-#: lib/driveutility.py:465
+#: lib/driveutility.py:512
 #, python-brace-format
 msgid ""
 "The device <b>{device}</b> is currently mounted and in use.\n"
@@ -135,70 +151,90 @@ msgstr ""
 "\n"
 "Sei sicuro di voler continuare?"
 
-#: lib/driveutility.py:480
+#: lib/driveutility.py:527
 msgid "_Cancel"
 msgstr "_Annulla"
 
-#: lib/driveutility.py:482
+#: lib/driveutility.py:529
 msgid "C_ontinue"
 msgstr "C_ontinua"
 
-#: lib/driveutility.py:760 share/driveutility/driveutility.ui:621
+#: lib/driveutility.py:774
+msgid "Uses the drive controller to securely erase the drive without a full host-side overwrite."
+msgstr "Utilizza il controller dell’unità per cancellare in modo sicuro il disco senza una sovrascrittura completa dal lato host."
+
+#: lib/driveutility.py:775
+msgid "Discards all blocks quickly without overwriting the SSD. Use Secure erase when data must be unrecoverable."
+msgstr "Elimina rapidamente tutti i blocchi senza sovrascrivere l’SSD. Usa la cancellazione sicura se i dati devono essere irrecuperabili."
+
+#: lib/driveutility.py:776
+msgid "Overwrites the selected area with zeros. This is suitable for hard disks but causes unnecessary SSD writes."
+msgstr "Sovrascrive l’area selezionata con zeri. Adatto per hard disk, ma causa scritture inutili su SSD."
+
+#: lib/driveutility.py:777
+msgid "Overwrites the selected area with random data. Multiple passes are normally unnecessary on modern drives."
+msgstr "Sovrascrive l’area selezionata con dati casuali. Più passaggi sono normalmente inutili sui dischi moderni."
+
+#: lib/driveutility.py:837 share/driveutility/driveutility.ui:621
 msgid "Format"
 msgstr "Formatta"
 
-#: lib/driveutility.py:797
+#: lib/driveutility.py:874
 msgid "The disk was formatted successfully."
 msgstr "Il disco è stato formattato correttamente."
 
-#: lib/driveutility.py:799
+#: lib/driveutility.py:876
 #, python-format
 msgid "An error occured while creating a partition on %s."
 msgstr "Si è verificato un errore durante la creazione di una partizione su %s."
 
-#: lib/driveutility.py:802 lib/driveutility.py:863 lib/driveutility.py:1041
-#: lib/driveutility.py:1060
+#: lib/driveutility.py:879 lib/driveutility.py:947 lib/driveutility.py:1125
+#: lib/driveutility.py:1144
 msgid "Authentication Error."
 msgstr "Errore di autenticazione."
 
-#: lib/driveutility.py:806 lib/driveutility.py:1045 lib/driveutility.py:1064
+#: lib/driveutility.py:883 lib/driveutility.py:1129 lib/driveutility.py:1148
 msgid "An error occurred."
 msgstr "Si è verificato un errore."
 
-#: lib/driveutility.py:821 share/driveutility/driveutility.ui:848
+#: lib/driveutility.py:899 share/driveutility/driveutility.ui:857
 msgid "Wipe"
 msgstr "Azzera"
 
-#: lib/driveutility.py:861
-msgid "The disk was wiped successfully."
-msgstr "Il disco è stato azzerato correttamente."
+#: lib/driveutility.py:941
+msgid "The disk was erased successfully."
+msgstr "Il disco è stato cancellato con successo."
 
-#: lib/driveutility.py:867
+#: lib/driveutility.py:945
+msgid "The selected erase method is not supported by this drive."
+msgstr "Il metodo di cancellazione selezionato non è supportato da questa unità."
+
+#: lib/driveutility.py:951
 #, python-format
 msgid "An error occurred while wiping %s."
 msgstr "Si è verificato un errore durante l'azzeramento di %s."
 
-#: lib/driveutility.py:885
+#: lib/driveutility.py:969
 msgid "Write"
 msgstr "Scrivi"
 
-#: lib/driveutility.py:1035
+#: lib/driveutility.py:1119
 msgid "The image was successfully written to the disk."
 msgstr "L'immagine è stata scritta correttamente sul disco."
 
-#: lib/driveutility.py:1037
+#: lib/driveutility.py:1121
 msgid "Not enough space on the destination disk."
 msgstr "Spazio insufficiente sul disco di destinazione."
 
-#: lib/driveutility.py:1039
+#: lib/driveutility.py:1123
 msgid "An error occured while writing the image."
 msgstr "Si è verificato un errore durante la scrittura dell'immagine."
 
-#: lib/driveutility.py:1056
+#: lib/driveutility.py:1140
 msgid "The image was successfully created."
 msgstr "L'immagine è stata creata correttamente."
 
-#: lib/driveutility.py:1058
+#: lib/driveutility.py:1142
 msgid "An error occured while creating the image."
 msgstr "Si è verificato un errore durante la creazione dell'immagine."
 
@@ -225,7 +261,6 @@ msgstr "Seleziona File Immagine"
 #: share/driveutility/driveutility.ui:126
 #: share/driveutility/driveutility.ui:339
 #: share/driveutility/driveutility.ui:569
-#: share/driveutility/driveutility.ui:796
 msgid "Show _mounted disks"
 msgstr "Mostra dischi _montati"
 
@@ -366,50 +401,46 @@ msgid "Select a disk to securely wipe"
 msgstr "Seleziona un disco da azzerare in modo sicuro"
 
 #: share/driveutility/driveutility.ui:672
-msgid "Wipe _type:"
-msgstr "Tipo di azzeramento:"
+msgid "Erase _method:"
+msgstr "Metodo di cancellazione:"
 
-#: share/driveutility/driveutility.ui:688
-msgid "Quick (fill with zeros)"
-msgstr "Veloce (riempi con zeri)"
-
-#: share/driveutility/driveutility.ui:689
-msgid "Secure (fill with random data)"
-msgstr "Sicuro (riempi con dati casuali)"
-
-#: share/driveutility/driveutility.ui:702
+#: share/driveutility/driveutility.ui:697
 msgid "_Passes:"
 msgstr "_Passaggi:"
 
-#: share/driveutility/driveutility.ui:729
+#: share/driveutility/driveutility.ui:724
 msgid "_Size (MB, 0 for whole disk):"
 msgstr "_Dimensione (MB, 0 per tutto il disco):"
 
-#: share/driveutility/driveutility.ui:753
+#: share/driveutility/driveutility.ui:748
 msgid "_Add a final pass with zeros"
 msgstr "_Aggiungi un passaggio finale con zeri"
 
-#: share/driveutility/driveutility.ui:823
+#: share/driveutility/driveutility.ui:805
+msgid "Show mounted dis_ks"
+msgstr "Mostra dischi montati"
+
+#: share/driveutility/driveutility.ui:832
 msgid "_Wipe"
 msgstr "_Azzera"
 
-#: share/driveutility/driveutility.ui:910
-#: share/driveutility/driveutility.ui:991
-#: share/driveutility/driveutility.ui:1072
-#: share/driveutility/driveutility.ui:1153
-#: share/driveutility/driveutility.ui:1258
+#: share/driveutility/driveutility.ui:919
+#: share/driveutility/driveutility.ui:1000
+#: share/driveutility/driveutility.ui:1081
+#: share/driveutility/driveutility.ui:1162
+#: share/driveutility/driveutility.ui:1267
 msgid "_Back"
 msgstr "_Indietro"
 
-#: share/driveutility/driveutility.ui:1208
+#: share/driveutility/driveutility.ui:1217
 msgid "This file looks like a Windows image."
 msgstr "Questo file sembra un'immagine di Windows."
 
-#: share/driveutility/driveutility.ui:1221
+#: share/driveutility/driveutility.ui:1230
 msgid "Windows images require special processing."
 msgstr "Le immagini di Windows richiedono una procedura speciale."
 
-#: share/driveutility/driveutility.ui:1232
+#: share/driveutility/driveutility.ui:1241
 msgid "_More information"
 msgstr "_Maggiori informazioni"
 
@@ -421,3 +452,15 @@ msgstr "usb;iso;immagine;scrivi;flash;avviabile;formatta;fat32;ntfs;ext4;cancell
 #: share/kde4/driveutility-format_action.desktop:9
 msgid "Format USB stick"
 msgstr "Formatta chiavetta USB"
+
+#~ msgid "The disk was wiped successfully."
+#~ msgstr "Il disco è stato azzerato correttamente."
+
+#~ msgid "Wipe _type:"
+#~ msgstr "Tipo di azzeramento:"
+
+#~ msgid "Quick (fill with zeros)"
+#~ msgstr "Veloce (riempi con zeri)"
+
+#~ msgid "Secure (fill with random data)"
+#~ msgstr "Sicuro (riempi con dati casuali)"

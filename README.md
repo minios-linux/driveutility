@@ -8,7 +8,7 @@ Drive Utility is a GTK3-based graphical utility for comprehensive management of 
 * **Write images** to USB drives, SD cards, and other devices from `.iso`, `.img`, or other supported files, making bootable media or restoring backups.
 * **Create images** from physical devices ("read" mode), including on-the-fly compression (gzip, bzip2, xz, lz4, zstd) and assignment of file ownership to the current user for easy access.
 * **Format disks** with popular filesystems (FAT32, exFAT, NTFS, EXT4), with the ability to set a custom volume label and specify user/group ownership for ext4.
-* **Securely wipe disks** using zeros or random data, with support for multiple passes and an optional final zero-fill for maximum data destruction.
+* **Erase disks safely** using controller-native SSD/NVMe secure erase, fast discard/TRIM, or traditional zero/random overwrites when appropriate.
 
 Key features:
 - Automatic detection and display of all connected storage devices, with clear size and model information.
@@ -31,11 +31,12 @@ Drive Utility is built with Python 3 and leverages `UDisks2` for robust device m
 *   **Image Writing:** Easily write `.iso`, `.img`, `.bin` and other supported files to USB drives, SD cards, or other removable media, making bootable media or restoring backups.
 *   **Image Creation:** Create a disk image from any connected device ("read" mode), with options for on-the-fly compression (gzip, bzip2, xz, lz4, zstd) and setting the resulting file's ownership to the current user for easy access.
 *   **Disk Formatting:** Format entire disk devices with popular filesystems such as FAT32, exFAT, NTFS, and EXT4. For EXT4, you can specify the user and group ownership of the root directory. Users can also set a custom volume label for the new partition.
-*   **Secure Disk Wiping:** Erase sensitive data from disks using various wiping methods, including:
-    *   Zero fill (overwriting with zeros)
-    *   Random data (overwriting with random patterns)
-    *   Multiple passes (for enhanced data security)
-    *   Option for a final zero-fill pass after random wipe
+*   **Disk Erasing:** Choose a method suited to the selected drive:
+    *   Controller-native Secure Erase for SATA SSDs through UDisks2
+    *   NVMe User Data Erase or Cryptographic Erase, selected from the controller capabilities
+    *   Discard/TRIM for a fast whole-device reset without host-side overwriting
+    *   Zero or random overwrites for hard disks and compatibility use cases
+    *   Multi-namespace NVMe safety checks and preservation of active LBA, metadata, and protection-information settings
 
 ## Command-line utilities
 
@@ -66,10 +67,12 @@ sudo driveutility-format -d /dev/sdX -f ext4 -u 1000 -g 1000 "MYDISK"
 ```
 
 ### driveutility-wipe
-Securely wipe a device with zeros or random data, with multiple passes.
+Erase a device with an automatically selected controller secure erase method, discard/TRIM, or a traditional overwrite.
 
-Example:
+Examples:
 ```sh
+sudo driveutility-wipe -d /dev/nvme0n1 -m secure
+sudo driveutility-wipe -d /dev/sdX -m discard
 sudo driveutility-wipe -d /dev/sdX -p 3 -t random -z
 ```
 

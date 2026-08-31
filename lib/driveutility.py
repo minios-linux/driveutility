@@ -11,6 +11,12 @@ import signal
 import sys
 
 from deviceutils import resolve_udisks_disk_path
+from wipeutils import (
+    ata_security_capabilities,
+    is_nvme_namespace,
+    nvme_cli_available,
+    supports_discard,
+)
 
 try:
     import zstandard
@@ -138,6 +144,7 @@ class DriveUtility:
         self.selected_read_device = None
         self.selected_format_device = None
         self.selected_wipe_device = None
+        self.wipe_device_capabilities = {}
         self.write_progress = None
         self.read_progress = None
         self.last_used_device_path = None
@@ -174,8 +181,11 @@ class DriveUtility:
         self.wipe_button = self.wTree.get_object("wipe_button")
         self.wipe_progressbar = self.wTree.get_object("wipe_progressbar")
         self.wipe_type_combobox = self.wTree.get_object("wipe_type_combobox")
+        self.wipe_passes_label = self.wTree.get_object("wipe_passes_label")
         self.wipe_passes_spinbutton = self.wTree.get_object("wipe_passes_spinbutton")
+        self.wipe_size_label = self.wTree.get_object("wipe_size_label")
         self.wipe_size_spinbutton = self.wTree.get_object("wipe_size_spinbutton")
+        self.wipe_method_description = self.wTree.get_object("wipe_method_description")
         self.wipe_final_zero_checkbutton = self.wTree.get_object("wipe_final_zero_checkbutton")
         self.show_all_disks_wipe_checkbutton = self.wTree.get_object("show_all_disks_wipe_checkbutton")
         self.wipe_combo_handler_id = None
@@ -251,6 +261,8 @@ class DriveUtility:
         new_page_name = stack.get_visible_child_name()
         if new_page_name in ("write_page", "read_page", "format_page", "wipe_page"):
             self.reset_ui_state()
+        if new_page_name == "wipe_page":
+            self.update_wipe_methods(prefer_recommended=True)
 
     def reset_ui_state(self):
         self.set_write_sensitive(True)
@@ -377,6 +389,41 @@ class DriveUtility:
         self.wipe_combo_handler_id = self.wipe_device_combobox.connect("changed", self.wipe_device_selected)
         self.wipe_type_combobox.connect("changed", self.wipe_type_selected)
         self.wipe_button.connect("clicked", self.do_wipe)
+        self.update_wipe_methods()
+
+    def _wipe_capabilities_for(self, device):
+        if not device:
+            return {}
+        return self.wipe_device_capabilities.get(device, {})
+
+    def update_wipe_methods(self, prefer_recommended=False):
+        device = self.selected_wipe_device
+        capabilities = self._wipe_capabilities_for(device)
+        old_method = self.wipe_type_combobox.get_active_id()
+        methods = []
+
+        if capabilities.get('secure'):
+            methods.append(('secure', _("Secure erase (controller, recommended)")))
+        if capabilities.get('discard'):
+            methods.append(('discard', _("Discard/TRIM (fast, no overwrite)")))
+        methods.append(('zero', _("Overwrite with zeros")))
+        methods.append(('random', _("Overwrite with random data")))
+
+        self.wipe_type_combobox.remove_all()
+        for method_id, label in methods:
+            self.wipe_type_combobox.append(method_id, label)
+
+        method_ids = [item[0] for item in methods]
+        if prefer_recommended:
+            preferred = ('secure' if 'secure' in method_ids else
+                         'discard' if 'discard' in method_ids else 'zero')
+        elif old_method in method_ids:
+            preferred = old_method
+        else:
+            preferred = ('secure' if 'secure' in method_ids else
+                         'discard' if 'discard' in method_ids else 'zero')
+        self.wipe_type_combobox.set_active_id(preferred)
+        self.wipe_type_selected(self.wipe_type_combobox)
 
     def select_device(self, disk_path, model, combobox):
         if disk_path:
@@ -526,6 +573,7 @@ class DriveUtility:
         self.selected_read_device = None
         self.selected_format_device = None
         self.selected_wipe_device = None
+        self.wipe_device_capabilities = {}
 
         for obj in manager.get_objects():
             block = obj.get_block()
@@ -567,6 +615,20 @@ class DriveUtility:
                 detected_device_paths.append(device_path)
                 # Optical devices can only be used for reading (creating images)
                 if not optical:
+                    drive_path = block.get_property('drive')
+                    drive_obj = manager.get_object(drive_path) if drive_path else None
+                    drive_ata = drive_obj.get_drive_ata() if drive_obj else None
+                    ata_caps = ata_security_capabilities(drive_ata)
+                    nvme_secure = (is_nvme_namespace(device_path)
+                                   and nvme_cli_available())
+                    ata_secure = ((ata_caps['secure'] or ata_caps['enhanced'])
+                                  and not ata_caps['frozen'])
+                    self.wipe_device_capabilities[device_path] = {
+                        'discard': supports_discard(device_path),
+                        'secure': nvme_secure or ata_secure,
+                        'nvme': is_nvme_namespace(device_path),
+                        'ata_frozen': ata_caps['frozen'],
+                    }
                     self.write_devicemodel.append([device_path, item])
                     self.format_devicemodel.append([device_path, item])
                     self.wipe_devicemodel.append([device_path, item])
@@ -688,18 +750,33 @@ class DriveUtility:
                 self.selected_format_device = new_path
         else:
             self.selected_wipe_device = None
-        
+
+        self.update_wipe_methods(prefer_recommended=True)
         self.update_write_button()
         self.update_read_button()
         self.update_format_button()
         self.update_wipe_button()
    
     def wipe_type_selected(self, widget):
-        wipe_type = self.wipe_type_combobox.get_active_id()
-        is_random = (wipe_type == 'random')
+        method = self.wipe_type_combobox.get_active_id()
+        is_overwrite = method in ('zero', 'random')
+        is_random = method == 'random'
+
+        self.wipe_passes_label.set_sensitive(is_overwrite)
+        self.wipe_passes_spinbutton.set_sensitive(is_overwrite)
+        self.wipe_size_label.set_sensitive(is_overwrite)
+        self.wipe_size_spinbutton.set_sensitive(is_overwrite)
         self.wipe_final_zero_checkbutton.set_sensitive(is_random)
         if not is_random:
             self.wipe_final_zero_checkbutton.set_active(False)
+
+        descriptions = {
+            'secure': _("Uses the drive controller to securely erase the drive without a full host-side overwrite."),
+            'discard': _("Discards all blocks quickly without overwriting the SSD. Use Secure erase when data must be unrecoverable."),
+            'zero': _("Overwrites the selected area with zeros. This is suitable for hard disks but causes unnecessary SSD writes."),
+            'random': _("Overwrites the selected area with random data. Multiple passes are normally unnecessary on modern drives."),
+        }
+        self.wipe_method_description.set_text(descriptions.get(method, ""))
 
     def filesystem_selected(self, widget):
         fs_iter = self.filesystem_combobox.get_active_iter()
@@ -810,11 +887,12 @@ class DriveUtility:
         device = self.selected_wipe_device
         passes = self.wipe_passes_spinbutton.get_value_as_int()
         size = self.wipe_size_spinbutton.get_value_as_int()
-        wipe_type = self.wipe_type_combobox.get_active_id()
+        method = self.wipe_type_combobox.get_active_id()
         final_zero = self.wipe_final_zero_checkbutton.get_active()
 
         if self.debug:
-            print(f"DEBUG: Wipe {device}, type={wipe_type}, passes={passes}, final_zero={final_zero}, size={size}MB")
+            print("DEBUG: Wipe {}, method={}, passes={}, final_zero={}, size={}MB".format(
+                device, method, passes, final_zero, size))
             return
 
         # Confirm operation if device is mounted
@@ -828,7 +906,7 @@ class DriveUtility:
         self.set_wipe_sensitive(False)
         self.stack_switcher.set_sensitive(False)
         self.wipe_progressbar.show()
-        self.raw_wipe(device, wipe_type, passes, final_zero, size)
+        self.raw_wipe(device, method, passes, final_zero, size)
 
     def check_wipe_job(self):
         self.process.poll()
@@ -841,12 +919,14 @@ class DriveUtility:
             GLib.idle_add(self.wipe_job_done, return_code)
             return False
 
-    def raw_wipe(self, device, wipe_type, passes, final_zero, size):
-        cmd = ['/usr/bin/driveutility-wipe', '-d', device, '-t', wipe_type, '-p', str(passes)]
-        if final_zero:
-            cmd.append('-z')
-        if size > 0:
-            cmd.extend(['-s', str(size)])
+    def raw_wipe(self, device, method, passes, final_zero, size):
+        cmd = ['/usr/bin/driveutility-wipe', '-d', device, '-m', method]
+        if method in ('zero', 'random'):
+            cmd.extend(['-p', str(passes)])
+            if final_zero:
+                cmd.append('-z')
+            if size > 0:
+                cmd.extend(['-s', str(size)])
         if os.geteuid() > 0: cmd.insert(0, 'pkexec')
         
         self.process = Popen(cmd, shell=False, stdout=DEVNULL, stderr=None,
@@ -858,7 +938,11 @@ class DriveUtility:
         self.udisks_client.handler_unblock(self.udisk_listener_id)
         self.reset_ui_state()
         if rc == 0:
-            self.show_wipe_result("emblem-ok-symbolic", _('The disk was wiped successfully.'))
+            self.show_wipe_result("emblem-ok-symbolic", _('The disk was erased successfully.'))
+        elif rc == 4:
+            self.show_wipe_result(
+                "dialog-error-symbolic",
+                _("The selected erase method is not supported by this drive."))
         elif rc == 127:
             self.show_wipe_result("dialog-error-symbolic", _('Authentication Error.'))
         elif rc == 126:

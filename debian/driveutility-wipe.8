@@ -1,11 +1,12 @@
-.TH DRIVEUTILITY-WIPE "8" "July 2025" "driveutility" "System Administration Commands"
+.TH DRIVEUTILITY-WIPE "8" "August 2026" "driveutility" "System Administration Commands"
 
 .SH NAME
-driveutility-wipe \- securely wipe a storage device
+driveutility-wipe \- erase a storage device
 
 .SH SYNOPSIS
 .B driveutility-wipe
 .BI -d " device_path"
+.RI [ -m " method" ]
 .RI [ -p " passes" ]
 .RI [ -t " type" ]
 .RI [ -z ]
@@ -14,74 +15,132 @@ driveutility-wipe \- securely wipe a storage device
 
 .SH DESCRIPTION
 .B driveutility-wipe
-is a command-line utility used to securely overwrite a storage device or a specified portion of it with either zeros or random data. This process effectively makes previously stored data unrecoverable. It supports multiple overwrite passes and an optional final zero-fill pass for random wipes. The target device is unmounted before any wiping operation begins.
+erases a whole storage device using a controller-native erase method, discard/TRIM, or a traditional host-side overwrite. The target device is unmounted before any destructive operation begins.
+.PP
+For SSDs, controller-native secure erase or discard avoids the full-device host writes caused by zero or random overwrites. Regular discard is intended for quickly resetting a device and is not a substitute for secure erase when data must be made unrecoverable.
+.PP
+For NVMe secure erase, the current LBA format, metadata-transfer mode, and protection-information settings are preserved. Operations that may implicitly affect other namespaces are rejected unless Identify Controller reports exactly one namespace and exactly one namespace is visible to the kernel.
 
 .SH OPTIONS
 .TP
 .B -d, --device
-        Specify the path to the block device to be wiped (e.g.,
-        .I /dev/sdb).
-        This option is required.
+Specify the whole block device to erase, for example
+.I /dev/sdb
+or
+.I /dev/nvme0n1.
+This option is required.
 
 .TP
-.B -p, --passes
-        Specify the number of overwrite passes to perform. Each pass will overwrite the device with the chosen
-        .B --type
-        of data. The default is 1 pass.
+.B -m, --method
+Select the erase method. This option takes precedence over
+.BR --type .
+Supported methods are:
+.RS
+.TP
+.B secure
+Choose a controller-native secure erase automatically. NVMe uses Cryptographic Erase when supported and User Data Erase otherwise. ATA drives use the UDisks2 ATA Secure Erase interface. If neither is available, secure discard may be attempted when supported.
+.TP
+.B discard
+Issue discard/TRIM for the whole device without overwriting every logical block from the host. This is fast and reduces unnecessary SSD writes, but is not guaranteed to make data unrecoverable.
+.TP
+.B secure-discard
+Request secure discard through
+.BR blkdiscard --secure .
+The device must explicitly support secure discard.
+.TP
+.B nvme-user
+Force NVMe User Data Erase (SES=1).
+.TP
+.B nvme-crypto
+Force NVMe Cryptographic Erase (SES=2). The controller must advertise cryptographic erase support.
+.TP
+.B ata-secure
+Force standard ATA Secure Erase through UDisks2.
+.TP
+.B ata-enhanced
+Force ATA Enhanced Secure Erase through UDisks2.
+.TP
+.B zero
+Overwrite the target with zeros.
+.TP
+.B random
+Overwrite the target with random data.
+.RE
 
 .TP
 .B -t, --type
-        Specify the data pattern to use for wiping.
-        .B zero
-        fills the device with zeros.
-        .B random
-        fills the device with cryptographically random data. The default is
-        .B zero.
+Legacy overwrite selector. Accepted values are
+.B zero
+and
+.BR random .
+It is used only when
+.B --method
+is not specified. The default is
+.BR zero .
+
+.TP
+.B -p, --passes
+Number of overwrite passes. This applies only to the
+.B zero
+and
+.B random
+methods. The default is 1.
 
 .TP
 .B -z, --final-zero
-        When performing a random wipe (i.e., when
-        .B --type random
-        is used), this option adds an additional final pass that fills the device with zeros. This makes it less obvious that the device was securely wiped with random data.
+After a random overwrite, add one final zero-fill pass. This option applies only to the
+.B random
+method.
 
 .TP
 .B -s, --size
-        Specify the size in megabytes (MB) of the device to wipe, starting from the beginning. If not specified, the entire device will be wiped.
+Overwrite only the first specified number of megabytes. This option applies only to host-side overwrite methods. Controller erase and discard methods always operate on the whole selected device.
 
 .TP
 .B -b, --block-size
-        Specify the block size to be used by the underlying
-        .B dd
-        command. This affects the performance of the wipe operation. Default is
-        .B 1M
-        (1 megabyte).
+Block size passed to
+.B dd
+for host-side overwrites. The default is
+.BR 1M .
 
 .SH EXIT STATUS
 .TP
 .B 0
-Success. The device was wiped successfully.
+The device was erased successfully.
 .TP
 .B 1
-General error. This can include the specified path not being a block device, the device not being found, or a failure during the wiping process itself (e.g., `dd` reporting an unexpected error).
+General error, including an invalid target device or failure of the destructive operation.
 .TP
 .B 2
-Argument parsing error. Invalid or missing command-line arguments.
+Argument parsing error.
+.TP
+.B 4
+The selected erase method is unavailable or unsupported by the target drive.
 
 .SH EXAMPLES
 .TP
-.B To wipe /dev/sdc with a single pass of zeros:
-.B driveutility-wipe -d /dev/sdc -t zero
+.B Automatically choose the best controller secure erase method:
+.B driveutility-wipe -d /dev/nvme0n1 -m secure
 
 .TP
-.B To perform 3 passes of random data on /dev/sdb, followed by a final zero pass:
+.B Discard all blocks on an SSD without a full overwrite:
+.B driveutility-wipe -d /dev/sdb -m discard
+
+.TP
+.B Force NVMe cryptographic erase:
+.B driveutility-wipe -d /dev/nvme0n1 -m nvme-crypto
+
+.TP
+.B Perform 3 random overwrite passes followed by zeros:
 .B driveutility-wipe -d /dev/sdb -p 3 -t random -z
 
-.TP
-.B To wipe the first 100 MB of /dev/sde with zeros, using a 4M block size:
-.B driveutility-wipe -d /dev/sde -s 100 -b 4M
+.SH NOTES
+ATA Secure Erase can be unavailable while the drive security state is frozen. In that case, Drive Utility does not attempt to bypass the frozen state automatically.
+.PP
+Multiple overwrite passes are retained for compatibility, but they are generally inappropriate for SSDs because flash translation layers and wear leveling prevent direct control over physical NAND placement.
 
 .SH SEE ALSO
-driveutility(8), driveutility-read(8), driveutility-write(8), driveutility-format(8)
+driveutility(8), driveutility-read(8), driveutility-write(8), driveutility-format(8), blkdiscard(8)
 
 .SH AUTHOR
 MiniOS Linux Team <support@minios.dev>
