@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-08-31 21:03+0300\n"
-"PO-Revision-Date: 2026-08-31 18:03+0000\n"
+"POT-Creation-Date: 2026-09-01 01:24+0300\n"
+"PO-Revision-Date: 2026-08-31 22:24+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
 "Language: pt\n"
@@ -22,7 +22,7 @@ msgstr ""
 #: share/applications/driveutility-kde.desktop:8
 #: share/applications/driveutility.desktop:8
 msgid "Drive Utility"
-msgstr "Ferramenta de Disco"
+msgstr "Utilitário de disco"
 
 #: generate_additional_files.py:172 generate_additional_files.py:183
 #: share/applications/driveutility-kde.desktop:17
@@ -452,15 +452,3 @@ msgstr "usb;iso;imagem;gravar;flash;bootável;formatar;fat32;ntfs;ext4;apagar;li
 #: share/kde4/driveutility-format_action.desktop:9
 msgid "Format USB stick"
 msgstr "Formatar pendrive"
-
-#~ msgid "The disk was wiped successfully."
-#~ msgstr "O disco foi limpo com sucesso."
-
-#~ msgid "Wipe _type:"
-#~ msgstr "Tipo de _limpeza:"
-
-#~ msgid "Quick (fill with zeros)"
-#~ msgstr "Rápido (preencher com zeros)"
-
-#~ msgid "Secure (fill with random data)"
-#~ msgstr "Seguro (preencher com dados aleatórios)"

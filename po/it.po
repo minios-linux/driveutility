@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-08-31 21:03+0300\n"
+"POT-Creation-Date: 2026-09-01 01:24+0300\n"
 "PO-Revision-Date: 2026-08-31 18:03+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
@@ -452,15 +452,3 @@ msgstr "usb;iso;immagine;scrivi;flash;avviabile;formatta;fat32;ntfs;ext4;cancell
 #: share/kde4/driveutility-format_action.desktop:9
 msgid "Format USB stick"
 msgstr "Formatta chiavetta USB"
-
-#~ msgid "The disk was wiped successfully."
-#~ msgstr "Il disco è stato azzerato correttamente."
-
-#~ msgid "Wipe _type:"
-#~ msgstr "Tipo di azzeramento:"
-
-#~ msgid "Quick (fill with zeros)"
-#~ msgstr "Veloce (riempi con zeri)"
-
-#~ msgid "Secure (fill with random data)"
-#~ msgstr "Sicuro (riempi con dati casuali)"

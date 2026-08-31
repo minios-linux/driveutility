@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-08-31 21:03+0300\n"
+"POT-Creation-Date: 2026-09-01 01:24+0300\n"
 "PO-Revision-Date: 2026-08-31 18:03+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
@@ -451,15 +451,3 @@ msgstr "usb;iso;image;write;flash;bootable;format;fat32;ntfs;ext4;erase;wipe;dis
 #: share/kde4/driveutility-format_action.desktop:9
 msgid "Format USB stick"
 msgstr "Format USB stick"
-
-#~ msgid "The disk was wiped successfully."
-#~ msgstr "Disk berhasil dihapus."
-
-#~ msgid "Wipe _type:"
-#~ msgstr "Jenis _hapus:"
-
-#~ msgid "Quick (fill with zeros)"
-#~ msgstr "Cepat (isi dengan nol)"
-
-#~ msgid "Secure (fill with random data)"
-#~ msgstr "Aman (isi dengan data acak)"

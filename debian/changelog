@@ -1,3 +1,9 @@
+driveutility (1.8.7) unstable; urgency=medium
+
+  * Refresh translations.
+
+ -- crims0n <crims0n@minios.dev>  Tue, 01 Sep 2026 01:36:29 +0300
+
 driveutility (1.8.6) unstable; urgency=medium
 
   * Add SSD-aware disk erasing without unnecessary full-device overwrites
