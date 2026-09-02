@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-09-01 01:24+0300\n"
+"POT-Creation-Date: 2026-09-02 14:13+0300\n"
 "PO-Revision-Date: 2026-08-31 18:03+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
@@ -67,34 +67,42 @@ msgid "Wipe this device"
 msgstr "Dieses Gerät löschen"
 
 #: generate_additional_files.py:323
+#: share/polkit/actions/dev.minios.driveutility-write.policy.template:10
 msgid "Write a disk image"
 msgstr "Ein Laufwerksabbild schreiben"
 
 #: generate_additional_files.py:323
+#: share/polkit/actions/dev.minios.driveutility-write.policy.template:11
 msgid "Authentication is required to write an image to a device."
 msgstr "Authentifizierung ist erforderlich, um ein Abbild auf ein Gerät zu schreiben."
 
 #: generate_additional_files.py:340
+#: share/polkit/actions/dev.minios.driveutility-format.policy.template:10
 msgid "Format a disk"
 msgstr "Eine Festplatte formatieren"
 
 #: generate_additional_files.py:340
+#: share/polkit/actions/dev.minios.driveutility-format.policy.template:11
 msgid "Authentication is required to format a device."
 msgstr "Authentifizierung ist erforderlich, um ein Gerät zu formatieren."
 
 #: generate_additional_files.py:357
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy.template:10
 msgid "Wipe a disk"
 msgstr "Eine Festplatte löschen"
 
 #: generate_additional_files.py:357
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy.template:11
 msgid "Authentication is required to wipe a device."
 msgstr "Authentifizierung ist erforderlich, um ein Gerät zu löschen."
 
 #: generate_additional_files.py:374
+#: share/polkit/actions/dev.minios.driveutility-read.policy.template:10
 msgid "Read a disk image"
 msgstr "Ein Laufwerksabbild lesen"
 
 #: generate_additional_files.py:374
+#: share/polkit/actions/dev.minios.driveutility-read.policy.template:11
 msgid "Authentication is required to read a disk image from a device."
 msgstr "Authentifizierung ist erforderlich, um ein Laufwerksabbild von einem Gerät zu lesen."
 

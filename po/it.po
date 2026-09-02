@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-09-01 01:24+0300\n"
+"POT-Creation-Date: 2026-09-02 14:13+0300\n"
 "PO-Revision-Date: 2026-08-31 18:03+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
@@ -67,34 +67,42 @@ msgid "Wipe this device"
 msgstr "Azzera questo dispositivo"
 
 #: generate_additional_files.py:323
+#: share/polkit/actions/dev.minios.driveutility-write.policy.template:10
 msgid "Write a disk image"
 msgstr "Scrivi un'immagine disco"
 
 #: generate_additional_files.py:323
+#: share/polkit/actions/dev.minios.driveutility-write.policy.template:11
 msgid "Authentication is required to write an image to a device."
 msgstr "È richiesta l'autenticazione per scrivere un'immagine su un dispositivo."
 
 #: generate_additional_files.py:340
+#: share/polkit/actions/dev.minios.driveutility-format.policy.template:10
 msgid "Format a disk"
 msgstr "Formatta un disco"
 
 #: generate_additional_files.py:340
+#: share/polkit/actions/dev.minios.driveutility-format.policy.template:11
 msgid "Authentication is required to format a device."
 msgstr "È richiesta l'autenticazione per formattare un dispositivo."
 
 #: generate_additional_files.py:357
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy.template:10
 msgid "Wipe a disk"
 msgstr "Azzera un disco"
 
 #: generate_additional_files.py:357
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy.template:11
 msgid "Authentication is required to wipe a device."
 msgstr "È richiesta l'autenticazione per azzerare un dispositivo."
 
 #: generate_additional_files.py:374
+#: share/polkit/actions/dev.minios.driveutility-read.policy.template:10
 msgid "Read a disk image"
 msgstr "Leggi un'immagine disco"
 
 #: generate_additional_files.py:374
+#: share/polkit/actions/dev.minios.driveutility-read.policy.template:11
 msgid "Authentication is required to read a disk image from a device."
 msgstr "È richiesta l'autenticazione per leggere un'immagine disco da un dispositivo."
 

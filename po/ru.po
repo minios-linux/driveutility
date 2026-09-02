@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: driveutility 1.7.0\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-09-01 01:24+0300\n"
+"POT-Creation-Date: 2026-09-02 14:13+0300\n"
 "PO-Revision-Date: 2026-08-31 18:03+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
@@ -67,34 +67,42 @@ msgid "Wipe this device"
 msgstr "Стереть это устройство"
 
 #: generate_additional_files.py:323
+#: share/polkit/actions/dev.minios.driveutility-write.policy.template:10
 msgid "Write a disk image"
 msgstr "Записать образ диска"
 
 #: generate_additional_files.py:323
+#: share/polkit/actions/dev.minios.driveutility-write.policy.template:11
 msgid "Authentication is required to write an image to a device."
 msgstr "Требуется аутентификация для записи образа на устройство."
 
 #: generate_additional_files.py:340
+#: share/polkit/actions/dev.minios.driveutility-format.policy.template:10
 msgid "Format a disk"
 msgstr "Форматировать диск"
 
 #: generate_additional_files.py:340
+#: share/polkit/actions/dev.minios.driveutility-format.policy.template:11
 msgid "Authentication is required to format a device."
 msgstr "Требуется аутентификация для форматирования устройства."
 
 #: generate_additional_files.py:357
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy.template:10
 msgid "Wipe a disk"
 msgstr "Стереть диск"
 
 #: generate_additional_files.py:357
+#: share/polkit/actions/dev.minios.driveutility-wipe.policy.template:11
 msgid "Authentication is required to wipe a device."
 msgstr "Требуется аутентификация для стирания устройства."
 
 #: generate_additional_files.py:374
+#: share/polkit/actions/dev.minios.driveutility-read.policy.template:10
 msgid "Read a disk image"
 msgstr "Считать образ диска"
 
 #: generate_additional_files.py:374
+#: share/polkit/actions/dev.minios.driveutility-read.policy.template:11
 msgid "Authentication is required to read a disk image from a device."
 msgstr "Требуется аутентификация для чтения образа диска с устройства."
 
