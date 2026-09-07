@@ -30,7 +30,7 @@ gi.require_version('UDisks', '2.0')
 gi.require_version('XApp', '1.0')
 
 from gi.repository import Polkit, Gtk, GLib, UDisks, XApp
-from minios_gui import apply_minios_css, new_icon
+from minios_gui import HelpPopoverButton, apply_minios_css, new_icon
 
 try:
     gi.require_version('Unity', '7.0')
@@ -118,8 +118,6 @@ class DriveUtility:
         self.wTree.set_translation_domain(APP)
         self.wTree.add_from_file("/usr/share/driveutility/driveutility.ui")
 
-        # Use the shared MiniOS stylesheet like every other MiniOS app so the
-        # look-and-feel (theme-native buttons, entries, lists) stays universal.
         apply_minios_css()
 
         for page_id in ("write_page_container", "read_page_container",
@@ -185,7 +183,8 @@ class DriveUtility:
         self.wipe_passes_spinbutton = self.wTree.get_object("wipe_passes_spinbutton")
         self.wipe_size_label = self.wTree.get_object("wipe_size_label")
         self.wipe_size_spinbutton = self.wTree.get_object("wipe_size_spinbutton")
-        self.wipe_method_description = self.wTree.get_object("wipe_method_description")
+        self.wipe_method_help_container = self.wTree.get_object(
+            "wipe_method_help_container")
         self.wipe_final_zero_checkbutton = self.wTree.get_object("wipe_final_zero_checkbutton")
         self.show_all_disks_wipe_checkbutton = self.wTree.get_object("show_all_disks_wipe_checkbutton")
         self.wipe_combo_handler_id = None
@@ -389,6 +388,23 @@ class DriveUtility:
         self.wipe_combo_handler_id = self.wipe_device_combobox.connect("changed", self.wipe_device_selected)
         self.wipe_type_combobox.connect("changed", self.wipe_type_selected)
         self.wipe_button.connect("clicked", self.do_wipe)
+        self.wipe_method_help = HelpPopoverButton(
+            _("Erase methods"),
+            sections=(
+                (_("Secure erase (controller, recommended)"),
+                 _("Uses the drive controller to securely erase the drive without a full host-side overwrite.")),
+                (_("Discard/TRIM (fast, no overwrite)"),
+                 _("Discards all blocks quickly without overwriting the SSD. Use Secure erase when data must be unrecoverable.")),
+                (_("Overwrite with zeros"),
+                 _("Overwrites the selected area with zeros. This is suitable for hard disks but causes unnecessary SSD writes.")),
+                (_("Overwrite with random data"),
+                 _("Overwrites the selected area with random data. Multiple passes are normally unnecessary on modern drives.")),
+            ),
+            compact=True,
+        )
+        self.wipe_method_help_container.pack_start(
+            self.wipe_method_help, False, False, 0)
+        self.wipe_method_help.show_all()
         self.update_wipe_methods()
 
     def _wipe_capabilities_for(self, device):
@@ -770,13 +786,6 @@ class DriveUtility:
         if not is_random:
             self.wipe_final_zero_checkbutton.set_active(False)
 
-        descriptions = {
-            'secure': _("Uses the drive controller to securely erase the drive without a full host-side overwrite."),
-            'discard': _("Discards all blocks quickly without overwriting the SSD. Use Secure erase when data must be unrecoverable."),
-            'zero': _("Overwrites the selected area with zeros. This is suitable for hard disks but causes unnecessary SSD writes."),
-            'random': _("Overwrites the selected area with random data. Multiple passes are normally unnecessary on modern drives."),
-        }
-        self.wipe_method_description.set_text(descriptions.get(method, ""))
 
     def filesystem_selected(self, widget):
         fs_iter = self.filesystem_combobox.get_active_iter()

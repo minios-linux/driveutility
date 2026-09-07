@@ -1,3 +1,13 @@
+driveutility (1.8.9) unstable; urgency=medium
+
+  * Adopt minios-gui 1.4.0 for the shared compact header, controls, action bar,
+    progress styling, and icon-theme handling instead of local duplicates.
+  * Move erase-method guidance into a compact contextual help popover that is
+    discoverable from the keyboard and by assistive technologies.
+  * Keep the wipe page compact by removing the always-visible method description.
+
+ -- crims0n <crims0n@minios.dev>  Mon, 07 Sep 2026 03:09:59 +0300
+
 driveutility (1.8.8) unstable; urgency=medium
 
   * Refresh translations

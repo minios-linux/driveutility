@@ -629,7 +629,7 @@ EXT4
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <!-- n-columns=2 n-rows=7 -->
+                  <!-- n-columns=2 n-rows=6 -->
                   <object class="GtkGrid" id="wipe_page">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
@@ -665,14 +665,37 @@ EXT4
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel">
+                      <object class="GtkBox">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="label" translatable="yes">Erase _method:</property>
-                        <property name="use_underline">True</property>
-                        <property name="mnemonic_widget">wipe_type_combobox</property>
-                        <property name="xalign">0</property>
+                        <property name="spacing">6</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="halign">start</property>
+                            <property name="label" translatable="yes">Erase _method:</property>
+                            <property name="use_underline">True</property>
+                            <property name="mnemonic_widget">wipe_type_combobox</property>
+                            <property name="xalign">0</property>
+                          </object>
+                          <packing>
+                            <property name="expand">True</property>
+                            <property name="fill">True</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkBox" id="wipe_method_help_container">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">True</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -760,20 +783,6 @@ EXT4
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkLabel" id="wipe_method_description">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="halign">start</property>
-                        <property name="hexpand">True</property>
-                        <property name="wrap">True</property>
-                        <property name="xalign">0</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="top_attach">5</property>
-                      </packing>
-                    </child>
-                    <child>
                       <object class="GtkProgressBar" id="wipe_progressbar">
                         <property name="can_focus">False</property>
                         <property name="valign">center</property>
@@ -782,7 +791,7 @@ EXT4
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="top_attach">6</property>
+                        <property name="top_attach">5</property>
                       </packing>
                     </child>
                     <child>
@@ -1298,11 +1307,14 @@ EXT4
       </object>
     </child>
     <child type="titlebar">
-      <object class="GtkHeaderBar">
+      <object class="GtkHeaderBar" id="main_headerbar">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="title" translatable="yes">Drive Utility</property>
         <property name="show_close_button">True</property>
+        <style>
+          <class name="minios-headerbar"/>
+        </style>
         <child>
           <object class="GtkStackSwitcher" id="stack_switcher">
             <property name="visible">True</property>

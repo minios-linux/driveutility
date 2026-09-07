@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: driveutility 1.7.0\n"
+"Project-Id-Version: driveutility 1.8.9\n"
 "Report-Msgid-Bugs-To: support@minios.dev\n"
-"POT-Creation-Date: 2026-09-02 14:13+0300\n"
-"PO-Revision-Date: 2026-08-31 18:03+0000\n"
+"POT-Creation-Date: 2026-09-07 02:26+0300\n"
+"PO-Revision-Date: 2026-09-06 23:26+0000\n"
 "Last-Translator: crims0n <crims0n@minios.dev>\n"
 "Language-Team: none\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: generate_additional_files.py:172 generate_additional_files.py:183
-#: share/driveutility/driveutility.ui:1304
+#: share/driveutility/driveutility.ui:1313
 #: share/applications/driveutility-kde.desktop:8
 #: share/applications/driveutility.desktop:8
 msgid "Drive Utility"
@@ -106,39 +106,59 @@ msgstr "Считать образ диска"
 msgid "Authentication is required to read a disk image from a device."
 msgstr "Требуется аутентификация для чтения образа диска с устройства."
 
-#: lib/driveutility.py:311
+#: lib/driveutility.py:310
 msgid "Disk Images"
 msgstr "Образы дисков"
 
-#: lib/driveutility.py:322
+#: lib/driveutility.py:321
 msgid "All files"
 msgstr "Все файлы"
 
-#: lib/driveutility.py:343
+#: lib/driveutility.py:342
 msgid "Save Image File"
 msgstr "Сохранить файл образа"
 
-#: lib/driveutility.py:406
+#: lib/driveutility.py:392
+msgid "Erase methods"
+msgstr "Методы стирания"
+
+#: lib/driveutility.py:394 lib/driveutility.py:422
 msgid "Secure erase (controller, recommended)"
 msgstr "Безопасное удаление (контроллер, рекомендуется)"
 
-#: lib/driveutility.py:408
+#: lib/driveutility.py:395
+msgid "Uses the drive controller to securely erase the drive without a full host-side overwrite."
+msgstr "Использует контроллер накопителя для безопасного удаления данных без полной перезаписи со стороны хоста."
+
+#: lib/driveutility.py:396 lib/driveutility.py:424
 msgid "Discard/TRIM (fast, no overwrite)"
 msgstr "Discard/TRIM (быстро, без перезаписи)"
 
-#: lib/driveutility.py:409
+#: lib/driveutility.py:397
+msgid "Discards all blocks quickly without overwriting the SSD. Use Secure erase when data must be unrecoverable."
+msgstr "Быстро удаляет все блоки без перезаписи SSD. Используйте безопасное удаление, если данные должны быть полностью уничтожены."
+
+#: lib/driveutility.py:398 lib/driveutility.py:425
 msgid "Overwrite with zeros"
 msgstr "Перезаписать нулями"
 
-#: lib/driveutility.py:410
+#: lib/driveutility.py:399
+msgid "Overwrites the selected area with zeros. This is suitable for hard disks but causes unnecessary SSD writes."
+msgstr "Перезаписывает выбранную область нулями. Подходит для жёстких дисков, но вызывает лишнюю запись на SSD."
+
+#: lib/driveutility.py:400 lib/driveutility.py:426
 msgid "Overwrite with random data"
 msgstr "Перезаписать случайными данными"
 
-#: lib/driveutility.py:488 lib/driveutility.py:505
+#: lib/driveutility.py:401
+msgid "Overwrites the selected area with random data. Multiple passes are normally unnecessary on modern drives."
+msgstr "Перезаписывает выбранную область случайными данными. Для современных накопителей обычно достаточно одного прохода."
+
+#: lib/driveutility.py:504 lib/driveutility.py:521
 msgid "WARNING: Device is mounted!"
 msgstr "ВНИМАНИЕ: Устройство смонтировано!"
 
-#: lib/driveutility.py:512
+#: lib/driveutility.py:528
 #, python-brace-format
 msgid ""
 "The device <b>{device}</b> is currently mounted and in use.\n"
@@ -159,90 +179,74 @@ msgstr ""
 "\n"
 "Вы уверены, что хотите продолжить?"
 
-#: lib/driveutility.py:527
+#: lib/driveutility.py:543
 msgid "_Cancel"
 msgstr "_Отмена"
 
-#: lib/driveutility.py:529
+#: lib/driveutility.py:545
 msgid "C_ontinue"
 msgstr "П_родолжить"
 
-#: lib/driveutility.py:774
-msgid "Uses the drive controller to securely erase the drive without a full host-side overwrite."
-msgstr "Использует контроллер накопителя для безопасного удаления данных без полной перезаписи со стороны хоста."
-
-#: lib/driveutility.py:775
-msgid "Discards all blocks quickly without overwriting the SSD. Use Secure erase when data must be unrecoverable."
-msgstr "Быстро удаляет все блоки без перезаписи SSD. Используйте безопасное удаление, если данные должны быть полностью уничтожены."
-
-#: lib/driveutility.py:776
-msgid "Overwrites the selected area with zeros. This is suitable for hard disks but causes unnecessary SSD writes."
-msgstr "Перезаписывает выбранную область нулями. Подходит для жёстких дисков, но вызывает лишнюю запись на SSD."
-
-#: lib/driveutility.py:777
-msgid "Overwrites the selected area with random data. Multiple passes are normally unnecessary on modern drives."
-msgstr "Перезаписывает выбранную область случайными данными. Для современных накопителей обычно достаточно одного прохода."
-
-#: lib/driveutility.py:837 share/driveutility/driveutility.ui:621
+#: lib/driveutility.py:846 share/driveutility/driveutility.ui:621
 msgid "Format"
 msgstr "Форматировать"
 
-#: lib/driveutility.py:874
+#: lib/driveutility.py:883
 msgid "The disk was formatted successfully."
 msgstr "Диск успешно отформатирован."
 
-#: lib/driveutility.py:876
+#: lib/driveutility.py:885
 #, python-format
 msgid "An error occured while creating a partition on %s."
 msgstr "Произошла ошибка при создании раздела на %s."
 
-#: lib/driveutility.py:879 lib/driveutility.py:947 lib/driveutility.py:1125
-#: lib/driveutility.py:1144
+#: lib/driveutility.py:888 lib/driveutility.py:956 lib/driveutility.py:1134
+#: lib/driveutility.py:1153
 msgid "Authentication Error."
 msgstr "Ошибка аутентификации."
 
-#: lib/driveutility.py:883 lib/driveutility.py:1129 lib/driveutility.py:1148
+#: lib/driveutility.py:892 lib/driveutility.py:1138 lib/driveutility.py:1157
 msgid "An error occurred."
 msgstr "Произошла ошибка."
 
-#: lib/driveutility.py:899 share/driveutility/driveutility.ui:857
+#: lib/driveutility.py:908 share/driveutility/driveutility.ui:866
 msgid "Wipe"
 msgstr "Стереть"
 
-#: lib/driveutility.py:941
+#: lib/driveutility.py:950
 msgid "The disk was erased successfully."
 msgstr "Диск успешно очищен."
 
-#: lib/driveutility.py:945
+#: lib/driveutility.py:954
 msgid "The selected erase method is not supported by this drive."
 msgstr "Выбранный метод удаления не поддерживается этим накопителем."
 
-#: lib/driveutility.py:951
+#: lib/driveutility.py:960
 #, python-format
 msgid "An error occurred while wiping %s."
 msgstr "Произошла ошибка при стирании %s."
 
-#: lib/driveutility.py:969
+#: lib/driveutility.py:978
 msgid "Write"
 msgstr "Записать"
 
-#: lib/driveutility.py:1119
+#: lib/driveutility.py:1128
 msgid "The image was successfully written to the disk."
 msgstr "Образ успешно записан на диск."
 
-#: lib/driveutility.py:1121
+#: lib/driveutility.py:1130
 msgid "Not enough space on the destination disk."
 msgstr "Недостаточно места на целевом диске."
 
-#: lib/driveutility.py:1123
+#: lib/driveutility.py:1132
 msgid "An error occured while writing the image."
 msgstr "Произошла ошибка при записи образа."
 
-#: lib/driveutility.py:1140
+#: lib/driveutility.py:1149
 msgid "The image was successfully created."
 msgstr "Образ успешно создан."
 
-#: lib/driveutility.py:1142
+#: lib/driveutility.py:1151
 msgid "An error occured while creating the image."
 msgstr "Произошла ошибка при создании образа."
 
@@ -408,47 +412,47 @@ msgstr "_Диск для стирания:"
 msgid "Select a disk to securely wipe"
 msgstr "Выберите диск для безопасного стирания"
 
-#: share/driveutility/driveutility.ui:672
+#: share/driveutility/driveutility.ui:677
 msgid "Erase _method:"
 msgstr "Метод удаления:"
 
-#: share/driveutility/driveutility.ui:697
+#: share/driveutility/driveutility.ui:720
 msgid "_Passes:"
 msgstr "_Проходы:"
 
-#: share/driveutility/driveutility.ui:724
+#: share/driveutility/driveutility.ui:747
 msgid "_Size (MB, 0 for whole disk):"
 msgstr "_Размер (МБ, 0 — весь диск):"
 
-#: share/driveutility/driveutility.ui:748
+#: share/driveutility/driveutility.ui:771
 msgid "_Add a final pass with zeros"
 msgstr "_Добавить финальный проход с нулями"
 
-#: share/driveutility/driveutility.ui:805
+#: share/driveutility/driveutility.ui:814
 msgid "Show mounted dis_ks"
 msgstr "Показать смонтированные диски"
 
-#: share/driveutility/driveutility.ui:832
+#: share/driveutility/driveutility.ui:841
 msgid "_Wipe"
 msgstr "_Стереть"
 
-#: share/driveutility/driveutility.ui:919
-#: share/driveutility/driveutility.ui:1000
-#: share/driveutility/driveutility.ui:1081
-#: share/driveutility/driveutility.ui:1162
-#: share/driveutility/driveutility.ui:1267
+#: share/driveutility/driveutility.ui:928
+#: share/driveutility/driveutility.ui:1009
+#: share/driveutility/driveutility.ui:1090
+#: share/driveutility/driveutility.ui:1171
+#: share/driveutility/driveutility.ui:1276
 msgid "_Back"
 msgstr "_Назад"
 
-#: share/driveutility/driveutility.ui:1217
+#: share/driveutility/driveutility.ui:1226
 msgid "This file looks like a Windows image."
 msgstr "Этот файл похож на образ Windows."
 
-#: share/driveutility/driveutility.ui:1230
+#: share/driveutility/driveutility.ui:1239
 msgid "Windows images require special processing."
 msgstr "Образы Windows требуют специальной обработки."
 
-#: share/driveutility/driveutility.ui:1241
+#: share/driveutility/driveutility.ui:1250
 msgid "_More information"
 msgstr "_Подробнее"
 

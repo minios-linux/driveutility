@@ -5,6 +5,7 @@ import os
 import sys
 import pytest
 import tempfile
+from pathlib import Path
 
 # Add lib directory to path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'lib'))
@@ -15,6 +16,12 @@ def temp_dir():
     """Create a temporary directory for tests."""
     with tempfile.TemporaryDirectory() as tmpdir:
         yield tmpdir
+
+
+@pytest.fixture
+def tmp_path(tmpdir):
+    """Provide pathlib temporary paths on pytest versions before 3.9."""
+    return Path(str(tmpdir))
 
 
 @pytest.fixture
